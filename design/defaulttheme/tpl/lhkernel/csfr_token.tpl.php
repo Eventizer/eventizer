@@ -1,0 +1,1 @@
+<input type="hidden" name="csfr_token" value="<?=erLhcoreClassUser::instance()->getCSFRToken()?>" />

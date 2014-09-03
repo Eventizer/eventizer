@@ -1,0 +1,13 @@
+.mt10 {
+	margin-top: 10px;	
+}
+
+.mb0 {
+	margin-bottom: 0px !important;	
+}
+@for $i from 0 through 10 {
+  .mt-#{$i*5} { margin-top: 5px * $i; }
+  .mb-#{$i*5} { margin-bottom: 5px * $i; }
+  .ml-#{$i*5} { margin-left: 5px * $i; }
+  .mr-#{$i*5} { margin-right: 5px * $i; }
+}

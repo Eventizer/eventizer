@@ -1,0 +1,13 @@
+RewriteEngine On
+
+RewriteRule ^(m|lit|ger|fre|eng|esp|por|ita|rus|jap|den|nor|ind)/(.*)-([0-9]*)a.html(.*?)?$ index.php/$1/article/view/$3$4 [L]
+RewriteRule ^(m|lit|ger|fre|eng|esp|por|ita|rus|jap|den|nor|ind)/(.*)-([0-9]*)c.html(.*?)?$ index.php/$1/article/category/$3$4 [L]
+
+RewriteRule ^(.*)-([0-9]*)a.html(.*?)?$ index.php/article/view/$2$3
+RewriteRule ^(.*)-([0-9]*)c.html(.*?)?$ index.php/article/category/$2$3
+
+RewriteRule ^design/.* - [L]
+RewriteRule ^var/.* - [L]
+RewriteRule ^robots.txt - [L]
+RewriteRule !\.(css|js|xml|html|ogv|swf|flv|php|ico|eot|svg|ttf|woff)|var(.+)storage.pdf(.+)\.pdf$ index.php
+DirectoryIndex index.php
