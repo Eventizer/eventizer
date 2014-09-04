@@ -1,11 +1,12 @@
 <div class="col-xs-12">
 	<div class="box box-primary">
-		<?php include(erLhcoreClassDesign::designtpl('lhkernel/alert_success_action.tpl.php'));?>
-		<?php include(erLhcoreClassDesign::designtpl('lhkernel/validation_error.tpl.php'));?>
+		
 			
 
 		<form action="<?=__url('permission/newrole')?>" method="post">
 			<div class="box-body">
+				<?php include(erLhcoreClassDesign::designtpl('lhkernel/alert_success_action.tpl.php'));?>
+				<?php include(erLhcoreClassDesign::designtpl('lhkernel/validation_error.tpl.php'));?>
 				<?php include(erLhcoreClassDesign::designtpl('lhkernel/csfr_token.tpl.php'));?>
 				<div class="form-group">
 			    	<label><?=__t('permission/newrole','Name')?></label>

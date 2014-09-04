@@ -41,7 +41,7 @@ class erLhcoreClassModule {
 						return $Result;
 					} else {
 						$_SESSION['oldurl'] = $_SERVER['REQUEST_URI'];
-						self::redirect('user/login');
+						self::redirect('user/login','',true);
 						exit();
 					}
 				}
@@ -378,10 +378,10 @@ class erLhcoreClassModule {
 	
 	}
 
-	static function redirect($url = '/', $appendURL = '') {
+	static function redirect($url = '/', $appendURL = '', $check_url = false) {
 		
-		if (isset($_SESSION['oldurl']) && $_SERVER['REQUEST_URI'] != $_SESSION['oldurl'] && $_SESSION['oldurl'] != '/site_admin' && $_SESSION['oldurl'] != '/site_admin/') {
-			$url = str_replace("/site_admin", "", $_SESSION['oldurl']);
+		if (isset($_SESSION['oldurl']) && $_SERVER['REQUEST_URI'] != $_SESSION['oldurl'] && $_SESSION['oldurl'] != '/site_admin' && $_SESSION['oldurl'] != '/site_admin/' && $check_url == true) {
+			$url = $_SESSION['oldurl'];
 			unset($_SESSION['oldurl']);
 			header('Location: ' . $url);
 			exit();

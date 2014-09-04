@@ -30,15 +30,17 @@
 				    </tr>
 				<?php endforeach; ?>
 			</table>
-			<br />
+			
+			
+			<?php include(erLhcoreClassDesign::designtpl('lhkernel/secure_links.tpl.php')); ?>
+		</div>
+		<div class="box-footer clearfix">
 			<?php if (isset($pages)) : ?>
 			    <?php include(erLhcoreClassDesign::designtpl('lhkernel/paginator.tpl.php')); ?>
 			<?php endif;?>
 			
 			<a class="btn btn-primary" href="<?=__url('useradmin/newgroup')?>"><?=__t('user/grouplist','New group')?></a>
-			
-			<?php include(erLhcoreClassDesign::designtpl('lhkernel/secure_links.tpl.php')); ?>
-		</div>
+			</div>
 	</div>
 </div>
 </div>

@@ -115,37 +115,50 @@ if (isset($_POST['Delete_policy']))
         {
             erLhcoreClassRoleFunction::deleteRolePolicy($PolicyID);
         }
+    } else {
+    	$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole','Select functions to remove');
+    	$tpl->set( 'errorsAssignFunctions', $Errors);
     }
 }
 
-if (isset($_POST['Remove_group_from_role']) && isset($_POST['AssignedID']) && count($_POST['AssignedID']) > 0)
+if (isset($_POST['Remove_group_from_role']))
 {
-	if (!isset($_POST['csfr_token']) || !$currentUser->validateCSFRToken($_POST['csfr_token'])) {
-		erLhcoreClassModule::redirect();
-		exit;
-	}
-
-    foreach ($_POST['AssignedID'] as $AssignedID)
-    {
-        erLhcoreClassGroupRole::deleteGroupRole($AssignedID);
+	if(isset($_POST['AssignedID']) && count($_POST['AssignedID']) > 0) {
+		if (!isset($_POST['csfr_token']) || !$currentUser->validateCSFRToken($_POST['csfr_token'])) {
+			erLhcoreClassModule::redirect();
+			exit;
+		}
+	
+	    foreach ($_POST['AssignedID'] as $AssignedID)
+	    {
+	        erLhcoreClassGroupRole::deleteGroupRole($AssignedID);
+	    }
+    } else {
+    	$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole','Select roles to remove');
+    	$tpl->set( 'errorsAssignUsers', $Errors);
     }
 }
 
-if (isset($_POST['AssignGroups']) && isset($_POST['GroupID']) && count($_POST['GroupID']) > 0)
+if (isset($_POST['AssignGroups'])  )
 {
-	if (!isset($_POST['csfr_token']) || !$currentUser->validateCSFRToken($_POST['csfr_token'])) {
-		erLhcoreClassModule::redirect();
-		exit;
-	}
-
-    foreach ($_POST['GroupID'] as $GroupID)
-    {
-        $GroupRole = new erLhcoreClassModelGroupRole();
-        $GroupRole->group_id =$GroupID;
-        $GroupRole->role_id = $Role->id;;
-        erLhcoreClassRole::getSession()->save($GroupRole);
+	if(isset($_POST['GroupID']) && count($_POST['GroupID']) > 0) {
+		if (!isset($_POST['csfr_token']) || !$currentUser->validateCSFRToken($_POST['csfr_token'])) {
+			erLhcoreClassModule::redirect();
+			exit;
+		}
+	
+	    foreach ($_POST['GroupID'] as $GroupID)
+	    {
+	        $GroupRole = new erLhcoreClassModelGroupRole();
+	        $GroupRole->group_id =$GroupID;
+	        $GroupRole->role_id = $Role->id;;
+	        erLhcoreClassRole::getSession()->save($GroupRole);
+	    }
+	} else {
+    	$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole','Select roles to assign');
+    	$tpl->set( 'errorsAssignUsers', $Errors);
     }
-}
+} 
 
 
 $Result['submenu_active'] = 'users';

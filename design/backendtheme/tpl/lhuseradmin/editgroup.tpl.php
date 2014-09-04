@@ -134,7 +134,7 @@
 					<?php if($groupRolesCount):?>
 						<input type="submit" class="btn btn-primary" name="removeRoleFomGroupAction" value="<?=__t('user/editgroup','Remove role from group')?>" />
 					<?php endif; ?>	
-					<button class="btn btn-primary" data-reveal-id="ajaxContentModal" data-reveal-ajax="<?=__url('useradmin/groupassignrole')?>/<?=$groupData->id?>"><?=__t('user/editgroup','Assign role')?></button>
+					<a class="btn btn-primary"  data-toggle="modal" data-target="#modalRole"  href="<?=__url('useradmin/groupassignrole')?>/<?=$groupData->id?>"><?=__t('user/editgroup','Assign role')?></a>
 				</div>
 				
 			</form>	
@@ -142,4 +142,5 @@
 	</div>
 </div>
 
-<div id="modal" class="modal fade " tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" ></div>
+<div id="modal" class="modal fade modal_reload" tabindex="-1" role="dialog" aria-labelledby="<?=__t('system/button','Assign user')?>" aria-hidden="true" ></div>
+<div id="modalRole" class="modal fade modal_reload" tabindex="-1" role="dialog" aria-labelledby="<?=__t('system/button','Assign Role')?>" aria-hidden="true" ></div>

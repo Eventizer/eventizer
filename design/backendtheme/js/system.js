@@ -9,8 +9,10 @@ var functionMap = {
 $(document).ready(function() {      
     $.each(_lactq, function(index, value) {
         functionMap[value.f].apply(app,value.a);       
-    });   
+    }); 
+    
     $('.modal_reload').on('hidden.bs.modal', function() {
+    	
 	  $(this).removeData('bs.modal');
 	 });
 });

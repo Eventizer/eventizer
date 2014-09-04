@@ -44,8 +44,6 @@
 				<form action="<?=__url('permission/editrole')?>/<?php echo $role->id?>" method="post">
 				<?php include(erLhcoreClassDesign::designtpl('lhkernel/csfr_token.tpl.php'));?>
 					
-						
-					
 					<div class="box-body">				
 						<div class="dataTables_wrapper form-inline">
 							<table cellpadding="0" cellspacing="0" class="table table-bordered table-hover dataTable" width="100%">
@@ -131,8 +129,6 @@
 					</form>
 			</div>
 </div>
+
 <div class="modal fade modal_reload" id="assigngroup" tabindex="-1" role="dialog" aria-labelledby="<?=__t('permission/editrole','Assign a group')?>" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content"></div>
-	</div>
 </div>

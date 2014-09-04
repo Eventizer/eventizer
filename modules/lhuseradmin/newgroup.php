@@ -30,7 +30,7 @@ $tpl->set('groupData',$groupData);
 $Result['title'] = __t('user/newgroup','New group');
 $Result['submenu_active'] = 'users';
 $Result['menu'] = 'settings';
-$Result['subsubmenu'] = 'users';
+$Result['subsubmenu'] = 'groups';
 
 $Result['content'] = $tpl->fetch();
 

@@ -13,3 +13,12 @@
 .fs36{
 	font-size:36px;
 }
+
+.pagination {
+	margin-top:0px;
+	padding:0px;
+}
+
+.dataTables_info {
+	padding-top:7px;
+}

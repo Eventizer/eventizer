@@ -4,14 +4,14 @@
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <?php $userData = erLhcoreClassUser::instance()->getUserData(); ?>
                     <ul class="sidebar-menu">
-                        <li class="active">
+                        <li class="<?php if(isset($Result['menu']) && $Result['menu'] == 'dashboard'):?>active<?php endif;?>">
                             <a href="<?=__url();?>">
                                 <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                             </a>
                         </li>
                       
-						<li>
-							<a href="<?=__url('event/list')?>"><i class="fa fa-users"></i>&nbsp; <?=__t('pagelayout/pagelayout','Events')?></a>
+						<li <?php if(isset($Result['menu']) && $Result['menu'] == 'events'):?>active<?php endif;?>>
+							<a href="<?=__url('eventadmin/list')?>"><i class="fa fa-users"></i>&nbsp; <?=__t('pagelayout/pagelayout','Events')?></a>
 						</li>
 						
                         <?php //if ($currentUser->hasAccessTo('lhsystem','use')) : ?>
@@ -33,7 +33,7 @@
 							</li>
 						<?php //endif; ?>
 						
-						<li>
+						<li class="<?php if(isset($Result['menu']) && $Result['menu'] == 'about'):?>active<?php endif;?>">
 							<a href="<?=__url('system/about')?>"><i class="fa fa-info"></i>&nbsp; <?=__t('pagelayout/pagelayout','About system')?></a>
 						</li>
                     </ul>

@@ -53,6 +53,11 @@ class erLhcoreClassGroupRole{
         return $rows;  
    }
    
+   public static function deleteGroupRole($AssigneID)
+   {
+	   	$AssignedUser = erLhcoreClassRole::getSession()->load( 'erLhcoreClassModelGroupRole', $AssigneID);
+	   	erLhcoreClassRole::getSession()->delete($AssignedUser);
+   }
 }
 
 
