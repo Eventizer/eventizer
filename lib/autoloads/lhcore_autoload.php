@@ -70,6 +70,12 @@ return array (
 		'erLhcoreClassCronMailer' 	  					=> 'lib/core/lhcronmailer/lhcronmailer.php',
 		'erLhcoreClassModelCronMailerMail' 				=> 'lib/models/lhcronmailer/erlhcoreclassmodelcronmailermail.php',
 				
+		//Events
+		'erLhcoreClassEvents'							=>  'lib/core/lhevents/lhevents.php',
+		'erLhcoreClassModelEvents'						=>  'lib/models/lhevents/erlhcoreclassmodelevents.php',
+    
+        //event validation
+        'erLhcoreClassValidateEvents'					=>  'lib/core/lhevents/validation/erlhcoreclassvalidationevents.php',
 );
 
 ?>

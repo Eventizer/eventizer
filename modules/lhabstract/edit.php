@@ -78,12 +78,13 @@ if (method_exists($ObjectData,'dependJs')) {
 	$Result['additional_header_js'] = $ObjectData->dependJs();
 }
 
+$Result['submenu'] = $Params['user_parameters']['identifier'];
 if (isset($object_trans['path'])){
 	$Result['path'][] = $object_trans['path'];
 	$Result['path'][] = array('url' => erLhcoreClassDesign::baseurl('abstract/list').'/'.$Params['user_parameters']['identifier'], 'title' => $object_trans['name']);
 	$Result['path'][] = array('title' =>erTranslationClassLhTranslation::getInstance()->getTranslation('system/buttons','Edit'));
 } else {
-	$Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','System configuration')),
+	$Result['path'] = array(
 			array('url' => erLhcoreClassDesign::baseurl('abstract/list').'/'.$Params['user_parameters']['identifier'], 'title' => $object_trans['name']),
 			array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/buttons','Edit'))
 	);

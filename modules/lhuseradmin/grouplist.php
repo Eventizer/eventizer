@@ -24,7 +24,6 @@ $Result['subsubmenu'] = 'groups';
 $Result['content'] = $tpl->fetch();
 
 $Result['path'] = array(
-	array('url' => __url('system/configuration'),'title' => __t('user/grouplist','System configuration')),
 	array('title' => __t('user/grouplist','Groups')
 ))
 

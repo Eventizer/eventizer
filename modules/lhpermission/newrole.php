@@ -56,7 +56,7 @@ $Result['subsubmenu'] = 'roles';
 
 $Result['content'] = $tpl->fetch();
 
-$Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('permission/newrole','System configuration')),
+$Result['path'] = array(
 array('url'=>erLhcoreClassDesign::baseurl('permission/roles'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('permission/newrole','List of roles')),
 array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('permission/newrole','New role'))
 )

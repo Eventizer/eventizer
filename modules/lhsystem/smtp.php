@@ -88,7 +88,7 @@ $Result['menu'] = 'settings';
 $Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('system/smtp','SMTP');
 $Result['small_title'] =  __t('system/smtp','Change your smtp settings');
 $Result['content'] = $tpl->fetch();
-$Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','System configuration')),
+$Result['path'] = array(
 array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/smtp','SMTP settings')));
 
 ?>

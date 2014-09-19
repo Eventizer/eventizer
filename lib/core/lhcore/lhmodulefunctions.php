@@ -359,6 +359,22 @@ class erLhcoreClassModuleFunctions {
 	
 	}
 	
+	/**
+	 * convert date to date timestamp in UTC
+	 * @param string $date
+	 * @param string $format
+	 */
+	public static function getTimestamp($date, $format = "Y-m-d") {
+	
+	    $timestamp = DateTime::createFromFormat($format,$date);
+	
+	    $timestamp = $timestamp->format('U');
+	    $datetime = new DateTime('now',new DateTimeZone('UTC'));
+	    $datetime->setTimestamp($timestamp);
+	
+	    return $datetime->getTimestamp();
+	}
+	
 }
 
 ?>

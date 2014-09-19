@@ -10,7 +10,7 @@
                             </a>
                         </li>
                       
-						<li <?php if(isset($Result['menu']) && $Result['menu'] == 'events'):?>active<?php endif;?>>
+						<li class="<?php if(isset($Result['menu']) && $Result['menu'] == 'events'):?>active<?php endif;?>">
 							<a href="<?=__url('eventadmin/list')?>"><i class="fa fa-users"></i>&nbsp; <?=__t('pagelayout/pagelayout','Events')?></a>
 						</li>
 						
@@ -19,7 +19,8 @@
 								  <a href="#"><i class="fa fa-cog fa-fw"></i>&nbsp; <?=__t('pagelayout/pagelayout','Settings')?></a>
 								  <ul class="treeview-menu">
 	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'smtp'):?>class="active"<?php endif;?>><a href="<?=__url('system/smtp')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','SMTP')?></a></li>
-	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'etemplate'):?>class="active"<?php endif;?>><a href="<?=__url('abstract/list')?>/EmailTemplate"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Email tamplates')?></a></li>
+	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'EmailTemplate'):?>class="active"<?php endif;?>><a href="<?=__url('abstract/list')?>/EmailTemplate"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Email tamplates')?></a></li>
+	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'Country'):?>class="active"<?php endif;?>><a href="<?=__url('abstract/list')?>/Country"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Countries')?></a></li>
 	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'timezone'):?>class="active"<?php endif;?>><a href="<?=__url('system/timezone')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Time zone')?></a></li>
 	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'developer'):?>class="active"<?php endif;?>><a href="<?=__url('system/developer')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Developer')?></a></li>
 	                                <li class="treeview <?php if(isset($Result['submenu_active']) && $Result['submenu_active'] == 'users'):?>active<?php endif;?>"><a href="#"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Users')?></a>

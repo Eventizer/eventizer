@@ -80,7 +80,7 @@ class erLhAbstractModelCountry {
 	
 	public static function getList($paramsSearch = array()) {
 	
-		$paramsDefault = array('limit' => 500, 'offset' => 0);
+		$paramsDefault = array('limit' => 800, 'offset' => 0);
 		 
 		$params = array_merge($paramsDefault,$paramsSearch);
 		 

@@ -22,3 +22,7 @@
 .dataTables_info {
 	padding-top:7px;
 }
+
+.required {
+	color:#dd1313;
+}

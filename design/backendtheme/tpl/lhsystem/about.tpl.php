@@ -4,7 +4,7 @@
 			<h3 class="box-title">Eventizer</h3>
 		</div>
 		<div class="box-body">
-			<p>Eventizer.org is free, open-source system that is designed for event registration and management. Our mission is to empower business and organization leaders with the event registration, ticketing and management tools that Maximize the Success of Their events. </p>
+			<p>Eventizer is free, open-source system that is designed for event registration and management. Our mission is to empower business and organization leaders with the event registration, ticketing and management tools that Maximize the Success of Their events. </p>
 		</div>
 		<div class="box-header">
 			<h3 class="box-title">Documentation</h3>

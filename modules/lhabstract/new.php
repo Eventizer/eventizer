@@ -66,7 +66,7 @@ if (method_exists($objectData,'customForm')) {
 $tpl->set('identifier',$Params['user_parameters']['identifier']);
 
 
-$Result['submenu'] = 'etemplate';
+$Result['submenu'] = $Params['user_parameters']['identifier'];
 $Result['menu'] = 'settings';
 $Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/new','New');
 $Result['small_title'] =  $object_trans ['name'] ;
@@ -86,7 +86,7 @@ if (isset($object_trans['path'])){
 	$Result['path'][] = array('url' => erLhcoreClassDesign::baseurl('abstract/list').'/'.$Params['user_parameters']['identifier'], 'title' => $object_trans['name']);	
 	$Result['path'][] = array('title' =>erTranslationClassLhTranslation::getInstance()->getTranslation('system/buttons','New'));
 } else {
-	$Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','System configuration')),
+	$Result['path'] = array(
 			array('url' => erLhcoreClassDesign::baseurl('abstract/list').'/'.$Params['user_parameters']['identifier'], 'title' => $object_trans['name']),
 			array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/buttons','New'))
 	);

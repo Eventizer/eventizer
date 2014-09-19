@@ -52,7 +52,7 @@ if ($objectData->hide_delete === true) {
     $tpl->set('hide_delete',true);
 }
 
-$Result['submenu'] = 'etemplate';
+$Result['submenu'] = $Params['user_parameters']['identifier'];
 $Result['menu'] = 'settings';
 $Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/list','Email templates');
 $Result['small_title'] =  '';
@@ -62,7 +62,7 @@ if (isset($object_trans['path'])){
 	$Result['path'][] =  $object_trans['path'];
 	$Result['path'][] = array('title' => $object_trans['name']);	
 } else {
-	$Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','System configuration')),
+	$Result['path'] = array(
 			array('title' => $object_trans['name'])
 	);
 };

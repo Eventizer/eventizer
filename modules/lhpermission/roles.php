@@ -10,7 +10,6 @@ $Result['submenu_active'] = 'users';
 $Result['menu'] = 'settings';
 $Result['subsubmenu'] = 'roles';
 $Result['path'] = array(
-	array('url' => __url('system/configuration'),'title' => __t('permission/roles','System configuration')),
 	array('title' => __t('permission/roles','List of roles'))
 )
 

@@ -80,7 +80,7 @@ $Result['submenu'] = 'timezone';
 $Result['menu'] = 'settings';
 $Result['content'] = $tpl->fetch();
 
-$Result['path'] = array(array('url' => erLhcoreClassDesign::baseurl('system/configuration'),'title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/htmlcode','System configuration')),
+$Result['path'] = array(
 array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/timezone','Time zone')));
 
 

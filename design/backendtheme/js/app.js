@@ -28,15 +28,26 @@ var app = {
     			$( "#ModuleFunctionsID" ).html( '<select name="ModuleFunction" ><option value="*">All functions></option></select>');
     		}
     	});
-    	
     },
     
     eventizer_news : function() {
-	    $.getJSON(WWW_DIR_JAVASCRIPT + 'ajax/eventizernews/' ,{ }, function(data){ 
-	        if (data.error === false) {	 
-                $( "#eventizer_news" ).html(data.result);
-	        }		
+    	$.getJSON(WWW_DIR_JAVASCRIPT + 'ajax/eventizernews/' ,{ }, function(data){ 
+    		if (data.error === false) {	 
+    			$( "#eventizer_news" ).html(data.result);
+    		}		
     	});
+    },
+    
+    editor : function() {
+    	$('.editor').wysihtml5();
+    },
+    
+    ckeditor : function(id) {
+    	CKEDITOR.replace(id);
+    },
+    
+    datepicker : function(id) {
+    	 $("#"+id).datepicker({format: "dd/mm/yyyy", autoclose: true});
     },
     
 
