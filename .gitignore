@@ -11,6 +11,7 @@ var/autoloads/*
 var/tmpfiles/*
 robots.txt
 .htaccess
+.gitignore
 
 !cache/cacheconfig
 !cache/compiledtemplates
