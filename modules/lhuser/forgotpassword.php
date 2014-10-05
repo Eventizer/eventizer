@@ -59,8 +59,8 @@ if (isset($_POST['Forgotpassword'])) {
 			$tpl = erLhcoreClassTemplate::getInstance( 'lhuser/forgotpasswordsent.tpl.php');
 
 		} else {
-			erLhcoreClassModule::redirect('user/forgotpassword');
-			exit;
+		    $Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('user/forgotpassword','No users with this email address!');
+		    $tpl->set('errors',$Errors);
 		}
     }  else {
         $tpl->set('errors',$Errors);

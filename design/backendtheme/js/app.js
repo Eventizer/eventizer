@@ -50,5 +50,32 @@ var app = {
     	 $("#"+id).datepicker({format: "dd/mm/yyyy", autoclose: true});
     },
     
+    generateEmbedCode : function (default_site_access, host){
+        var siteAccess = $('#LocaleID').val() == default_site_access ? '' : $('#LocaleID').val();
+
+        var width = $('#id_widget_width').val() != '' ? 'widget_width:\''+$('#id_widget_width').val()+'\'' : '';
+        
+        
+        var tag ='<!-- Place this tag where you want the Live Helper Status to render. -->'+"\n"+'<div id="widget_container" ></div>';
+     
+        var script = tag+"\n\n"+'<script type="text/javascript">'+"\n"+"var eventWidget = {};\n"+
+          'eventWidget.opt = {'+width+'};\n'+
+          '(function() {'+"\n"+
+            'var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;'+"\n"+
+            'po.src = \''+$('#HttpMode').val()+'//'+host+siteAccess+'event/widget\''+"\n"+
+            'var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);'+"\n"+
+          '})();'+"\n"+
+        '</scr'+'ipt>';
+
+        $('#HMLTContent').text(script);
+    },
+
+    widgetEmbedCode : function (default_site_access, host){
+	    $('#LocaleID,#HttpMode,#id_widget_width').change(function(){
+	        app.generateEmbedCode(default_site_access, host);
+	    });
+	    app.generateEmbedCode(default_site_access, host);
+    }
+    
 
 };

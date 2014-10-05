@@ -7,6 +7,7 @@ var functionMap = {
 	'editor': app.editor,
 	'ckeditor': app.ckeditor,
 	'datepicker': app.datepicker,
+	'widgetEmbedCode': app.widgetEmbedCode,
 };
 
 $(document).ready(function() {      

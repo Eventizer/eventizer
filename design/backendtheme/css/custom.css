@@ -26,3 +26,17 @@
 .required {
 	color:#dd1313;
 }
+
+.pt-15 {
+	padding-top:15px;
+}
+
+h4.list-title {
+	color:#2c9ab7;
+	margin:0px;
+	font-size:18px;
+}
+
+table.valignm td.valign {
+	vertical-align:middle;
+}
