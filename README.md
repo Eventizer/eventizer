@@ -1,13 +1,11 @@
-<<<<<<< HEAD
+
 Eventizer
-=========
 
-Eventizer is free, open-source system that is designed for event registration and management.  
+Eventizer is free, open-source system that is designed for event registration and management.
 
-=======
-Eventizer
-=========
+Features
+<ul>
+	<li>Widget to add events to you website</li>
+</ul>  
 
-Eventizer is free, open-source system that is designed for event registration and management.  
 
->>>>>>> 763d820f43808bbca5ed9c590edb8dacbfaed278
