@@ -1,7 +1,17 @@
 <?php
-
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelSystemConfig {
-
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_system_config';
+    public static $dbTableId = 'identifier';
+    public static $dbSessionHandler = 'erLhcoreClassSystemConfig::getSession';
+    public static $dbSortOrder = 'DESC';
+    
    public function getState()
    {
        return array(
@@ -13,24 +23,7 @@ class erLhcoreClassModelSystemConfig {
        );
    }
 
-   public static function fetch($identifier)
-   {       
-       $identifierObj = erLhcoreClassSystemConfig::getSession('slave')->load( 'erLhcoreClassModelSystemConfig', $identifier );     
-       return $identifierObj;
-   }
-
-	public function setState( array $properties ) {
-    	foreach ( $properties as $key => $val )
-       	{
-        	$this->$key = $val;
-       	}
-   	}
-
-	public function saveThis() {
-   		
-		erLhcoreClassSystemConfig::getSession()->saveOrUpdate( $this );
-   		
-	}
+   
    
    public function __get($variable)
    {

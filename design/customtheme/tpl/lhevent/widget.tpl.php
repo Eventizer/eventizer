@@ -5,10 +5,10 @@
 //https://github.com/jacwright/date.format
 (function() {
     
-    Date.shortMonths = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    Date.shortMonths = ['<?=__t('event/widget','Jan')?>', '<?=__t('event/widget','Feb')?>', '<?=__t('event/widget','Mar')?>', '<?=__t('event/widget','Apr')?>', '<?=__t('event/widget','May')?>', '<?=__t('event/widget','Jun')?>', '<?=__t('event/widget','Jul')?>', '<?=__t('event/widget','Aug')?>', '<?=__t('event/widget','Sep')?>', '<?=__t('event/widget','Oct')?>', '<?=__t('event/widget','Nov')?>', '<?=__t('event/widget','Dec')?>'];
     Date.longMonths = ['<?=__t('event/widget','January')?>', '<?=__t('event/widget','February')?>', '<?=__t('event/widget','March')?>', '<?=__t('event/widget','April')?>','<?=__t('event/widget','May')?>', '<?=__t('event/widget','June')?>', '<?=__t('event/widget','July')?>', '<?=__t('event/widget','August')?>', '<?=__t('event/widget','September')?>','<?=__t('event/widget','October')?>', '<?=__t('event/widget','November')?>', '<?=__t('event/widget','December')?>'];
-    Date.shortDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    Date.longDays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    Date.shortDays = ['<?=__t('event/widget','Sun')?>', '<?=__t('event/widget','Mon')?>', '<?=__t('event/widget','Tue')?>', '<?=__t('event/widget','Wed')?>', '<?=__t('event/widget','Thu')?>', '<?=__t('event/widget','Fri')?>', '<?=__t('event/widget','Sat')?>'];
+    Date.longDays = ['<?=__t('event/widget','Sunday')?>', '<?=__t('event/widget','Monday')?>', '<?=__t('event/widget','Tuesday')?>', '<?=__t('event/widget','Wednesday')?>', '<?=__t('event/widget','Thursday')?>', '<?=__t('event/widget','Friday')?>', '<?=__t('event/widget','Saturday')?>'];
     
     // defining patterns
     var replaceChars = {
@@ -92,7 +92,7 @@
 
 var widget = {
 	// these are labels for the days of the week
-	cal_days_labels :  ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+	cal_days_labels :  Date.shortDays,
 
 	// these are human-readable month name labels, in order
 	cal_months_labels : Date.longMonths,
@@ -163,7 +163,7 @@ var widget = {
 	    var div_cal =  widget.createHtmlElement('div','calendar', 'calendar');
 	    var w_h = widget.createHtmlElement('div','widget-heading','');
   		
-	    w_h.innerHTML ='<h3 class="widget-title"><?=__t('event/widget','Event calendar')?></h3>';
+	    w_h.innerHTML ='<h3 class="widget-title"><?=__t('event/widget','Events calendar')?></h3>';
 	    div_cal.appendChild(w_h);
 	    
 		var cal = widget.calendar(Month, Year);

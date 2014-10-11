@@ -1,5 +1,9 @@
 <?php
-
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelForgotPassword {
 
     public function getState()

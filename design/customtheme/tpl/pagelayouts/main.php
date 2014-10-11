@@ -8,19 +8,10 @@
 	<?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_head.tpl.php'));?>
 </head>
 <body>
+<?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/user_menu.tpl.php'));?>
 
-<div class="row">
-	<div class="columns large-12">
-		<?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/user_menu.tpl.php'));?>
-	</div>		
-</div>
+<?=$Result['content']?>
 
-<div class="row">
-	<div class="columns large-12">
-		<?=$Result['content']?>
-	</div>		
-</div>
-		
 <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_footer.tpl.php'));?>
 
 </body>

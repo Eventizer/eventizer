@@ -1,7 +1,17 @@
 <?php
-
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelGroup {
-        
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_group';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassUser::getSession';
+    public static $dbSortOrder = 'DESC';
+    
 	public function getState() {
 		return array(
         	'id'          => $this->id,
@@ -20,18 +30,7 @@ class erLhcoreClassModelGroup {
    		return $this->name;
    	}
    	   
- 	public static function fetch($id) {
-		return erLhcoreClassUser::getSession()->load( 'erLhcoreClassModelGroup', $id );
-	}
-	
-	public function saveThis() {		 
-		erLhcoreClassUser::getSession()->save($this);		 
-	}
-	 
-	public function updateThis() {		 
-		erLhcoreClassUser::getSession()->update($this);		 
-	}
-	
+ 
 	public function removeThis() {   
    				
        $q = ezcDbInstance::get()->createDeleteQuery();
@@ -48,58 +47,6 @@ class erLhcoreClassModelGroup {
        
 	}
    
-	public static function getCount($params = array(), $operation = "COUNT(lh_group.id)") {
-		
-		$session = erLhcoreClassUser::getSession('slave');
-       
- 		$q = $session->database->createSelectQuery();
-       
-		$q->select( $operation )->from( "lh_group" );
-		
-		$conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-		
-		if (count($conditions) > 0) {
-			$q->where( $conditions );
-		}
-		
-		$stmt = $q->prepare();
-      
-		$stmt->execute();
-		
-		$result = $stmt->fetchColumn();
-		
-		return $result;
-		 
-	}
-
-	public static function getList($paramsSearch = array()) {
-		
-		$paramsDefault = array('limit' => 32, 'offset' => 0);
-	   	 
-	   	$params = array_merge($paramsDefault,$paramsSearch);
-		 
-		$session = erLhcoreClassUser::getSession();
-				
-		$q = $session->createFindQuery( 'erLhcoreClassModelGroup' );
-		 
-		$conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-		
-		if (count($conditions) > 0) {
-			$q->where($conditions);
-		}
-	
-		if ($params['limit'] !== false) {
-			$q->limit($params['limit'],$params['offset']);
-		}
-	
-		$q->orderBy(isset($params['sort']) ? $params['sort'] : 'id  ASC' );
-		
-		$objects = $session->find( $q );
-		 
-		return $objects;
-		
-	}
-	
 	public static function validateInput(& $objectData) {
    
    		if (!isset($_POST['csfr_token']) || !erLhcoreClassUser::instance()->validateCSFRToken($_POST['csfr_token'])) {

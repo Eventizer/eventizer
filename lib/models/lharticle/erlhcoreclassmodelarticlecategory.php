@@ -1,7 +1,14 @@
-<?
+<?php
 
 class erLhcoreClassModelArticleCategory {
-
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_article_category';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassArticle::getSession';
+    public static $dbSortOrder = 'DESC';
+    
+    
    public function getState() {
    	
        $stateArray = array (
@@ -21,19 +28,13 @@ class erLhcoreClassModelArticleCategory {
        return $stateArray;
 	}
    
-	public function setState( array $properties ) {
-       	foreach ( $properties as $key => $val ) {
-        	$this->$key = $val;
-    	}
-   	}
+	
    
    	public function __toString(){
    		return $this->name;
    	}
    	
-	public static function fetch($id) {
-		return erLhcoreClassArticle::getSession()->load( 'erLhcoreClassModelArticleCategory', $id);
-	}
+	
    
 	public function saveThis() {
 		
@@ -133,55 +134,7 @@ class erLhcoreClassModelArticleCategory {
        }       
    }
    
- 	public static function getCount($params = array()) {
-   		
-   		$session = erLhcoreClassArticle::getSession();
-   
-   		$q = $session->database->createSelectQuery();
-   
-   		$q->select( "COUNT(*)" )->from( "lh_article_category" );
-   		
-   		$conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-   		
-	   	if (count($conditions) > 0) {
-	   		$q->where( $conditions );
-	   	}
-   		
-   		$stmt = $q->prepare();
-   
-   		$stmt->execute();
-   
-   		$result = $stmt->fetchColumn();
-   		
-   		return $result;
-	}
-   
-	public static function getList($paramsSearch = array()) {
-   	             
-    	$paramsDefault = array('limit' => 32, 'offset' => 0);
-       
-       	$params = array_merge($paramsDefault,$paramsSearch);
-       
-       	$session = erLhcoreClassArticle::getSession('slave');
-       
-       	$q = $session->createFindQuery( 'erLhcoreClassModelArticleCategory' );  
-       
-       	$conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-      
-       	if (count($conditions) > 0) {
-        	$q->where( $conditions );
-       	} 
-      
-       	if ($params['limit'] !== false) {
-			$q->limit($params['limit'],$params['offset']);
-		}
-                
-       	$q->orderBy(isset($params['sort']) ? $params['sort'] : 'pos ASC, id DESC' ); 
-              
-       	$objects = $session->find( $q );
-         
-    	return $objects; 
-	}
+ 	
    
 	public function getParentCategories($parent = false) {
     	$session = erLhcoreClassArticle::getSession();

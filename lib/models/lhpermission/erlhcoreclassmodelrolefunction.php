@@ -1,5 +1,17 @@
 <?php
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelRoleFunction {
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_rolefunction';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassRole::getSession';
+    public static $dbSortOrder = 'DESC';
+    
 	public function getState() {
 		return array (
 				'id' => $this->id,
@@ -8,23 +20,7 @@ class erLhcoreClassModelRoleFunction {
 				'function' => $this->function 
 		);
 	}
-	public function setState(array $properties) {
-		foreach ( $properties as $key => $val ) {
-			$this->$key = $val;
-		}
-	}
-	public function saveThis() {
-		erLhcoreClassRole::getSession ()->save ( $this );
-	}
-	public function updateThis() {
-		erLhcoreClassRole::getSession ()->update ( $this );
-	}
-	public function removeThis() {
-		erLhcoreClassRole::getSession ()->delete ( $this );
-	}
-	public static function fetch($id) {
-		return erLhcoreClassRole::getSession ()->load ( 'erLhcoreClassModelRoleFunction', $id );
-	}
+	
 	public static function validateInput(& $objectData) {
 		
 		if (! isset ( $_POST ['csfr_token'] ) || ! erLhcoreClassUser::instance ()->validateCSFRToken ( $_POST ['csfr_token'] )) {

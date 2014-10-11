@@ -1,7 +1,16 @@
-<?
-
-class erLhcoreClassModelEvents
-{
+<?php
+/**
+ * 
+ * @author Eventizer
+ *
+ */
+class erLhcoreClassModelEvents {
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_events';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassEvents::getSession';
+    public static $dbSortOrder = 'DESC';
 
     public function getState()
     {
@@ -27,34 +36,18 @@ class erLhcoreClassModelEvents
         return $stateArray;
     }
 
-    public function setState(array $properties)
-    {
-        foreach ($properties as $key => $val) {
-            $this->$key = $val;
-        }
-    }
-
+   
     public function __toString()
     {
         return $this->title;
     }
 
-    public static function fetch($id)
-    {
-        return erLhcoreClassEvents::getSession()->load('erLhcoreClassModelEvents', $id);
-    }
 
     public function saveThis()
     {
         if (! $this->mtime)
             $this->mtime = time();
         erLhcoreClassEvents::getSession()->saveOrUpdate($this);
-        $this->clearCache();
-    }
-
-    public function updateThis()
-    {
-        erLhcoreClassEvents::getSession()->update($this);
         $this->clearCache();
     }
 
@@ -70,60 +63,6 @@ class erLhcoreClassModelEvents
         CSCacheAPC::getMem()->increaseCacheVersion('event_cache_version');
     }
 
-    public static function getCount($params = array())
-    {
-        $session = erLhcoreClassEvents::getSession();
-        
-        $q = $session->database->createSelectQuery();
-        
-        $q->select("COUNT(lh_events.id)")->from("lh_events");
-        
-        $conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-        
-        if (count($conditions) > 0) {
-            $q->where($conditions);
-        }
-        
-        $stmt = $q->prepare();
-        
-        $stmt->execute();
-        
-        $result = $stmt->fetchColumn();
-        
-        return $result;
-    }
-
-    public static function getList($paramsSearch = array())
-    {
-        $paramsDefault = array(
-            'limit' => 32,
-            'offset' => 0
-        );
-        
-        $params = array_merge($paramsDefault, $paramsSearch);
-        
-        $session = erLhcoreClassEvents::getSession();
-        
-        $q = $session->createFindQuery('erLhcoreClassModelEvents');
-        
-        $conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-        
-        if (count($conditions) > 0) {
-            $q->where($conditions);
-        }
-        
-        if ($params['limit'] !== false) {
-            $q->limit($params['limit'], $params['offset']);
-        }
-        
-        $q->orderBy(isset($params['sort']) ? $params['sort'] : 'id DESC');
-        
-        $objects = $session->find($q);
-        
-        return $objects;
-    }
-
-   
     public function __get($var)
     {
         switch ($var) {
@@ -179,101 +118,6 @@ class erLhcoreClassModelEvents
     }
 
    
-    public static function validateInput(& $articleData)
-    {
-        if (! isset($_POST['csfr_token']) || ! erLhcoreClassUser::instance()->validateCSFRToken($_POST['csfr_token'])) {
-            erLhcoreClassModule::redirect('kernel/csrf-missing');
-        }
-   
-        
-        $form = new ezcInputForm(INPUT_POST, $definition);
-        
-        $Errors = array();
-        
-        foreach ($languages as $language) {
-            
-            $locale = strtolower($language['locale']);
-            $localeName = $language['title'];
-            
-            if (! $form->hasValidData('ArticleName_' . $locale) || $form->{'ArticleName_' . $locale} == '') {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle', 'Please enter article name') . ' ' . $localeName;
-            } else {
-                $articleData->{'name_' . $locale} = $form->{'ArticleName_' . $locale};
-            }
-            
-            if (! $form->hasValidData('ArticleIntro_' . $locale) || $form->{'ArticleIntro_' . $locale} == '') {
-                $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle', 'Please enter article intro') . ' ' . $localeName;
-            } else {
-                $articleData->{'intro_' . $locale} = $form->{'ArticleIntro_' . $locale};
-            }
-            
-            if ($form->hasValidData('ArticleBody_' . $locale)) {
-                $articleData->{'body_' . $locale} = $form->{'ArticleBody_' . $locale};
-            } else {
-                $articleData->{'body_' . $locale} = '';
-            }
-            
-            if ($form->hasValidData('AlternativeURL_' . $locale)) {
-                $articleData->{'alternative_url_' . $locale} = $form->{'AlternativeURL_' . $locale};
-            } else {
-                $articleData->{'alternative_url_' . $locale} = '';
-            }
-            
-            if ($form->hasValidData('AliasURL_' . $locale)) {
-                $articleData->{'alias_url_' . $locale} = $form->{'AliasURL_' . $locale};
-            } else {
-                $articleData->{'alias_url_' . $locale} = '';
-            }
-        }
-        
-        if (! $form->hasValidData('ArticlePos')) {
-            $Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle', 'Please enter article position');
-        } else {
-            $articleData->pos = $form->ArticlePos;
-        }
-        
-        if ($form->hasValidData('OpenNewPage') && $form->OpenNewPage == true) {
-            $articleData->open_new_page = 1;
-        } else {
-            $articleData->open_new_page = 0;
-        }
-        
-        if ($form->hasValidData('HideArticle') && $form->HideArticle == true) {
-            $articleData->hide = 1;
-        } else {
-            $articleData->hide = 0;
-        }
-        
-        if (empty($Errors)) {
-            
-            if ($_FILES["ArticleThumb"]["error"] != 4) {
-                if (isset($_FILES["ArticleThumb"]) && is_uploaded_file($_FILES["ArticleThumb"]["tmp_name"]) && $_FILES["ArticleThumb"]["error"] == 0 && erLhcoreClassImageConverter::isPhoto('ArticleThumb')) {
-                    
-                    if ($articleData->id == null) {
-                        $articleData->saveThis();
-                    }
-                    
-                    $articleData->removePhoto();
-                    
-                    $dir = 'var/media/' . $articleData->id . '/images/';
-                    
-                    erLhcoreClassImageConverter::mkdirRecursive($dir);
-                    
-                    $articleData->has_photo = 1;
-                    $articleData->file_name = erLhcoreClassModuleFunctions::moveUploadedFile('ArticleThumb', $dir);
-                } else {
-                    $Errors[] = 'Incorrect photo file!';
-                }
-            }
-            
-            if (isset($_POST['DeletePhoto']) && $_POST['DeletePhoto'] == 1) {
-                $articleData->removePhoto();
-            }
-        }
-        
-        return $Errors;
-    }
-
     public $id = null;
 
     public $title = '';

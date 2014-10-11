@@ -1,7 +1,17 @@
-<?
-
+<?php
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelArticleStatic {
-        
+   use erLhcoreClassTrait;
+    
+   public static $dbTable = 'lh_article_static';
+   public static $dbTableId = 'id';
+   public static $dbSessionHandler = 'erLhcoreClassArticle::getSession';
+   public static $dbSortOrder = 'DESC';
+    
    public function getState() {
    	
        $stateArray = array (
@@ -31,10 +41,6 @@ class erLhcoreClassModelArticleStatic {
 		return $this->name;
 	}
 	
-	public static function fetch($id) {       
-    	return erLhcoreClassArticle::getSession()->load( 'erLhcoreClassModelArticleStatic', $id );     
-   	}
-   
    	public function saveThis() {
 
    		$this->mtime = time();
@@ -123,56 +129,9 @@ class erLhcoreClassModelArticleStatic {
    				break;
    		}
 	}
+
 	
-	public static function getCount($params = array()) {
-		 
-		$session = erLhcoreClassArticle::getSession();
 	
-		$q = $session->database->createSelectQuery();
-	
-		$q->select( "COUNT(*)" )->from( "lh_article_static" );
-		 
-		$conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-		 
-		if (count($conditions) > 0) {
-			$q->where( $conditions );
-		}
-		 
-		$stmt = $q->prepare();
-		
-		$stmt->execute();
-		
-		$result = $stmt->fetchColumn();
-		 
-		return $result;
-	}
-	
-	public static function getList($paramsSearch = array()) {
-		             
-	   	$paramsDefault = array('limit' => 32, 'offset' => 0);
-	
-	   	$params = array_merge($paramsDefault,$paramsSearch);
-	
-	   	$session = erLhcoreClassArticle::getSession();
-	   	
-	   	$q = $session->createFindQuery( 'erLhcoreClassModelArticleStatic' );
-	
-	   	$conditions = erLhcoreClassModuleFunctions::getConditions($params, $q);
-	
-	   	if (count($conditions) > 0) {
-	   		$q->where($conditions);
-	   	}
-	
-	   	if ($params['limit'] !== false) {
-			$q->limit($params['limit'],$params['offset']);
-		}
-	
-	   	$q->orderBy(isset($params['sort']) ? $params['sort'] : 'id DESC' );
-	
-	   	$objects = $session->find( $q, 'erLhcoreClassModelArticleStatic' );
-	
-	   	return $objects;
-	}
      
 	public function removePhoto() {
 	
@@ -235,55 +194,7 @@ class erLhcoreClassModelArticleStatic {
 			
    		}	
    		   		
-   		/*
-   		$uploadLogo = false;
    		
-   		if ( empty($Errors) ) {
-   			
-   			if (!is_numeric($articleStatic->id)){
-   				$articleStatic->saveThis();
-   			}
-   			
-   			if ($_FILES["ArticleThumb"]["error"] != 4) {
-   				if (isset($_FILES["ArticleThumb"]) && is_uploaded_file($_FILES["ArticleThumb"]["tmp_name"]) && $_FILES["ArticleThumb"]["error"] == 0 && erLhcoreClassImageConverter::isPhoto('ArticleThumb'))
-   				{
-   					if($articleStatic->has_photo){
-   						$articleStatic->removePhoto();
-   					}
-   					$uploadLogo = true;
-   					 
-   				} else {
-   					$Errors[] =  'Incorrect photo file!';
-   				}
-   			}
-   			
-   			$delete_logo = false;
-   			
-   			if (isset($_POST['DeletePhoto']) && $_POST['DeletePhoto'] == 1) {
-   				$articleStatic->removePhoto();
-   			}
-   			
-   			$config = erConfigClassLhConfig::getInstance();
-   			
-   			if ($uploadLogo == true) {
-   				
-   				$photoDir = 'var/media_static/'.$articleStatic->id;
-   				if (!file_exists($photoDir))
-   					mkdir($photoDir,$config->conf->getSetting( 'site', 'StorageDirPermissions' ));
-   				
-   				$photoDir = 'var/media_static/'.$articleStatic->id.'/images';
-   				if (!file_exists($photoDir))
-   					mkdir($photoDir,$config->conf->getSetting( 'site', 'StorageDirPermissions' ));
-   				
-   				$fileName = erLhcoreClassValidationHelpher::moveUploadedFile('ArticleThumb',$photoDir . '/' );
-   				 
-   				$articleStatic->has_photo = true;
-   				$articleStatic->file_name = $fileName;
-   				
-   			}
-   			
-   		}
-   		*/
    		
 		return $Errors;
    	

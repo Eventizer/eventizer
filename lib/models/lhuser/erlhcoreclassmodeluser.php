@@ -1,7 +1,16 @@
 <?php
-
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelUser {
-        
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_users';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassUser::getSession';
+    public static $dbSortOrder = 'DESC';
 	public function getState() {
 		
 		return array(
@@ -19,12 +28,6 @@ class erLhcoreClassModelUser {
     	);
 	}
 	
-	public function setState( array $properties ) {
-    	foreach ( $properties as $key => $val ) {
-			$this->$key = $val;
-    	}
-	}
-   
 	public function __toString() {
 		return $this->name.' '.$this->surname;
 	}
@@ -34,9 +37,6 @@ class erLhcoreClassModelUser {
    		erLhcoreClassUser::getSession()->save($this);
 	}
    	 
-   	public function updateThis() {
-		erLhcoreClassUser::getSession()->update($this);
-   	}
    	 
    	public function removeThis() {
    		
@@ -56,9 +56,6 @@ class erLhcoreClassModelUser {
    		
    	}
    	
-   	public static function fetch($user_id) {
-   		return erLhcoreClassUser::getSession('slave')->load( 'erLhcoreClassModelUser', (int)$user_id );
-   	}
    	
    	public static function fetchUserByEmail($email) {
    	

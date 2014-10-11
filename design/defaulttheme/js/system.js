@@ -1,4 +1,3 @@
-$(document).foundation();
 
 var _lactq = _lactq || [];
 var functionMap = {

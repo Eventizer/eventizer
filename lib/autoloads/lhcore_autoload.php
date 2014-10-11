@@ -35,9 +35,9 @@ return array (
         'erLhcoreClassRoleFunction'  					=> 'lib/core/lhpermission/lhrolefunction.php',
         'erLhcoreClassGroupRole'  						=> 'lib/core/lhpermission/lhgrouprole.php',
 		'erLhcoreClassSystemConfig'						=> 'lib/core/lhsystemconfig/lhsystemconfig.php',
+        'erLhcoreClassTrait'					        =>  'lib/core/lhcore/lhclasstrait.php',
 		
         'erLhcoreClassModelUser'            			=> 'lib/models/lhuser/erlhcoreclassmodeluser.php',
-        'erLhcoreClassModelUserFB'  					=> 'lib/models/lhuser/erlhcoreclassmodeluserfb.php',
 		'erLhcoreClassModelUserRemember' 				=> 'lib/models/lhuser/erlhcoreclassmodeluserremember.php',
         'erLhcoreClassModelGroup'           			=> 'lib/models/lhuser/erlhcoreclassmodelgroup.php',
         'erLhcoreClassModelGroupUser'       			=> 'lib/models/lhuser/erlhcoreclassmodelgroupuser.php',
@@ -76,6 +76,9 @@ return array (
     
         //event validation
         'erLhcoreClassValidateEvents'					=>  'lib/core/lhevents/validation/erlhcoreclassvalidationevents.php',
+    
+    
+        
 );
 
 ?>

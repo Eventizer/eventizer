@@ -1,7 +1,17 @@
 <?php
-
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelGroupRole {
-        
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_grouprole';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassRole::getSession';
+    public static $dbSortOrder = 'DESC';
+    
 	public function getState() {
     	return array(
         	'id'          => $this->id,
@@ -9,29 +19,7 @@ class erLhcoreClassModelGroupRole {
             'role_id'     => $this->role_id             
        	);
    	}
-   
-   	public function setState( array $properties ) {
-    	foreach ( $properties as $key => $val ) {
-			$this->$key = $val;
-       	}
-   	}
-
-   	public function saveThis() {
-   		erLhcoreClassRole::getSession()->save($this);
-   	}
-   	
-   	public function updateThis() {
-   		erLhcoreClassRole::getSession()->update($this);
-   	}
-   	
-   	public function removeThis() {
-   		erLhcoreClassRole::getSession()->delete($this);
-   	}
-   	
-   	public static function fetch($id) {
-   		return erLhcoreClassRole::getSession()->load( 'erLhcoreClassModelGroupRole', $id );
-   	}
-   	
+     	
 	public $id = null;
    	public $group_id = '';
    	public $role_id = '';

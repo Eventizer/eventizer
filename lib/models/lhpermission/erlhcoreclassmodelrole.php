@@ -1,28 +1,24 @@
 <?php
+/**
+ * 
+ * @author Eventizer
+ *
+ */
 class erLhcoreClassModelRole {
+    use erLhcoreClassTrait;
+    
+    public static $dbTable = 'lh_role';
+    public static $dbTableId = 'id';
+    public static $dbSessionHandler = 'erLhcoreClassRole::getSession';
+    public static $dbSortOrder = 'DESC';
+    
 	public function getState() {
 		return array (
 				'id' => $this->id,
 				'name' => $this->name 
 		);
 	}
-	public function setState(array $properties) {
-		foreach ( $properties as $key => $val ) {
-			$this->$key = $val;
-		}
-	}
-	public function saveThis() {
-		erLhcoreClassRole::getSession ()->save ( $this );
-	}
-	public function updateThis() {
-		erLhcoreClassRole::getSession ()->update ( $this );
-	}
-	public function removeThis() {
-		erLhcoreClassRole::getSession ()->delete ( $this );
-	}
-	public static function fetch($id) {
-		return erLhcoreClassRole::getSession ()->load ( 'erLhcoreClassModelRole', $id );
-	}
+	
 	public static function validateInput(& $objectData) {
 		if (! isset ( $_POST ['csfr_token'] ) || ! erLhcoreClassUser::instance ()->validateCSFRToken ( $_POST ['csfr_token'] )) {
 			erLhcoreClassModule::redirect ( 'kernel/csrf-missing' );
