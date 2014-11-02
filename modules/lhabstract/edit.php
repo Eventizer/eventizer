@@ -65,8 +65,11 @@ $tpl->set('object_trans',$object_trans);
 
 $Result['submenu'] = 'etemplate';
 $Result['menu'] = 'settings';
-$Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/edit','Edit');
-$Result['small_title'] =  $object_trans ['name'] ;
+$Result['title'] =  
+    array(
+         'title'=>erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/edit','Edit'),
+         'small_title'=>$object_trans ['name']
+);
 $Result['content'] = $tpl->fetch();
 
 

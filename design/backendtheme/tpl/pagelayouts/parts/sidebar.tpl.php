@@ -11,7 +11,7 @@
                         </li>
                       
 						<li class="<?php if(isset($Result['menu']) && $Result['menu'] == 'events'):?>active<?php endif;?>">
-							<a href="<?=__url('eventadmin/list')?>"><i class="fa fa-users"></i>&nbsp; <?=__t('pagelayout/pagelayout','Events')?></a>
+							<a href="<?=__url('event/events')?>"><i class="fa fa-users"></i>&nbsp; <?=__t('pagelayout/pagelayout','Events')?></a>
 						</li>
 						
                         <?php //if ($currentUser->hasAccessTo('lhsystem','use')) : ?>
@@ -25,8 +25,8 @@
 	                                <li <?php if(isset($Result['submenu']) && $Result['submenu'] == 'developer'):?>class="active"<?php endif;?>><a href="<?=__url('system/developer')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Developer')?></a></li>
 	                                <li class="treeview <?php if(isset($Result['submenu_active']) && $Result['submenu_active'] == 'users'):?>active<?php endif;?>"><a href="#"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Users')?></a>
 	                                   <ul class="treeview-menu">
-			                                <li <?php if(isset($Result['subsubmenu']) && $Result['subsubmenu'] == 'users'):?>class="active"<?php endif;?>><a href="<?=__url('useradmin/list')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Users list')?></a></li>
-			                                <li <?php if(isset($Result['subsubmenu']) && $Result['subsubmenu'] == 'groups'):?>class="active"<?php endif;?>><a href="<?=__url('useradmin/grouplist')?>/EmailTemplate"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','List of groups')?></a></li>
+			                                <li <?php if(isset($Result['subsubmenu']) && $Result['subsubmenu'] == 'users'):?>class="active"<?php endif;?>><a href="<?=__url('user/list')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','Users list')?></a></li>
+			                                <li <?php if(isset($Result['subsubmenu']) && $Result['subsubmenu'] == 'groups'):?>class="active"<?php endif;?>><a href="<?=__url('user/grouplist')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','List of groups')?></a></li>
 			                                <li <?php if(isset($Result['subsubmenu']) && $Result['subsubmenu'] == 'roles'):?>class="active"<?php endif;?>><a href="<?=__url('permission/roles')?>"><i class="fa fa-angle-double-right"></i> <?=__t('pagelayout/pagelayout','List of roles')?></a></li>
 			                              </ul>
 	                                </li>
@@ -34,6 +34,9 @@
 							</li>
 						<?php //endif; ?>
 						
+						<li class="<?php if(isset($Result['menu']) && $Result['menu'] == 'articles'):?>active<?php endif;?>">
+							<a href="<?=__url('article/managecategories')?>"><i class="fa fa-info"></i>&nbsp; <?=__t('pagelayout/pagelayout','Manage articles')?></a>
+						</li>
 						<li class="<?php if(isset($Result['menu']) && $Result['menu'] == 'about'):?>active<?php endif;?>">
 							<a href="<?=__url('system/about')?>"><i class="fa fa-info"></i>&nbsp; <?=__t('pagelayout/pagelayout','About system')?></a>
 						</li>

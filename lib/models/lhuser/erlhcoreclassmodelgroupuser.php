@@ -9,7 +9,7 @@ class erLhcoreClassModelGroupUser {
     
     public static $dbTable = 'lh_groupuser';
     public static $dbTableId = 'id';
-    public static $dbSessionHandler = 'erLhcoreClassUser::getSession()';
+    public static $dbSessionHandler = 'erLhcoreClassUser::getSession';
     public static $dbSortOrder = 'DESC';
     
 	public function getState() {
@@ -29,6 +29,7 @@ class erLhcoreClassModelGroupUser {
 		$stmt->execute();
 		
 	}
+	
 
 	public function __get($var){
 		switch ($var) {

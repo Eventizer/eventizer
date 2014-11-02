@@ -10,7 +10,16 @@
 <body>
 <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/user_menu.tpl.php'));?>
 
-<?=$Result['content']?>
+<div class="container">
+	<div class="row box-padding">
+	   <div class="col-md-9">
+	       <?=$Result['content']?>
+	   </div>
+	   <div class="col-md-3">
+	       <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/sidebar.tpl.php'));?>
+	   </div>
+	</div>
+</div>
 
 <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_footer.tpl.php'));?>
 

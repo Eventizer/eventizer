@@ -4,7 +4,7 @@ $tpl = erLhcoreClassTemplate::getInstance( 'lhpermission/editrole.tpl.php');
 
 $Role = erLhcoreClassRole::getSession()->load( 'erLhcoreClassModelRole', (int)$Params['user_parameters']['role_id'] );
 
-$Result['title'] = __t('permission/editrole','Role edit');
+$Result['title'] = array('title'=>__t('permission/editrole','Role edit'));
 
 
 if (isset($_POST['Cancel_role']))

@@ -1,0 +1,12 @@
+This is contact form collected on website Fantasy football game.
+
+User collected information:
+
+Name: {name}
+Email: {email}
+Nature of Query: {naturequery}
+Message: {message}
+
+Browser version: {browser}
+Device: {device}
+

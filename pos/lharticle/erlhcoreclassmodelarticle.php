@@ -9,36 +9,33 @@ $def->idProperty->columnName = 'id';
 $def->idProperty->propertyName = 'id';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(  'ezcPersistentNativeGenerator' );
 
-foreach (erConfigClassLhConfig::getInstance()->getSetting( 'site', 'site_languages' ) as $language) {
 	
-	$locale = strtolower($language['locale']); 
-	
-	$def->properties['name_'.$locale] = new ezcPersistentObjectProperty();
-	$def->properties['name_'.$locale]->columnName   = 'name_'.$locale;
-	$def->properties['name_'.$locale]->propertyName = 'name_'.$locale;
-	$def->properties['name_'.$locale]->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
-	
-	$def->properties['intro_'.$locale] = new ezcPersistentObjectProperty();
-	$def->properties['intro_'.$locale]->columnName   = 'intro_'.$locale;
-	$def->properties['intro_'.$locale]->propertyName = 'intro_'.$locale;
-	$def->properties['intro_'.$locale]->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
-	
-	$def->properties['body_'.$locale] = new ezcPersistentObjectProperty();
-	$def->properties['body_'.$locale]->columnName   = 'body_'.$locale;
-	$def->properties['body_'.$locale]->propertyName = 'body_'.$locale;
-	$def->properties['body_'.$locale]->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
-	
-	$def->properties['alias_url_'.$locale] = new ezcPersistentObjectProperty();
-	$def->properties['alias_url_'.$locale]->columnName   = 'alias_url_'.$locale;
-	$def->properties['alias_url_'.$locale]->propertyName = 'alias_url_'.$locale;
-	$def->properties['alias_url_'.$locale]->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
-	
-	$def->properties['alternative_url_'.$locale] = new ezcPersistentObjectProperty();
-	$def->properties['alternative_url_'.$locale]->columnName   = 'alternative_url_'.$locale;
-	$def->properties['alternative_url_'.$locale]->propertyName = 'alternative_url_'.$locale;
-	$def->properties['alternative_url_'.$locale]->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+$def->properties['name'] = new ezcPersistentObjectProperty();
+$def->properties['name']->columnName   = 'name';
+$def->properties['name']->propertyName = 'name';
+$def->properties['name']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['intro'] = new ezcPersistentObjectProperty();
+$def->properties['intro']->columnName   = 'intro';
+$def->properties['intro']->propertyName = 'intro';
+$def->properties['intro']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['body'] = new ezcPersistentObjectProperty();
+$def->properties['body']->columnName   = 'body';
+$def->properties['body']->propertyName = 'body';
+$def->properties['body']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['alias_url'] = new ezcPersistentObjectProperty();
+$def->properties['alias_url']->columnName   = 'alias_url';
+$def->properties['alias_url']->propertyName = 'alias_url';
+$def->properties['alias_url']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['alternative_url'] = new ezcPersistentObjectProperty();
+$def->properties['alternative_url']->columnName   = 'alternative_url';
+$def->properties['alternative_url']->propertyName = 'alternative_url';
+$def->properties['alternative_url']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
 	     
-}
+
 
 $def->properties['file_name'] = new ezcPersistentObjectProperty();
 $def->properties['file_name']->columnName   = 'file_name';

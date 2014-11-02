@@ -68,8 +68,11 @@ $tpl->set('identifier',$Params['user_parameters']['identifier']);
 
 $Result['submenu'] = $Params['user_parameters']['identifier'];
 $Result['menu'] = 'settings';
-$Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/new','New');
-$Result['small_title'] =  $object_trans ['name'] ;
+$Result['title'] =  array(
+    'title'=>erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/new','New'),
+    'small_title'=>$Result['small_title'] =  $object_trans ['name']
+);
+
 $Result['content'] = $tpl->fetch();
 
 if (method_exists($objectData,'dependCss')) {

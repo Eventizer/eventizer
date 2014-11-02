@@ -55,8 +55,8 @@
 						<td><?php echo function_exists('json_encode') ? '<span class="badge bg-green">Yes</span>' : '<span class="badge bg-red">No</span>'; ?></td>
 					</tr>
 					<tr>
-						<td> Your php version <?php echo phpVersion(); ?>. Minimum 5.3 PHP</td>
-						<td><?php echo (version_compare(PHP_VERSION, '5.3.0','<')) ? '<span class="badge bg-red">No</span>' : '<span class="badge bg-green">Yes</span>'; ?></td>
+						<td> Your php version <?php echo phpVersion(); ?>. Minimum 5.4 PHP</td>
+						<td><?php echo (version_compare(PHP_VERSION, '5.4.0','<')) ? '<span class="badge bg-red">No</span>' : '<span class="badge bg-green">Yes</span>'; ?></td>
 					</tr>
 				</table>
 				<br>

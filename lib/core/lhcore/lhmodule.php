@@ -310,8 +310,13 @@ class erLhcoreClassModule {
 		if (file_exists('modules/lh' . $module . '/module.php')) {
 			include ('modules/lh' . $module . '/module.php');
 			
-			foreach ($ViewList as $view => $params) {
-				$ViewList[$view]['script_path'] = 'modules/lh' . $module . '/' . $view . '.php';
+			foreach ($ViewList as $view => $params) { 
+				if (isset($params['script']) && $params['script'] !='') {
+					$ViewList[$view]['script_path'] = 'modules/lh' . $module . '/'.$params['script'];
+				} else {
+					$ViewList[$view]['script_path'] = 'modules/lh' . $module . '/' . $view . '.php';
+				}
+				
 			}
 			
 			$ViewListCompiled = array_merge($ViewListCompiled, $ViewList);
@@ -324,7 +329,12 @@ class erLhcoreClassModule {
 				include ('extension/' . $extension . '/modules/lh' . $module . '/module.php');
 				
 				foreach ($ViewList as $view => $params) {
-					$ViewList[$view]['script_path'] = 'extension/' . $extension . '/modules/lh' . $module . '/' . $view . '.php';
+					if (isset($params['script']) && $params['script'] !='') {
+						$ViewList[$view]['script_path'] = 'extension/' . $extension . '/modules/lh' . $module . '/' . $params['script'];
+					} else {
+						$ViewList[$view]['script_path'] = 'extension/' . $extension . '/modules/lh' . $module . '/' . $view . '.php';
+					}
+					
 				}
 				
 				$ViewListCompiled = array_merge($ViewListCompiled, $ViewList);

@@ -28,15 +28,14 @@ class erLhcoreClassModelArticle {
 				'mtime'                  => $this->mtime,
        );
        
-       foreach (erConfigClassLhConfig::getInstance()->getSetting( 'site', 'site_languages' ) as $language) {
-			$locale = strtolower($language['locale']);
-           	$stateArray['name_'.$locale] = $this->{'name_'.$locale};
-           	$stateArray['intro_'.$locale] = $this->{'intro_'.$locale};
-           	$stateArray['body_'.$locale] = $this->{'body_'.$locale};
-           	$stateArray['alias_url_'.$locale] = $this->{'alias_url_'.$locale};
-           	$stateArray['alternative_url_'.$locale] = $this->{'alternative_url_'.$locale};
-       }
        
+      $stateArray['name'] = $this->{'name'};
+      $stateArray['intro'] = $this->{'intro'};
+      $stateArray['body'] = $this->{'body'};
+      $stateArray['alias_url'] = $this->{'alias_url'};
+      $stateArray['alternative_url'] = $this->{'alternative_url'};
+      
+      
        return $stateArray;
        
    }
@@ -260,55 +259,49 @@ class erLhcoreClassModelArticle {
 			),
 		);
 	
-		foreach ($languages as $language) {
-			$locale = strtolower($language['locale']);
-			$definition['ArticleName_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-			$definition['ArticleIntro_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-			$definition['ArticleBody_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-			$definition['AlternativeURL_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-			$definition['AliasURL_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-		}
+		
+		$definition['ArticleName'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
+		$definition['ArticleIntro'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
+		$definition['ArticleBody'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
+		$definition['AlternativeURL'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
+		$definition['AliasURL'] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
+	
 		 
 		$form = new ezcInputForm( INPUT_POST, $definition );
 		 
 		$Errors = array();
 		
-		foreach ($languages as $language) {
-	
-			$locale = strtolower($language['locale']);
-			$localeName = $language['title'];
 
-			if ( !$form->hasValidData( 'ArticleName_'.$locale ) || $form->{'ArticleName_'.$locale} == '' ) {
-				$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle','Please enter article name').' '.$localeName;
-			} else {
-				$articleData->{'name_'.$locale} = $form->{'ArticleName_'.$locale};
-			}
-			
-			if ( !$form->hasValidData( 'ArticleIntro_'.$locale ) || $form->{'ArticleIntro_'.$locale} == '' ) {
-				$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle','Please enter article intro').' '.$localeName;
-			} else {
-				$articleData->{'intro_'.$locale} = $form->{'ArticleIntro_'.$locale};
-			}
-			
-			if ( $form->hasValidData( 'ArticleBody_'.$locale ) ) {
-				$articleData->{'body_'.$locale} = $form->{'ArticleBody_'.$locale};
-			} else {
-				$articleData->{'body_'.$locale} = '';
-			}
-			
-			if ( $form->hasValidData( 'AlternativeURL_'.$locale ) ) {
-				$articleData->{'alternative_url_'.$locale} = $form->{'AlternativeURL_'.$locale};
-			} else {
-				$articleData->{'alternative_url_'.$locale} = '';
-			}
-			
-			if ( $form->hasValidData( 'AliasURL_'.$locale ) ) {
-				$articleData->{'alias_url_'.$locale} = $form->{'AliasURL_'.$locale};
-			} else {
-				$articleData->{'alias_url_'.$locale} = '';
-			}
-	
+		if ( !$form->hasValidData( 'ArticleName' ) || $form->{'ArticleName'} == '' ) {
+			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle','Please enter article name');
+		} else {
+			$articleData->{'name'} = $form->{'ArticleName'};
 		}
+		
+		if ( !$form->hasValidData( 'ArticleIntro' ) || $form->{'ArticleIntro'} == '' ) {
+			$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle','Please enter article intro');
+		} else {
+			$articleData->{'intro'} = $form->{'ArticleIntro'};
+		}
+		
+		if ( $form->hasValidData( 'ArticleBody' ) ) {
+			$articleData->{'body'} = $form->{'ArticleBody'};
+		} else {
+			$articleData->{'body'} = '';
+		}
+		
+		if ( $form->hasValidData( 'AlternativeURL' ) ) {
+			$articleData->{'alternative_url'} = $form->{'AlternativeURL'};
+		} else {
+			$articleData->{'alternative_url'} = '';
+		}
+		
+		if ( $form->hasValidData( 'AliasURL' ) ) {
+			$articleData->{'alias_url'} = $form->{'AliasURL'};
+		} else {
+			$articleData->{'alias_url'} = '';
+		}
+	
 		
 		if ( !$form->hasValidData( 'ArticlePos' ) ) {
 			$Errors[] = erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formarticle','Please enter article position');
@@ -363,11 +356,11 @@ class erLhcoreClassModelArticle {
 	}
       
     public $id = null;
-    public $name_en_en = '';    
-    public $intro_en_en = '';
-    public $body_en_en = '';
-    public $alias_url_en_en = '';
-    public $alternative_url_en_en = '';
+    public $name = '';    
+    public $intro = '';
+    public $body = '';
+    public $alias_url = '';
+    public $alternative_url = '';
 	public $file_name = '';
     public $category_id = 0;    
     public $category_id_parent = 0;    

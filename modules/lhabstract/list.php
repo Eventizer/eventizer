@@ -54,8 +54,9 @@ if ($objectData->hide_delete === true) {
 
 $Result['submenu'] = $Params['user_parameters']['identifier'];
 $Result['menu'] = 'settings';
-$Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('abstract/list','Email templates');
-$Result['small_title'] =  '';
+$Result['title'] =  array(
+    'title'=>$objectData->getModuleTranslations()['name'],
+    'small_title'=>'');
 $Result['content'] = $tpl->fetch();
 
 if (isset($object_trans['path'])){

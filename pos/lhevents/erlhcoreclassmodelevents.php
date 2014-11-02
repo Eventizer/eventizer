@@ -84,6 +84,11 @@ $def->properties['link']->columnName   = 'link';
 $def->properties['link']->propertyName = 'link';
 $def->properties['link']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
 
+$def->properties['variations'] = new ezcPersistentObjectProperty();
+$def->properties['variations']->columnName   = 'variations';
+$def->properties['variations']->propertyName = 'variations';
+$def->properties['variations']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
 $def->properties['mtime'] = new ezcPersistentObjectProperty();
 $def->properties['mtime']->columnName   = 'mtime';
 $def->properties['mtime']->propertyName = 'mtime';

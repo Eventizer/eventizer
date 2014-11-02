@@ -134,6 +134,26 @@ class erLhcoreClassImageConverter {
             	new ezcImageSaveOptions(array('quality' => (int)95))
             );
             
+            
+            $this->converter->createTransformation(
+            	'photo_thumb',
+            	array(
+            		new ezcImageFilter(
+            		'scale',
+            			array(
+            				'width'     => 270,
+            				'height'    => 210,
+            				'direction' => ezcImageGeometryFilters::SCALE_DOWN,
+            			)
+            		),
+            	),
+            	array(
+            		'image/jpeg',
+            		'image/png',
+            	),
+            	new ezcImageSaveOptions(array('quality' => (int)95))
+            );
+            
             $this->converter->createTransformation(
             	'featuredlogo',
             	array(

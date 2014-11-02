@@ -1,7 +1,7 @@
 <section class="content-header">
 	<h1>
-         <?=(isset($Result['title']))?$Result['title']:''?>
-         <small><?=(isset($Result['small_title']))?$Result['small_title']:''?></small>
+         <?=(isset($Result['title']['title']))?$Result['title']['title']:''?>
+         <small><?=(isset($Result['title']['small_title']))?$Result['title']['small_title']:''?></small>
     </h1>
 
 	<?php if (isset($Result['path'])) :

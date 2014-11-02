@@ -14,4 +14,8 @@ function __t()
 function __url($url) {
 	return erLhcoreClassDesign::baseurl($url);
 }
+
+function __design($url) {
+	return erLhcoreClassDesign::design($url);
+}
 ?>

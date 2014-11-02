@@ -25,48 +25,6 @@ $ViewList['userlist'] = array(
     'functions' => array( 'userlist' )
     );
 
-$ViewList['grouplist'] = array(
-    'params' => array(),
-    'functions' => array( 'grouplist' )
-    );
-
-$ViewList['edit'] = array(
-    'params' => array('user_id'),
-    'functions' => array( 'edituser' )
-    );
-
-$ViewList['delete'] = array(
-    'params' => array('user_id'),
-    'uparams' => array('csfr'),
-    'functions' => array( 'deleteuser' )
-    );
-
-$ViewList['new'] = array(
-    'params' => array(),
-    'functions' => array( 'createuser' )
-    );
-
-$ViewList['newgroup'] = array(
-    'params' => array(),
-    'functions' => array( 'creategroup', 'editgroup' )
-    );
-
-$ViewList['editgroup'] = array(
-    'params' => array('group_id'),
-    'functions' => array( 'editgroup' )
-    );
-
-$ViewList['groupassignuser'] = array(
-    'params' => array('group_id'),
-    'functions' => array( 'groupassignuser' )
-    );
-
-$ViewList['deletegroup'] = array(
-    'params' => array('group_id'),
-	'uparams' => array('csfr'),
-    'functions' => array( 'deletegroup' )
-    );
-
 $ViewList['forgotpassword'] = array(
     'params' => array(),
 );
@@ -75,26 +33,82 @@ $ViewList['remindpassword'] = array(
     'params' => array('hash'),
 );
 
-$ViewList['setsetting'] = array (
-		'params' => array('identifier','value')
+
+$ViewList['registration'] = array (
+		'params' => array()
 );
 
-$ViewList['setsettingajax'] = array (
-		'params' => array('identifier','value'),
-		'uparams' => array('indifferent')
+//admin part
+$ViewList['list'] = array(
+    'script' => 'admin/list.php',
+    'params' => array(),
+    'functions' => array( 'userlist' )
 );
 
-$ViewList['setoffline'] = array (
-		'functions' => array( 'changeonlinestatus' ),
-		'params' => array('status')
+$ViewList['new'] = array(
+    'script' => 'admin/new.php',
+    'params' => array(),
+    'functions' => array( 'createuser' )
 );
 
-$ViewList['setinvisible'] = array (
-		'functions' => array( 'changevisibility' ),
-		'params' => array('status')
+$ViewList['edit'] = array(
+    'script' => 'admin/edit.php',
+    'params' => array('user_id'),
+    'functions' => array( 'edituser' )
+);
+
+$ViewList['delete'] = array(
+    'script' => 'admin/delete.php',
+    'params' => array('user_id'),
+    'uparams' => array('csfr'),
+    'functions' => array( 'deleteuser' )
+);
+
+$ViewList['grouplist'] = array(
+    'script' => 'admin/grouplist.php',
+    'params' => array(),
+    'functions' => array( 'grouplist' )
+);
+
+$ViewList['newgroup'] = array(
+    'script' => 'admin/newgroup.php',
+    'params' => array(),
+    'functions' => array( 'creategroup', 'editgroup' )
+);
+
+$ViewList['editgroup'] = array(
+    'script' => 'admin/editgroup.php',
+    'params' => array('group_id'),
+    'functions' => array( 'editgroup' )
+);
+
+$ViewList['deletegroup'] = array(
+    'script' => 'admin/deletegroup.php',
+    'params' => array('group_id'),
+    'uparams' => array('csfr'),
+    'functions' => array( 'deletegroup' )
+);
+
+$ViewList['groupassignuser'] = array(
+    'script' => 'admin/groupassignuser.php',
+    'params' => array('group_id'),
+    'functions' => array( 'groupassignuser' )
+);
+
+$ViewList['groupassignrole'] = array(
+    'script' => 'admin/groupassignrole.php',
+    'params' => array('group_id'),
+    'functions' => array( 'groupassignrole' )
+);
+
+$ViewList['loginas'] = array(
+    'script' => 'admin/loginas.php',
+    'params' => array('user_id'),
+    'functions' => array( 'loginas' ),
 );
 
 $FunctionList['groupassignuser'] = array('explain' => 'Allow user to assign user to group');
+$FunctionList['groupassignrole'] = array('explain' => 'Allow user to assign role to group');
 $FunctionList['editgroup'] = array('explain' => 'Allow user to edit group');
 $FunctionList['creategroup'] = array('explain' => 'Allow user to create group');
 $FunctionList['deletegroup'] = array('explain' => 'Allow user to delete group');
@@ -104,15 +118,6 @@ $FunctionList['edituser'] = array('explain' => 'Allow user to edit another user'
 $FunctionList['grouplist'] = array('explain' => 'Allow user to list group');
 $FunctionList['userlist'] = array('explain' => 'Allow user to list users');
 $FunctionList['selfedit'] = array('explain' => 'Allow user to edit his own data');
-$FunctionList['editdepartaments'] = array('explain' => 'Allow user to edit his responsible departaments');
-$FunctionList['userlistonline'] = array('explain' => 'Allow user to see logged operators list, only from his department');
-$FunctionList['userlistonlineall'] = array('explain' => 'Allow user to see logged operators list, not only from his department');
-$FunctionList['changeonlinestatus'] = array('explain' => 'Allow user to change his online status');
-$FunctionList['changeskypenick'] = array('explain' => 'Allow user to change/enter his skype nick');
-$FunctionList['personalcannedmsg'] = array('explain' => 'Allow user to have personal canned messages');
-$FunctionList['changevisibility'] = array('explain' => 'Allow user to change his visibility mode');
-$FunctionList['change_visibility_list'] = array('explain' => 'Allow user to choose what list should be visible by him, pending/active/unread/closed');
-$FunctionList['see_assigned_departments'] = array('explain' => 'Allow user to see departments assigned to him');
-$FunctionList['allowtochoosependingmode'] = array('explain' => 'Allow user to choose what pending chats he can see, only assigned to him or all.');
+$FunctionList['loginas'] = array('explain' => 'Allow user to login as other user');
 
 ?>

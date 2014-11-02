@@ -1,0 +1,1 @@
+ALTER TABLE `lh_events` ADD `variations` TEXT NOT NULL AFTER `file_path` 

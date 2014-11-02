@@ -128,11 +128,14 @@ class erLhcoreClassValidateEvents
                     
                     $Data->removePhoto();
                     $dir = 'var/events/' . $Data->id . '/images/';
+                  
                     erLhcoreClassImageConverter::mkdirRecursive($dir);
+                 
                     $Data->file = erLhcoreClassModuleFunctions::moveUploadedFile('Image', $dir);
                     $Data->file_path = $dir;
+               
                 } else {
-                 //   $Errors[] = 'Incorrect photo file!';
+                    $Errors[] = 'Incorrect photo file!';
                 }
             }
             

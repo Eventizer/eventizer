@@ -16,38 +16,29 @@ class erLhcoreClassModelArticleCategory {
            'parent_id'           => $this->parent_id,
        	   'pos'                 => $this->pos,
            'system'				 => $this->system,
+           'type'				 => $this->type,
        );
-
-		foreach (erConfigClassLhConfig::getInstance()->getSetting( 'site', 'site_languages' ) as $language) {
-			$locale = strtolower($language['locale']);
-			$stateArray['name_'.$locale] = $this->{'name_'.$locale};
-			$stateArray['intro_'.$locale] = $this->{'intro_'.$locale};
-			$stateArray['url_alternative_'.$locale] = $this->{'url_alternative_'.$locale};
-       }
+		
+		$stateArray['name'] = $this->{'name'};
+		$stateArray['intro'] = $this->{'intro'};
+	  	$stateArray['url_alternative'] = $this->{'url_alternative'};
+     
            
        return $stateArray;
 	}
    
-	
-   
    	public function __toString(){
    		return $this->name;
    	}
-   	
-	
    
 	public function saveThis() {
-		
 		erLhcoreClassArticle::getSession()->save( $this );
 		$this->clearCache();
-		
 	}
    	 
    	public function updateThis() {
-   		
 		erLhcoreClassArticle::getSession()->update($this);
 		$this->clearCache();
-		
    	}
    	 
    	public function removeThis() {
@@ -134,8 +125,6 @@ class erLhcoreClassModelArticleCategory {
        }       
    }
    
- 	
-   
 	public function getParentCategories($parent = false) {
     	$session = erLhcoreClassArticle::getSession();
        	$q = $session->createFindQuery( 'erLhcoreClassModelArticleCategory' );  
@@ -160,50 +149,53 @@ class erLhcoreClassModelArticleCategory {
 			erLhcoreClassModule::redirect('kernel/csrf-missing');
 		}
 		
-   		$languages = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'site_languages' );
-   	  		
    		$definition = array(   			
    			'CategoryPos' => new ezcInputFormDefinitionElement(
    				ezcInputFormDefinitionElement::OPTIONAL, 'int'
    			),   			   		    			
+   			'CategoryName' => new ezcInputFormDefinitionElement(
+   				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
+   			),   			   		    			
+   			'Intro' => new ezcInputFormDefinitionElement(
+   				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
+   			),   			   		    			
+   			'URLAlternative' => new ezcInputFormDefinitionElement(
+   				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
+   			),   			   		    			
+   			'Type' => new ezcInputFormDefinitionElement(
+   				ezcInputFormDefinitionElement::OPTIONAL, 'int'
+   			),   			   		    			
 	   	);
    		 
-   		foreach ($languages as $language) {			
-			$locale = strtolower($language['locale']);   		
-   			$definition['CategoryName_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-   			$definition['Intro_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-	   		$definition['URLAlternative_'.$locale] = new ezcInputFormDefinitionElement(ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw');
-   		}
+   	
    		
    		$form = new ezcInputForm( INPUT_POST, $definition );
    		
    		$Errors = array();
    		
-   		foreach ($languages as $language) {
    			
-   			$locale = strtolower($language['locale']);
-			$localeName = $language['title'];
-			
-			if ( !$form->hasValidData( 'CategoryName_'.$locale ) || $form->{'CategoryName_'.$locale} == '' ) {
-	   			$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('articleadmin/formcategory','Please enter category name').' '.$localeName;
-	   		} else {
-	   			$categoryData->{'name_'.$locale} = $form->{'CategoryName_'.$locale};
-	   		}
-			
-			if ( $form->hasValidData( 'URLAlternative_'.$locale ) ) {
-	   			$categoryData->{'url_alternative_'.$locale} = $form->{'URLAlternative_'.$locale};
-	   		} else {
-	   			$categoryData->{'url_alternative_'.$locale} = '';
-	   		}
-	   	
-	   		if ( $form->hasValidData( 'Intro_'.$locale ) ) {
-	   			$categoryData->{'intro_'.$locale} = $form->{'Intro_'.$locale};
-	   		}
-	   		
-   		}	
+		if ( !$form->hasValidData( 'CategoryName' ) || $form->{'CategoryName'} == '' ) {
+   			$Errors[] =  __t('articleadmin/formcategory','Please enter category name');
+   		} else {
+   			$categoryData->{'name'} = $form->{'CategoryName'};
+   		}
+		
+		if ( $form->hasValidData( 'URLAlternative' ) ) {
+   			$categoryData->{'url_alternative'} = $form->{'URLAlternative'};
+   		} else {
+   			$categoryData->{'url_alternative'} = '';
+   		}
+   	
+   		if ( $form->hasValidData( 'Intro' ) ) {
+   			$categoryData->{'intro'} = $form->{'Intro'};
+   		}
+   	
+   		if ( $form->hasValidData( 'Type' ) ) {
+   			$categoryData->{'type'} = $form->{'Type'};
+   		}
    		
    		if ( !$form->hasValidData( 'CategoryPos' ) ) {
-	   		$Errors[] =  erTranslationClassLhTranslation::getInstance()->getTranslation('user/new','Please enter category position');
+	   		$Errors[] =  __t('user/new','Please enter category position');
 	   	} else {
 	   		$categoryData->pos = $form->CategoryPos;
 	   	}
@@ -213,12 +205,13 @@ class erLhcoreClassModelArticleCategory {
 	}
 	
 	public $id = null;
-	public $name_en_en = '';  
-	public $intro_en_en = '';   
-	public $url_alternative_en_en = ''; 
+	public $name = '';  
+	public $intro = '';   
+	public $url_alternative = ''; 
 	public $parent_id = 0;
 	public $pos = 0;
 	public $system = 0;
+	public $type = 0;
       
 }
 

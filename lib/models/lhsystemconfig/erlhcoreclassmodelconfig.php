@@ -23,6 +23,11 @@ class erLhcoreClassModelSystemConfig {
        );
    }
 
+   public static function fetch($identifier)
+   {
+       $identifierObj = erLhcoreClassSystemConfig::getSession('slave')->load( 'erLhcoreClassModelSystemConfig', $identifier );
+       return $identifierObj;
+   }
    
    
    public function __get($variable)

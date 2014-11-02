@@ -1,9 +1,5 @@
 <?php
 
-if(erLhcoreClassUser::instance()->isLogged()) {
-	erLhcoreClassModule::redirect('/');
-}
-
 $tpl = erLhcoreClassTemplate::getInstance( 'lhuser/registration.tpl.php');
 
 $userData = new erLhcoreClassModelUser();
