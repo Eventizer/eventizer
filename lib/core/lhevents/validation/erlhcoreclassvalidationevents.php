@@ -10,7 +10,7 @@ class erLhcoreClassValidateEvents
         
        $definition = array(
 			'Title' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::REQUIRED, 'string'
+				ezcInputFormDefinitionElement::REQUIRED, 'unsafe_raw'
 			),
 			'StartDate' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::REQUIRED, 'string'
@@ -19,7 +19,7 @@ class erLhcoreClassValidateEvents
 				ezcInputFormDefinitionElement::REQUIRED, 'string'
 			),
 			'Address' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::REQUIRED, 'string'
+				ezcInputFormDefinitionElement::REQUIRED, 'unsafe_raw'
 			),
 			'Country' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::REQUIRED, 'int'
@@ -40,10 +40,13 @@ class erLhcoreClassValidateEvents
 				ezcInputFormDefinitionElement::OPTIONAL, 'string'
 			),
 			'Description' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::REQUIRED, 'string'
+				ezcInputFormDefinitionElement::REQUIRED, 'unsafe_raw'
 			),
 			'OrgDesc' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::OPTIONAL, 'string'
+				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
+			),
+			'Category' => new ezcInputFormDefinitionElement(
+				ezcInputFormDefinitionElement::OPTIONAL, 'int'
 			),
 		);
 	
@@ -110,6 +113,12 @@ class erLhcoreClassValidateEvents
             $Data->description = $form->Description;
         } else {
             $Errors[] = __t('eventadmin/new','Please enter event description');
+        }
+        
+        if ($form->hasValidData('Category') && $form->Category != '' ) {
+            $Data->cat_id = $form->Category;
+        } else {
+            $Errors[] = __t('eventadmin/new','Please enter event category');
         }
         
         

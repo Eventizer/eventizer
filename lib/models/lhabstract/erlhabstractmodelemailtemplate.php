@@ -60,7 +60,10 @@ class erLhAbstractModelEmailTemplate {
 	   			if ($value != '') return $value;
 	   			return $this->content_en_en;
 	   			break;
-	   			
+   		case 'menu':
+   				return  'settings';
+   				break;
+	   				
 	   	default:
 	   		break;
 	   }

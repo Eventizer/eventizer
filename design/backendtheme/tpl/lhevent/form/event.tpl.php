@@ -83,6 +83,23 @@
 </div>
 
 <div class="row">
+   <div class="col-md-6">     
+        <div class="form-group">
+        	<label><?=__t('eventadmin/new','Category')?><span class="required">*</span></label>
+        	<?=erLhcoreClassRenderHelper::renderCombobox(array(
+        	   'list_function'=>'erLhAbstractModelEventCategory::getList', 
+               'display_name'=>'name',
+               'css_class' => 'form-control',
+               'input_name' => 'Category',
+        	   'selected_id' => $event->cat_id))?>
+        </div>
+    </div>
+    <div class="col-md-6">   
+        
+    </div>
+</div>
+
+<div class="row">
    <div class="col-md-12">     
         <div class="form-group">
         	<label><?=__t('eventadmin/new','Event decription')?><span class="required">*</span></label>

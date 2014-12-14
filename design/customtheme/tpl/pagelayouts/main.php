@@ -12,12 +12,21 @@
 
 <div class="container">
 	<div class="row box-padding">
-	   <div class="col-md-9">
+       <?php if (isset($Result['sidebartype']) && $Result['sidebartype'] == 'left'):?>
+    	   <div class="col-md-3">
+    	       <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/sidebar.tpl.php'));?>
+    	   </div>
+	   <?php endif;?>
+	   
+	   <div class="  <?php if (isset($Result['sidebartype'])):?>col-md-9 <?php else:?>col-md-12  <?php endif;?>">
 	       <?=$Result['content']?>
 	   </div>
-	   <div class="col-md-3">
-	       <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/sidebar.tpl.php'));?>
-	   </div>
+	   
+	   <?php if (isset($Result['sidebartype']) && $Result['sidebartype'] == 'right'):?>
+    	   <div class="col-md-3">
+    	       <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/sidebar.tpl.php'));?>
+    	   </div>
+	   <?php endif;?>
 	</div>
 </div>
 

@@ -24,6 +24,8 @@ if ($pages->items_total > 0) {
 $tpl->set('pages',$pages);
 $tpl->set('categoryData',$categoryData);
 
+$Result['sidebartype'] = 'right';
+
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(array('title' => $categoryData->name));
 $Result['path_base'] = $categoryData->url_path_base;

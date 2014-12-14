@@ -25,6 +25,7 @@ if (!isset($userData)) {
 
 $tpl->set('userData',$userData);
 
+$Result['sidebartype'] = 'left';
 $Result['content'] = $tpl->fetch();
 $Result['title'] = __t('user/account','User account');
 $Result['path'] = array(

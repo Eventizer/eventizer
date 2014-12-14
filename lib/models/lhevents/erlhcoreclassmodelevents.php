@@ -21,6 +21,7 @@ class erLhcoreClassModelEvents
     {
         $stateArray = array(
             'id'                => $this->id,
+            'cat_id'            => $this->cat_id,
             'file'              => $this->file,
             'title'             => $this->title,
             'file_path'         => $this->file_path,
@@ -185,6 +186,8 @@ class erLhcoreClassModelEvents
 
     public $id = null;
 
+    public $cat_id = '';
+    
     public $title = '';
 
     public $file = '';

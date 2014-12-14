@@ -375,6 +375,26 @@ class erLhcoreClassModuleFunctions {
 	    return $datetime->getTimestamp();
 	}
 	
+	
+	public static function moveLocalFile($fileName, $destination_dir, $extensionSeparator = '')
+	{
+	    $fileNameAray = explode('.',$fileName);
+	    end($fileNameAray);
+	    $extension = current($fileNameAray);
+	     
+	    $fileNamePhysic = md5($fileName.time().rand(0, 1000)).$extensionSeparator.strtolower($extension);
+	     
+	    rename($fileName, $destination_dir . $fileNamePhysic);
+	    chmod($destination_dir . $fileNamePhysic, 0644);
+	    return $fileNamePhysic;
+	}
+	
+	public static function addhttp($url) {
+	    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+	        $url = "http://" . $url;
+	    }
+	    return $url;
+	}
 }
 
 ?>

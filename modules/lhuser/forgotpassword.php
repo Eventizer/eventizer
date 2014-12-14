@@ -51,7 +51,7 @@ if (isset($_POST['Forgotpassword'])) {
 			$mail->AltBody = $text_body;
 			$mail->AddAddress( $UserData->email, $UserData->username);
 
-			erLhcoreClassChatMail::setupSMTP($mail);
+			erLhcoreClassMail::setupSMTP($mail);
 
 			$mail->Send();
 			$mail->ClearAddresses();
@@ -66,8 +66,7 @@ if (isset($_POST['Forgotpassword'])) {
         $tpl->set('errors',$Errors);
     }
 }
-
-$Result['content'] = $tpl->fetch();
 $Result['pagelayout'] = 'login';
+$Result['content'] = $tpl->fetch();
 
 ?>

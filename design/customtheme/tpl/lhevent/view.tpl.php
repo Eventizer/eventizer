@@ -8,16 +8,16 @@
         			<?php endif;?>
         		</div>
         		<div class="col-md-9">
-        				<div class="title-bar single  clearfix">
+        			<div class="title-bar single  clearfix">
 							<h1><?=htmlspecialchars($item->title)?></h1>
-							<i><?=htmlspecialchars($item->address)?></i>
-						</div>
-						<div class="event-start">
-						     <div><?=__t('event/view','Start')?>:<i class="pl-5"><?=htmlspecialchars($item->start_date_front_long)?></i></div>
-						     <?php if ($item->end_date_front_long):?>
-						          <?=__t('event/view','End')?>:<i class="pl-5"><?=htmlspecialchars($item->end_date_front_long)?></i>
-						     <?php endif;?>
-						</div>
+						<i><?=htmlspecialchars($item->address)?></i>
+					</div>
+					<div class="event-start">
+					     <div><?=__t('event/view','Start')?>:<i class="pl-5"><?=htmlspecialchars($item->start_date_front_long)?></i></div>
+					     <?php if ($item->end_date_front_long):?>
+					          <?=__t('event/view','End')?>:<i class="pl-5"><?=htmlspecialchars($item->end_date_front_long)?></i>
+					     <?php endif;?>
+					</div>
         		</div>
         	</div>
         </div>
@@ -63,8 +63,7 @@
 								</div>
 								<div class="event-date">
 									     <?=htmlspecialchars($item->start_date_front_long)?>
-            						     <?php if ($item->end_date_front_long):?> - <?=htmlspecialchars($item->end_date_front_long)?>
-            						     <?php endif;?>
+            						     <?php if ($item->end_date_front_long):?> - <?=htmlspecialchars($item->end_date_front_long)?><?php endif;?>
 								</div>
 							</div>
 						</div>
@@ -76,16 +75,14 @@
 							<div class="panel-body">
 								<div class="organizer-info">
 									<h4><?=htmlspecialchars($item->organizer_name)?></h4>
-									<span><?=htmlspecialchars($item->organizer_description)?></span>
+									<span><?=$item->organizer_description?></span>
 								</div>
 							</div>
 						</div>
 						
 						<ul class="list-group list-group-aside">
-							<li class="list-group-item"><a href="#"><i class="fa fa-print mr10"></i>Print this page</a></li>
+							<li class="list-group-item"><a href="#" onclick="window.print();return false;"><i class="fa fa-print mr10"></i><?=__t('event/vew','Print this page')?></a></li>
 						</ul>
-						
-					
 					</div>
 				</div>
 			</div>

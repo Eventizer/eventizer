@@ -10,10 +10,7 @@
 <body>
 <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/user_menu.tpl.php'));?>
 
-<div class="container">
-	       <?=$Result['content']?>
-	 
-</div>
+<?=$Result['content']?>
 
 <?php include_once(erLhcoreClassDesign::designtpl('pagelayouts/parts/page_footer.tpl.php'));?>
 

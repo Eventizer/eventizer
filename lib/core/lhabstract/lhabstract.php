@@ -7,15 +7,17 @@ class erLhcoreClassAbstract {
         switch ($attr['type']) {
 
         	case 'text':
+        		   $readonly = (isset($attr['readonly']) && $attr['readonly'] == true)?"readonly":'';	
         	       if (isset($attr['multilanguage']) && $attr['multilanguage'] == true) {
         	           $returnString = '';
+        	          
         	           foreach (erConfigClassLhConfig::getInstance()->getSetting( 'site', 'site_languages' ) as $language) {
-        	           		$returnString .= $language['title'].'<br/><input class="abstract_input form-control" name="AbstractInput_'.$name.'_'.$language['locale'].'" type="text" value="'.htmlspecialchars($object->{$name.'_'.strtolower($language['locale'])}).'" /><br/>';
+        	           		$returnString .= $language['title'].'<br/><input  '.$readonly.' class="abstract_input form-control" name="AbstractInput_'.$name.'_'.$language['locale'].'" type="text" value="'.htmlspecialchars($object->{$name.'_'.strtolower($language['locale'])}).'" /><br/>';
         	           }
 
         	           return $returnString;
         	       } else {
-        		      return '<input class="abstract_input form-control" class="abstract_input" name="AbstractInput_'.$name.'" type="text" value="'.htmlspecialchars($object->$name).'" />';
+        		      return '<input class="abstract_input form-control" class="abstract_input" '.$readonly.' name="AbstractInput_'.$name.'" type="text" value="'.htmlspecialchars($object->$name).'" />';
         	       }
         		break;
 
@@ -42,7 +44,20 @@ class erLhcoreClassAbstract {
         		break;
 
 			case 'imgfile':
-        		      return '<input type="file" name="AbstractInput_'.$name.'"/>';
+				
+					$return = '<input type="file" name="AbstractInput_'.$name.'"/>';	
+				
+					$image = $object->{$attr['frontend_image_edit']};
+					
+					if($image) {
+						$return .= '<br />'.$image.'<br />';
+						if(!isset($attr['required']) || $attr['required'] == false) {
+							$return .= '<br /><input type="checkbox" name="AbstractInput_'.$name.'_delete" value="1" /> Delete Image';
+						}
+					} 
+					
+					return $return;
+					
         		break;
 
         	case 'file':
@@ -166,10 +181,17 @@ class erLhcoreClassAbstract {
                  }
 
             } elseif ($field['type'] == 'imgfile'){
-            	 if (erLhcoreClassModuleFunctions::isFile( 'AbstractInput_'.$key)){
-                   $object->{$field['backend_call']}();
-               }
-
+            	 
+            	if (isset($_POST['AbstractInput_'.$key.'_delete']) && $_POST['AbstractInput_'.$key.'_delete'] == 1) {
+            		$object->{$field['delete_call']}();
+            	}
+            	
+            	if (erLhcoreClassModuleFunctions::isImage( 'AbstractInput_'.$key)){
+            		$object->{$field['backend_call']}();
+            	} elseif ($field['required'] == true && !$object->{$field['file_exist_call']} ) {
+            		$Errors[$key] = $field['trans'].' is required';
+            	}
+            	
             } elseif ($field['type'] == 'textarea') {
 
             	if ( isset($field['multilanguage']) && $field['multilanguage'] == true ) {

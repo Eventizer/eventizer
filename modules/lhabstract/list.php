@@ -53,7 +53,8 @@ if ($objectData->hide_delete === true) {
 }
 
 $Result['submenu'] = $Params['user_parameters']['identifier'];
-$Result['menu'] = 'settings';
+$Result['menu'] = $objectData->menu;
+
 $Result['title'] =  array(
     'title'=>$objectData->getModuleTranslations()['name'],
     'small_title'=>'');

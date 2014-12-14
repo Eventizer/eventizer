@@ -66,7 +66,8 @@ body {
 	background:#595c66;
 	border:0;
 	border-top-right-radius:3px;
-	box-shadow:0 0 0 transparent
+	box-shadow:0 0 0 transparent;
+	padding-right:5px;
 }
 
 .navbar .navbar-nav>li>.dropdown-menu li a {
@@ -636,4 +637,59 @@ ul.list-group-link li a {
 
 #sidebar.single-sidebar {
 	margin-top:0px;
+}
+
+.radio label, .checkbox label {
+	display: inline;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+#aside-property-search .checkbox-group .checkbox {
+	margin-left: 10px;
+	border-bottom: 1px dotted #ddd;
+	padding-bottom: 10px;
+	padding-top: 5px;
+}
+
+.top-categories {
+	padding-bottom:20px;
+}
+
+.top-category-item {
+	min-height:180px;
+	background:#ccc;
+	display:block;
+	line-height:180px;
+	vertical-align:middle;
+	width:100%;
+	 background-size:cover;
+}
+
+.top-category-item span{
+	background:#fff;
+	padding:10px 15px;
+	color:#444;
+	font-size:16px;
+	text-transform:uppercase;
+}
+
+.form-signin-block {
+	background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    margin: 30px auto 0;
+    padding: 30px;
+    text-align: center;
+    max-width: 400px;
+    margin-bottom:40px;
+}
+
+.form-signin-block h1{
+	font-size:30px;
+	margin-top:0px;
+}
+
+.alert ul {
+	padding-left:10px;
+	margin-left:0px;
 }

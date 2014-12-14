@@ -15,7 +15,8 @@ $ViewList['showeventajax'] = array(
 );
 
 $ViewList['list'] = array(
-    'params' => array()
+    'params' => array(),
+    'uparams' => array('searchText','Submit','category'),
 );
 
 $ViewList['view'] = array(

@@ -35,7 +35,7 @@ $ViewList['remindpassword'] = array(
 
 
 $ViewList['registration'] = array (
-		'params' => array()
+	'params' => array(),
 );
 
 //admin part
@@ -119,5 +119,6 @@ $FunctionList['grouplist'] = array('explain' => 'Allow user to list group');
 $FunctionList['userlist'] = array('explain' => 'Allow user to list users');
 $FunctionList['selfedit'] = array('explain' => 'Allow user to edit his own data');
 $FunctionList['loginas'] = array('explain' => 'Allow user to login as other user');
+$FunctionList['authenticate'] = array('explain' => 'Allow user to register, login and other authentication system functions');
 
 ?>

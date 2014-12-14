@@ -21,6 +21,7 @@ $Result['title'] = array(
     'small_title' => ''
 );
 $Result['menu'] = 'events';
+$Result['submenu'] = 'events';
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(
     array(

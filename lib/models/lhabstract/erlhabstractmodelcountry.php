@@ -36,6 +36,9 @@ class erLhAbstractModelCountry {
 	   	       $this->left_menu = '';
 	   		   return $this->left_menu;
 	   		break;
+	   		case 'menu':
+	   			return  'settings';
+	   		break;
 	   			
 	   	default:
 	   		break;

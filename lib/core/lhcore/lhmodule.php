@@ -3,7 +3,7 @@
 class erLhcoreClassModule {
 
 	static function runModule() {
-		
+	  
 		if (isset(self::$currentModule[self::$currentView])) {
 			
 			$Params = array();
@@ -355,6 +355,7 @@ class erLhcoreClassModule {
 	}
 
 	public static function moduleInit() {
+	    header( "X-Powered-By: Eventizer (http://eventizer.org)" );
 		$url = erLhcoreClassURL::getInstance();
 		$cfg = erConfigClassLhConfig::getInstance();
 		

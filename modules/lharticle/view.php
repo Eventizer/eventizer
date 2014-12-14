@@ -11,6 +11,7 @@ try {
 
 $tpl->set('articleData',$articleData);
 
+$Result['sidebartype'] = 'right';
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(array('title' => $articleData->name));
 

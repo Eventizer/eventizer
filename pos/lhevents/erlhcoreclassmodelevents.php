@@ -9,6 +9,11 @@ $def->idProperty->columnName = 'id';
 $def->idProperty->propertyName = 'id';
 $def->idProperty->generator = new ezcPersistentGeneratorDefinition(  'ezcPersistentNativeGenerator' );
 
+$def->properties['cat_id'] = new ezcPersistentObjectProperty();
+$def->properties['cat_id']->columnName   = 'cat_id';
+$def->properties['cat_id']->propertyName = 'cat_id';
+$def->properties['cat_id']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
+
 $def->properties['title'] = new ezcPersistentObjectProperty();
 $def->properties['title']->columnName   = 'title';
 $def->properties['title']->propertyName = 'title';

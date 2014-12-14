@@ -47,9 +47,12 @@ class erLhAbstractModelUrlAlias {
        switch ($var) {
      
        	case 'url_destination':
-       				$value = $this->{'url_destination_'.strtolower(erLhcoreClassSystem::instance()->Language)};
-       				if ($value != '') return $value;
+       			$value = $this->{'url_destination_'.strtolower(erLhcoreClassSystem::instance()->Language)};
+       			if ($value != '') return $value;
        			return $this->url_destination_en_en;
+       		break;
+       	case 'menu':
+       		return  'settings';
        		break;
 
        	default:

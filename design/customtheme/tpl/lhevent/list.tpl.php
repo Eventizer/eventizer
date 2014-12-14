@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="property-list full-listing clearfix list-layout" id="property-list">
 			<div class="col-sm-12 col-md-12 the-title text-left">
-				<h2>Property for Sale in Kuala Lumpur</h2>
+				<h2><?=__t('event/list','Latest events')?></h2>
 			</div>
 			<div class="col-sm-12 col-md-12">
 				<div class="filter-bar clearfix">
@@ -19,7 +19,10 @@
 			    <?php include(erLhcoreClassDesign::designtpl('lhevent/parts/list_item.tpl.php'));?>
 			<?php endforeach;?>
 		<?php else:?>
-		     <p><?=__t('event/list','No events found')?></p>
+			<div class="col-xs-12">
+	     		 <?php $msg = __t('event/list','No events found')?>
+	     		 <?php include(erLhcoreClassDesign::designtpl('lhkernel/alert_notification.tpl.php')); ?>
+	     	</div>
 		<?php endif;?>
 		</div>
 	</div>

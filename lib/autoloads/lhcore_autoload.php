@@ -43,11 +43,14 @@ return array_merge(array (
         'erLhcoreClassModelGroupUser'       			=> 'lib/models/lhuser/erlhcoreclassmodelgroupuser.php',
         'erLhcoreClassModelForgotPassword'  			=> 'lib/models/lhuser/erlhcoreclassmodelforgotpassword.php',
         'erLhcoreClassModelUserSetting'  	   			=> 'lib/models/lhuser/erlhcoreclassmodelusersetting.php',
-        'erLhcoreClassModelUserSettingOption'  			=> 'lib/models/lhuser/erlhcoreclassmodelusersettingoption.php',
         'erLhcoreClassModelGroupRole'   				=> 'lib/models/lhpermission/erlhcoreclassmodelgrouprole.php',
         'erLhcoreClassModelRole'        				=> 'lib/models/lhpermission/erlhcoreclassmodelrole.php',
         'erLhcoreClassModelRoleFunction'				=> 'lib/models/lhpermission/erlhcoreclassmodelrolefunction.php',
 		'erLhcoreClassModelSystemConfig'				=> 'lib/models/lhsystemconfig/erlhcoreclassmodelconfig.php',
+    
+        // Files upload
+        'UploadHandler'                                 => 'lib/core/lhcore/UploadHandler.php',
+        'erLhcoreClassFileUpload'                       => 'lib/core/lhcore/lhfileupload.php',
 				
         // Articles
         'erLhcoreClassArticle' 	  						=> 'lib/core/lharticle/lharticle.php',
@@ -61,6 +64,7 @@ return array_merge(array (
 		'erLhAbstractModelEmailTemplate' 				=> 'lib/models/lhabstract/erlhabstractmodelemailtemplate.php',
 		'erLhAbstractModelUrlAlias'						=> 'lib/models/lhabstract/erlhabstractmodelurlalias.php',
 		'erLhAbstractModelCountry' 						=> 'lib/models/lhabstract/erlhabstractmodelcountry.php',
+		'erLhAbstractModelEventCategory' 				=> 'lib/models/lhabstract/erlhabstractmodeleventcategory.php',
 		
 		// External libs
 		'Facebook'                              		=> 'lib/core/lhexternal/facebook/facebook.php',

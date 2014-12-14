@@ -38,6 +38,8 @@ if (isset($_POST['SendRequest']))
 
 $tpl->set('messageSend', $messageSend);
 $tpl->set('form_data',$formData);
+
+$Result['sidebartype'] = 'right';
 $Result['content'] = $tpl->fetch();
 
 ?>
