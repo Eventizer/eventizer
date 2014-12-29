@@ -476,8 +476,8 @@ switch ((int)$Params['user_parameters']['step_id']) {
                     (243, 'Zambia', 'ZM', 0),
                     (244, 'Zimbabwe', 'ZW', 0);");
 
-        	   $db->query("
-                    CREATE TABLE IF NOT EXISTS `lh_abstract_email_templates` (
+               //create email templates        	   
+        	   $db->query("CREATE TABLE IF NOT EXISTS `lh_abstract_email_templates` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(100) NOT NULL,
                       `subject_en_en` text NOT NULL,
@@ -487,12 +487,14 @@ switch ((int)$Params['user_parameters']['step_id']) {
                       PRIMARY KEY (`id`)
                     )  DEFAULT CHARSET=utf8;");
 
+        	   //insert email template data
         	   $db->query("INSERT INTO `lh_abstract_email_templates` (`id`, `name`, `subject_en_en`, `content_en_en`, `from_name`, `from_email`) VALUES
                         (1, 'Password Reset Request', 'Password Reset Request', 'Dear {name} {surname},\r\n\r\nThere was recently a request to change the password on your user profile.\r\n\r\nIf you requested this password change, please <a href=\"{url_recovery}\">click here</a> to reset your password.', 'Demo', 'noreply@example.com'),
                         (2, 'New password request', 'New password request', 'Dear {name} {surname},\r\n\r\nYour new password is: {new_password}', 'Demo', 'noreply@example.com'),
                         (3, 'Registration activate', 'Registration activate', 'Dear {name} {surname},\r\n\r\nTo activate your account click link below:\r\n\r\n<a href=\"{url_confirm}\">Click here</a>', 'Demo', 'noreply@example.com'),
                         (4, 'Registration complete', 'Registration complete', 'Dear {name} {surname},\r\n\r\nYou have successfully activated an account.', 'Demo', 'noreply@example.com');");
 
+        	   //create event categories
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_abstract_event_category` (
                   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                   `name` varchar(200) NOT NULL,
@@ -502,7 +504,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                   PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8;");
         	   
-        	   //insert default categories
+        	   //insert default categories data
         	   $db->query("INSERT INTO `lh_abstract_event_category` (`id`, `name`, `image_path`, `image`, `position`) VALUES
                     (1, 'Art', 'var/storage/eventcategories/2014y/11/06/1/', 'F3ma6oizWKh91415270386.jpg', 0),
                     (2, 'Sport', 'var/storage/eventcategories/2014y/11/06/2/', 'ULItxlCPgpYPhqM1415270551.jpg', 0),
@@ -511,6 +513,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                     (5, 'Parties', 'var/storage/eventcategories/2014y/11/06/5/', '52KH93C4S2b2ZA1415270922.jpg', 0);");
         	   
 
+        	   //create url alias table
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_abstract_url_alias` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `url_alias` varchar(100) NOT NULL,
@@ -518,7 +521,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                   PRIMARY KEY (`id`)
                 )  DEFAULT CHARSET=utf8;");
         	  
-
+               //create article table
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_article` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `name` varchar(250) NOT NULL,
@@ -538,6 +541,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                   PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8;");
 
+        	   //create article categories table
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_article_category` (
                       `id` int(11) NOT NULL AUTO_INCREMENT,
                       `name` varchar(100) NOT NULL,
@@ -550,6 +554,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                       PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8 ;");
 
+        	   //insert default categories
         	   $db->query("INSERT INTO `lh_article_category` (`id`, `name`, `intro`, `url_alternative`, `parent_id`, `pos`, `system`, `type`) VALUES
                     (1, 'About us', '', '', 0, 0, 0, 2),
                     (2, 'Using our system', '', '', 0, 0, 0, 2),
@@ -559,8 +564,8 @@ switch ((int)$Params['user_parameters']['step_id']) {
                     (7, 'About us', '', '/About-6c.html', 0, 2, 0, 1),
                     (8, 'Events', '', '/event/list', 0, 4, 0, 1),
                     (9, 'Contact us', '', '/form/contactus', 0, 3, 0, 1);");
-        	  
 
+        	   //create static article table 
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_article_static` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `name_en_en` varchar(200) NOT NULL,
@@ -572,7 +577,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                   PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8;");
         	  
-
+               //create mail tasks table 
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_cron_mailer_mail` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `status` int(11) NOT NULL,
@@ -588,6 +593,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                   KEY `status` (`status`)
                 ) DEFAULT CHARSET=utf8;");
 
+        	   //create event table
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_events` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `cat_id` int(11) NOT NULL,
@@ -619,6 +625,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                 `created` INT NOT NULL
                 ) DEFAULT CHARSET=utf8;");
         	   
+        	   
                //Administrators group
                $db->query("CREATE TABLE IF NOT EXISTS `lh_group` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -637,8 +644,14 @@ switch ((int)$Params['user_parameters']['step_id']) {
                // Precreate registered group
                $GroupDataRegistered = new erLhcoreClassModelGroup();
                $GroupDataRegistered->name = "Registered users";
-               $GroupData->system = 1;
+               $GroupDataRegistered->system = 1;
                erLhcoreClassUser::getSession()->save($GroupDataRegistered);
+
+               // Precreate anonymous group
+               $GroupDataAnonymous = new erLhcoreClassModelGroup();
+               $GroupDataAnonymous->name = "Anonymous users";
+               $GroupDataAnonymous->system = 1;
+               erLhcoreClassUser::getSession()->save($GroupDataAnonymous);
 
                //Administrators role
                $db->query("CREATE TABLE IF NOT EXISTS `lh_role` (
@@ -658,8 +671,14 @@ switch ((int)$Params['user_parameters']['step_id']) {
                // Registered user
                $RoleRegistered = new erLhcoreClassModelRole();
                $RoleRegistered->name = 'Registered users';
-               $Role->system = 1;
+               $RoleRegistered->system = 1;
                erLhcoreClassRole::getSession()->save($RoleRegistered);
+
+               // Anonymous user
+               $RoleAnonymous = new erLhcoreClassModelRole();
+               $RoleAnonymous->name = 'Anonymous users';
+               $RoleAnonymous->system = 1;
+               erLhcoreClassRole::getSession()->save($RoleAnonymous);
                
                //Assing group role
                $db->query("CREATE TABLE IF NOT EXISTS `lh_grouprole` (
@@ -676,11 +695,17 @@ switch ((int)$Params['user_parameters']['step_id']) {
                $GroupRole->role_id = $Role->id;
                erLhcoreClassRole::getSession()->save($GroupRole);
 
-               // Assign registered role to operators group
+               // Assign registered role to registered group
                $GroupRoleRegistered = new erLhcoreClassModelGroupRole();
                $GroupRoleRegistered->group_id =$GroupDataRegistered->id;
                $GroupRoleRegistered->role_id = $RoleRegistered->id;
                erLhcoreClassRole::getSession()->save($GroupRoleRegistered);
+
+               // Assign anonymous role to anonymous group
+               $GroupRoleAnonymous = new erLhcoreClassModelGroupRole();
+               $GroupRoleAnonymous->group_id =$GroupDataAnonymous->id;
+               $GroupRoleAnonymous->role_id = $RoleAnonymous->id;
+               erLhcoreClassRole::getSession()->save($GroupRoleAnonymous);
 
                // Users
                $db->query("CREATE TABLE IF NOT EXISTS `lh_users` (
@@ -707,9 +732,20 @@ switch ((int)$Params['user_parameters']['step_id']) {
                 $UserData->name    = $form->AdminName;
                 $UserData->surname = $form->AdminSurname;
                 $UserData->username = $form->AdminUsername;
+                $UserData->system = 1;
 
                 erLhcoreClassUser::getSession()->save($UserData);
-
+                
+                // Create anonymous user
+                $UserDataAnonymous = new erLhcoreClassModelUser();
+                $UserDataAnonymous->setPassword(erLhcoreClassModelForgotPassword::randomPassword());
+                $UserDataAnonymous->email   = $form->AdminEmail;
+                $UserDataAnonymous->name = 'Anonymous';
+                $UserDataAnonymous->surname = 'Anonymous';
+                $UserDataAnonymous->username = 'anonymous';
+                $UserDataAnonymous->system = 1;
+                erLhcoreClassUser::getSession()->save($UserDataAnonymous);
+                
                 // Remember user table
                 $db->query("CREATE TABLE IF NOT EXISTS `lh_users_remember` (
 				 `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -719,7 +755,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
 				) DEFAULT CHARSET=utf8;");
 
 
-
+                //system config table
                 $db->query("CREATE TABLE IF NOT EXISTS `lh_system_config` (
                   `identifier` varchar(50) NOT NULL,
                   `value` text NOT NULL,
@@ -729,6 +765,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
                   PRIMARY KEY (`identifier`)
                 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;");
                 
+                //insert default system configuration data
                  $db->query("INSERT INTO `lh_system_config` (`identifier`, `value`, `type`, `explain`, `hidden`) VALUES
                 ('full_image_quality', '93', 0, 'Full image quality', 0),
                 ('max_photo_size', '5120', 0, 'Maximum photo size in kilobytes', 0),
@@ -760,6 +797,12 @@ switch ((int)$Params['user_parameters']['step_id']) {
                 $GroupUser->group_id = $GroupData->id;
                 $GroupUser->user_id = $UserData->id;
                 erLhcoreClassUser::getSession()->save($GroupUser);
+                
+                // Assign Anonymous user to anonymous group
+                $GroupUserAnonymous = new erLhcoreClassModelGroupUser();
+                $GroupUserAnonymous->group_id = $GroupDataAnonymous->id;
+                $GroupUserAnonymous->user_id = $UserDataAnonymous->id;
+                erLhcoreClassUser::getSession()->save($GroupUserAnonymous);
 
                 //Assign default role functions
                 $db->query("CREATE TABLE IF NOT EXISTS `lh_rolefunction` (
@@ -797,6 +840,8 @@ switch ((int)$Params['user_parameters']['step_id']) {
 	           $cfgSite->setSetting( 'site', 'templatecache', true);
 	           $cfgSite->setSetting( 'site', 'templatecompile', true);
 	           $cfgSite->setSetting( 'site', 'modulecompile', true);
+	           $cfgSite->setSetting( 'user_settings', 'default_user_group', $GroupDataRegistered->id);
+	           $cfgSite->setSetting( 'user_settings', 'anonymous_user_id', $UserDataAnonymous->id);
 	           $cfgSite->save();
 
     	       $tpl->setFile('lhinstall/install4.tpl.php');

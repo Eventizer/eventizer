@@ -5,5 +5,5 @@
   Written by Nerijus Oftas
 
   License:
-  http://eventizer.com
+  http://eventizer.org
   ************************

@@ -5,7 +5,7 @@
 	return array(
 		'nature_of_query' => array(
 			'enabled' => true,
-			'send_to' => 'nerijus.oftas@gmail.com',
+			'send_to' => '',
 			'queries' => array (
 				'Registration problems',
 				'Login or password',

@@ -13,6 +13,7 @@ robots.txt
 .htaccess
 .gitignore
 
+!settings/settings.ini.default.php
 !cache/cacheconfig
 !cache/compiledtemplates
 !cache/translations
@@ -20,4 +21,10 @@ robots.txt
 !cron/log
 !var/autoloads
 !var/tmpfiles
+!var/events
+!var/media
+!var/media_static
+!var/storage
+!var/eventcategories/2014y/11/06/*
+!var/userphoto
 !.gitignore

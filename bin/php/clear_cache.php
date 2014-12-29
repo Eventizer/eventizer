@@ -1,6 +1,9 @@
 <?php
 
-//php ./bin/php/clear_cache.php -s site_admin
+/**
+ * this script help to remove cache from command line
+ * type in console in website root to start cache clearing php ./bin/php/clear_cache.php -s site_admin
+ */
 
 ini_set("max_execution_time", "9600");
 ini_set('error_reporting', E_ALL);
@@ -8,64 +11,45 @@ ini_set('display_errors', 1);
 
 require_once "./ezcomponents/Base/src/base.php";
 
-function __autoload( $className )
+function __autoload($className)
 {
-        ezcBase::autoload( $className );
+    ezcBase::autoload($className);
 }
 
-ezcBase::addClassRepository( './', './lib/autoloads'); 
+ezcBase::addClassRepository('./', './lib/autoloads');
 
-
-ezcBaseInit::setCallback(
- 'ezcInitDatabaseInstance',
- 'erLhcoreClassLazyDatabaseConfiguration'
-);
-
+ezcBaseInit::setCallback('ezcInitDatabaseInstance', 'erLhcoreClassLazyDatabaseConfiguration');
 
 $input = new ezcConsoleInput();
 
-$helpOption = $input->registerOption(
-    new ezcConsoleOption(
-        's',
-        'siteaccess',
-        ezcConsoleInput::TYPE_STRING 
-    )
-);
+$helpOption = $input->registerOption(new ezcConsoleOption('s', 'siteaccess', ezcConsoleInput::TYPE_STRING));
 
-try
-{
+try {
     $input->process();
+} catch (ezcConsoleOptionException $e) {
+    die($e->getMessage());
 }
-catch ( ezcConsoleOptionException $e )
-{
-    die( $e->getMessage() );
-} 
 
 $siteAccessName = 'site_admin';
-if ( !$helpOption->value === false )
-{
+if (! $helpOption->value === false) {
     $siteAccessName = $helpOption->value;
-} 
-
-
-try
-{
-    $input->process();
 }
-catch ( ezcConsoleOptionException $e )
-{
-    die( $e->getMessage() );
+
+try {
+    $input->process();
+} catch (ezcConsoleOptionException $e) {
+    die($e->getMessage());
 }
 
 $instance = erLhcoreClassSystem::instance();
-$instance->SiteAccess = $siteAccessName; 
+$instance->SiteAccess = $siteAccessName;
 $instance->SiteDir = './';
-$cfgSite = erConfigClassLhConfig::getInstance();    
-$defaultSiteAccess = $cfgSite->getSetting( 'site', 'default_site_access' );
-$optionsSiteAccess = $cfgSite->getSetting('site_access_options',$siteAccessName);                      
-$instance->Language = $optionsSiteAccess['locale'];                         
-$instance->ThemeSite = $optionsSiteAccess['theme'];                         
-$instance->WWWDirLang = '/'.$siteAccessName; 
+$cfgSite = erConfigClassLhConfig::getInstance();
+$defaultSiteAccess = $cfgSite->getSetting('site', 'default_site_access');
+$optionsSiteAccess = $cfgSite->getSetting('site_access_options', $siteAccessName);
+$instance->Language = $optionsSiteAccess['locale'];
+$instance->ThemeSite = $optionsSiteAccess['theme'];
+$instance->WWWDirLang = '/' . $siteAccessName;
 
 $config = erConfigClassLhCacheConfig::getInstance();
 $config->expireCache();
