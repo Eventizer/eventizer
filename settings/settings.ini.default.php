@@ -8,7 +8,7 @@ return array(
             'theme' => 'defaulttheme',
             'installed' => false,
             'secrethash' => '',
-            'debug_output' => true,
+            'debug_output' => false,
             'debug_email' => '',
             'debug_ip' => array(),
             'templatecache' => false,
