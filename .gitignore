@@ -7,7 +7,6 @@ cache/userinfo/*
 cron/log/*
 settings/*
 var/*
-var/autoloads/*
 var/tmpfiles/*
 robots.txt
 .htaccess
@@ -19,7 +18,6 @@ robots.txt
 !cache/translations
 !cache/userinfo
 !cron/log
-!var/autoloads
 !var/tmpfiles
 !var/events
 !var/media

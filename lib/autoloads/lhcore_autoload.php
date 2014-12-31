@@ -1,6 +1,6 @@
 <?php
 
-return array_merge(array (
+return array (
 		
         'erLhcoreClassModule'   						=> 'lib/core/lhcore/lhmodule.php',
         'erLhcoreClassSystem'   						=> 'lib/core/lhcore/lhsys.php',
@@ -83,6 +83,6 @@ return array_merge(array (
     
     
         
-),include('var/autoloads/lhextension_autoload.php'));
+);
 
 ?>
