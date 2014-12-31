@@ -106,6 +106,12 @@ class erLhcoreClassModule {
 					if($debugEmail != false) {
 						mail($debugEmail, erConfigClassLhConfig::getInstance()->getSetting( 'site', 'title' ), print_r($_SERVER,true).print_r($e,true));
 					}
+					
+					if (erConfigClassLhConfig::getInstance()->getSetting( 'site', 'installed' ) == false) {
+					    header('Location: ' .erLhcoreClassDesign::baseurldirect('site_admin/install/install') );
+					    exit;
+					}
+					
 					header('HTTP/1.1 503 Service Temporarily Unavailable');
 					header('Status: 503 Service Temporarily Unavailable');
 					header('Retry-After: 300');

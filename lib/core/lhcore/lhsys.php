@@ -335,7 +335,7 @@ class erLhcoreClassSystem {
 		
 		$instance->SiteDir = $siteDir;
 		$instance->WWWDir = $wwwDir;
-		$instance->IndexFile = '';
+		$instance->IndexFile  = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'force_virtual_host', false) === false ? '/index.php' : '';
 		$instance->RequestURI = str_replace('//', '/', $requestUri);
 		$instance->QueryString = $queryString;
 		$instance->WWWDirLang = '';
