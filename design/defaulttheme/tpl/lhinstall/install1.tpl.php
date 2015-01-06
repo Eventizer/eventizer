@@ -53,6 +53,18 @@
 							        <td>I can write to &quot;var/tmpfiles&quot; directory</td>
 							        <td><?php echo is_writable("var/tmpfiles") ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>'?></td>
 							    </tr>
+							        <tr>
+							        <td>I can write to &quot;var/media&quot; directory</td>
+							        <td><?php echo is_writable("var/media") ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>'?></td>
+							    </tr>
+							    <tr>
+							        <td>I can write to &quot;var/events&quot; directory</td>
+							        <td><?php echo is_writable("var/events") ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>'?></td>
+							    </tr>
+							    <tr>
+							        <td>I can write to &quot;var/media_static&quot; directory</td>
+							        <td><?php echo is_writable("var/media_static") ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>'?></td>
+							    </tr>
 							    <tr>
 							        <td>Is the php_curl extension installed</td>
 							        <td><?php echo extension_loaded ('curl' ) ? '<span class="label label-success">Yes</span>' : '<span class="label label-danger">No</span>'; ?></td>

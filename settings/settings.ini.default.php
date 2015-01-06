@@ -17,6 +17,9 @@ return array(
             'force_virtual_host' => false,
             'https_port' => 443,
             'default_site_access' => 'eng',
+            'sysupdate' => array(
+                'version' => 0.1,
+            ),
             'site_languages' => array(
                 'eng' => array(
                     'locale' => 'en_EN',

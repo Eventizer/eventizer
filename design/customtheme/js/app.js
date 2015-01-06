@@ -31,16 +31,16 @@ var app = {
     	
     },
     
-    single_page_map : function (lat, long) {
+    single_page_map : function (address) {
     	$('.map-block iframe').height(231);
     	$('.map-block iframe').width(223);
-    	initialize(lat, long);
     	
-    	function initialize(lat, long) {
+    	initialize(address);
+    	
+    	function initialize(address) {
     		
     		var mapOptions = {
     				zoom: 7,
-    				center: new google.maps.LatLng(lat, long),
     				panControl: false,
     				scrollwheel: false,
     				zoomControl: true,
@@ -54,17 +54,24 @@ var app = {
     		}
     		var map = new google.maps.Map(document.getElementById('map_canvas'),
     				mapOptions);
-    		var location = new google.maps.LatLng(lat, long);
     		var text = "  ";
     		var infowindow = new google.maps.InfoWindow({
     			content: text,
     			maxWidth: 200
     		});
-    		var marker = new google.maps.Marker({
-    			position: location,
-    			map: map
-    		});
-    		
+    	
+    		var  geocoder = new google.maps.Geocoder();
+		    geocoder.geocode( { 'address': address}, function(results, status) {
+	    	      if (status == google.maps.GeocoderStatus.OK) {
+	    	        map.setCenter(results[0].geometry.location);
+	    	        var marker = new google.maps.Marker({
+	    	            map: map,
+	    	            position: results[0].geometry.location
+	    	        });
+	    	      } else {
+	    	    	  $('#map_canvas').html("Geocode was not successful for the following reason: " + status);
+	    	      }
+	    	    });
     	};
     },
     
@@ -116,5 +123,12 @@ var app = {
     		
     	};
     },
+    
+    urlRedirect : function (url) {
+    	var win = window.open(url, '_blank');
+    	win.focus();
+    	return false;
+    },
+                         
 
 };

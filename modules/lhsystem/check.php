@@ -39,6 +39,9 @@ if (version_compare(PHP_VERSION, '5.4.0', '<')) {
     $message[] = "Minimum 5.4.0 PHP version is required";
 }
 
+$sysupdate = erConfigClassLhConfig::getInstance()->getSetting('site', 'sysupdate');
+
+$tpl->set('version',  $sysupdate['version']);
 $tpl->set('messages', $message);
 
 $Result['submenu'] = 'developer';

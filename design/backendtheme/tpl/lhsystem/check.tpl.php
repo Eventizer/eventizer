@@ -1,7 +1,7 @@
 <div class="col-md-12">
 	<div class="box box-primary">
 		<div class="box-body table-responsive">
-			<div class="dataTables_wrapper form-inline">System version v0.1</div>
+			<div class="dataTables_wrapper form-inline">System version <?=$version?>v</div>
 		</div>
 
 		<div class="box-header">

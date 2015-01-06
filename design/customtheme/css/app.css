@@ -693,3 +693,7 @@ ul.list-group-link li a {
 	padding-left:10px;
 	margin-left:0px;
 }
+
+.mb-0 {
+	margin-bottom:0px;	
+}

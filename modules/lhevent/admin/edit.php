@@ -1,5 +1,6 @@
 <?php
 $tpl = erLhcoreClassTemplate::getInstance('lhevent/edit.tpl.php');
+$_SESSION['has_access_to_editor'] = 1;
 
 $event = erLhcoreClassModelEvents::fetch((int) $Params['user_parameters']['event_id']);
 if (isset($_POST['saveAction'])) {

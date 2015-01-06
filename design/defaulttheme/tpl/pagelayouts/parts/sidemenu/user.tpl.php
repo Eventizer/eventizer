@@ -1,7 +1,7 @@
 <div class="left-infobox">
 	<h3><?=__t('user/sidemeniu','User meniu')?></h3>
 	<ul class="circle">
-		<li><a href="<?=__url('useradmin/edit')?>/<?=$Result['sidemenu_data']['user']->id?>"><?=__t('user/sidemeniu','Edit')?></a></li>
+		<li><a href="<?=__url('user/edit')?>/<?=$Result['sidemenu_data']['user']->id?>"><?=__t('user/sidemeniu','Edit')?></a></li>
 	</ul>
 </div>
 
@@ -11,5 +11,5 @@
  ?>
 
 <?php if($Result['sidemenu_data']['user']->id != $anonymousUserId && $Result['sidemenu_data']['user']->id != $currentUserId):?>
-	<a class="small button radius" href="<?=__url('useradmin/loginas')?>/<?=$Result['sidemenu_data']['user']->id?>" target="_blank"><?=__t('user/userlist','Login as')?></a>
+	<a class="small button radius" href="<?=__url('user/loginas')?>/<?=$Result['sidemenu_data']['user']->id?>" target="_blank"><?=__t('user/userlist','Login as')?></a>
 <?php endif; ?>

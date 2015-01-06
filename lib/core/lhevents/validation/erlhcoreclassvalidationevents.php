@@ -39,7 +39,7 @@ class erLhcoreClassValidateEvents
 			'OrgName' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::OPTIONAL, 'string'
 			),
-			'Description' => new ezcInputFormDefinitionElement(
+			'EDescription' => new ezcInputFormDefinitionElement(
 				ezcInputFormDefinitionElement::REQUIRED, 'unsafe_raw'
 			),
 			'OrgDesc' => new ezcInputFormDefinitionElement(
@@ -94,23 +94,23 @@ class erLhcoreClassValidateEvents
         } 
         
         if ($form->hasValidData('FbLink') && $form->FbLink != '' ) {
-            $Data->fb_link = $form->FbLink;
+            $Data->fb_link = erLhcoreClassModuleFunctions::addhttp($form->FbLink);
         } 
         
         if ($form->hasValidData('TwLink') && $form->TwLink != '' ) {
-            $Data->tw_link = $form->TwLink;
+            $Data->tw_link = erLhcoreClassModuleFunctions::addhttp($form->TwLink);
         } 
         
         if ($form->hasValidData('Link') && $form->Link != '' ) {
-            $Data->link = $form->Link;
+            $Data->link = erLhcoreClassModuleFunctions::addhttp($form->Link);
         } 
         
         if ($form->hasValidData('OrgName') && $form->OrgName != '' ) {
             $Data->organizer_name = $form->OrgName;
         } 
         
-        if ($form->hasValidData('Description') && $form->Description != '' ) {
-            $Data->description = $form->Description;
+        if ($form->hasValidData('EDescription') && $form->EDescription != '' ) {
+            $Data->description = $form->EDescription;
         } else {
             $Errors[] = __t('eventadmin/new','Please enter event description');
         }

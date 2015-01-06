@@ -46,6 +46,12 @@ switch ((int)$Params['user_parameters']['step_id']) {
 	       $Errors[] = "var/userphoto is not writable";
 		if (!is_writable("var/tmpfiles"))
 	       $Errors[] = "var/tmpfiles is not writable";
+		if (!is_writable("var/media_static"))
+		    $Errors[] = "var/media_static is not writable";
+		if (!is_writable("var/media"))
+		    $Errors[] = "var/media is not writable";
+		if (!is_writable("var/events"))
+		    $Errors[] = "var/events is not writable";
 		if (!extension_loaded ('pdo_mysql' ))
 	       $Errors[] = "php-pdo extension not detected. Please install php extension";
 		

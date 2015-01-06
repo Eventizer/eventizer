@@ -27,7 +27,7 @@
    <div class="col-md-12">     
         <div class="form-group">    	
 		    <label><?=__t('articleadmin/editstatic','Intro')?> *</label>
-			<?
+			<?php
 				$oFCKeditor = new CKEditor() ;        
 				$oFCKeditor->basePath = erLhcoreClassDesign::design('js/ckeditor').'/' ;
 				CKFinder::SetupCKEditor($oFCKeditor, erLhcoreClassDesign::design('js/ckfinder/'));   

@@ -81,6 +81,12 @@ class erLhcoreClassModelEvents
                 }
                 return $this->url;
                 break;
+                
+            case 'full_url':
+                    $this->full_url = erLhcoreClassModuleFunctions::addhttp($_SERVER['HTTP_HOST'].$this->url);
+                    
+                    return $this->full_url;
+                break;
             
             case 'end_date_front':
                 if ($this->start_date != '') {
@@ -99,6 +105,21 @@ class erLhcoreClassModelEvents
                 }
                 return $this->start_date_front;
                 break;
+                
+            case 'event_duration':
+                    $this->event_duration = $this->start_date - $this->end_date;
+                    
+                    return $this->event_duration;
+                break;
+            
+            case 'start_date_gcalendar':
+                if ($this->start_date != '') {
+                    $this->start_date_gcalendar = date('Ymd', $this->start_date).'T'.date('His', $this->start_date).'Z';
+                } else {
+                    $this->start_date_gcalendar = '';
+                }
+                return $this->start_date_gcalendar;
+                break;
             
             case 'end_date_front_long':
                 if ($this->end_date != '') {
@@ -107,6 +128,15 @@ class erLhcoreClassModelEvents
                     $this->end_date_front_long = '';
                 }
                 return $this->end_date_front_long;
+                break;
+                
+            case 'end_date_gcalendar':
+                if ($this->end_date != '') {
+                    $this->end_date_gcalendar = date('Ymd', $this->end_date).'T'.date('His', $this->end_date).'Z';
+                } else {
+                    $this->end_date_gcalendar = '';
+                }
+                return $this->end_date_gcalendar;
                 break;
             
             case 'start_date_front_long':
@@ -147,6 +177,22 @@ class erLhcoreClassModelEvents
                 }
                 
                 return $this->variations_photo;
+                break;
+                
+            case 'event_location':
+                $this->event_location = $this->address.(($this->postcode!='')?', '.$this->postcode:'').', '.$this->country_obj->name;
+                
+                return $this->event_location;
+                break;
+                
+            case 'country_obj':
+                try {
+                    $this->country_obj = erLhAbstractModelCountry::fetch($this->country);
+                } catch (Exception $e) {
+                    $this->country_obj = false;
+                }
+                
+                return $this->country_obj;
                 break;
             default:
                 break;

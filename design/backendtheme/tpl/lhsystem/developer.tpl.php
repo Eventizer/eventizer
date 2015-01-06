@@ -36,5 +36,42 @@
 				</table>
 			</div>
 		</div>
+		
+	
+		<?php if (!empty($extensions)):?>
+    		<div class="box-header">
+    			<h3 class="box-title"><?=__t('system/developer','Extensions')?></h3>
+    		</div>
+    		<div class="box-body table-responsive">
+    			<div class="dataTables_wrapper form-inline">
+    				<table cellpadding="0" cellspacing="0" class="table table-bordered table-hover dataTable" width="100%">
+    					<thead>
+    						<tr>
+    				        	<th width="20%"><?=__t('system/developer','Name')?></th>
+    					    	<th><?=__t('system/developer','Description')?></th>
+    				   			<th width="3%">&nbsp;</th>
+    						</tr>
+    					</thead>
+    					<?php foreach ($extensions as $extension):?>
+        			    	<tr>
+        			        	<td>
+        			        		<?=$extension['name']?>
+        				        </td>
+        				        <td>
+        			        		<?=$extension['description']?>
+        			        		
+        				        </td>
+        				        <td>
+        				            <?php if (isset($extension['settings_url']) && $extension['settings_url']):?>
+        				        	   <a class="btn btn-primary btn-sm" href="<?= $extension['settings_url']?>" title="<?=__t('system/button','Settings')?>"><?=__t('system/button','Settings')?><i class="fa fa-fw fa-arrow-right"></i></a>
+        				        	<?php endif;?>
+        				        </td>
+        				    </tr>
+        				 <?php endforeach;?>
+    				 
+    				</table>
+    			</div>
+    		</div>
+		<?php endif;?>
 	</div>
 </div>

@@ -85,8 +85,8 @@ $tpl->set('smtp_data',$data);
 
 $Result['submenu'] = 'smtp';
 $Result['menu'] = 'settings';
-$Result['title'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('system/smtp','SMTP');
-$Result['small_title'] =  __t('system/smtp','Change your smtp settings');
+$Result['title'] =  array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/smtp','SMTP'),
+                          'small_title' =>  __t('system/smtp','Change your smtp settings'));
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(
 array('title' => erTranslationClassLhTranslation::getInstance()->getTranslation('system/smtp','SMTP settings')));

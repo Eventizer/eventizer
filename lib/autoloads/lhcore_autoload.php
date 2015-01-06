@@ -36,6 +36,7 @@ return array (
         'erLhcoreClassGroupRole'  						=> 'lib/core/lhpermission/lhgrouprole.php',
 		'erLhcoreClassSystemConfig'						=> 'lib/core/lhsystemconfig/lhsystemconfig.php',
         'erLhcoreClassTrait'					        =>  'lib/core/lhcore/lhclasstrait.php',
+        'erLhcoreClassEventDispatcher'			        =>  'lib/core/lhcore/lheventdispatcher.php',
 		
         'erLhcoreClassModelUser'            			=> 'lib/models/lhuser/erlhcoreclassmodeluser.php',
 		'erLhcoreClassModelUserRemember' 				=> 'lib/models/lhuser/erlhcoreclassmodeluserremember.php',
@@ -80,6 +81,7 @@ return array (
     
         //event validation
         'erLhcoreClassValidateEvents'					=>  'lib/core/lhevents/validation/erlhcoreclassvalidationevents.php',
+    
     
     
         

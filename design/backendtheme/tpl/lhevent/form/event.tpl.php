@@ -103,7 +103,14 @@
    <div class="col-md-12">     
         <div class="form-group">
         	<label><?=__t('eventadmin/new','Event decription')?><span class="required">*</span></label>
-        	<textarea name="Description" class="form-control ckeditor" id="ckeditor"  ><?=htmlspecialchars($event->description)?></textarea>
+        	<?php
+				$oFCKeditor = new CKEditor() ;        
+				$oFCKeditor->basePath = erLhcoreClassDesign::design('js/ckeditor').'/' ;
+				CKFinder::SetupCKEditor($oFCKeditor, erLhcoreClassDesign::design('js/ckfinder/'));   
+				$oFCKeditor->config['height'] = 300;
+				$oFCKeditor->config['width'] = '100%';        
+				$oFCKeditor->editor('EDescription',$event->description) ;    
+			?> 
         </div>
     </div>
 </div>
@@ -112,7 +119,14 @@
     <div class="col-md-12">   
         <div class="form-group">
     	   <label><?=__t('eventadmin/new','Organizer description')?></label>
-    	   <textarea name="OrgDesc" class="form-control ckeeditor"  id="ckeditor2" ><?=htmlspecialchars($event->organizer_description)?></textarea>
+    	   <?php
+				$oFCKeditor = new CKEditor() ;        
+				$oFCKeditor->basePath = erLhcoreClassDesign::design('js/ckeditor').'/' ;
+				CKFinder::SetupCKEditor($oFCKeditor, erLhcoreClassDesign::design('js/ckfinder/'));   
+				$oFCKeditor->config['height'] = 300;
+				$oFCKeditor->config['width'] = '100%';        
+				$oFCKeditor->editor('OrgDesc',$event->organizer_description) ;    
+			?> 
         </div>
     </div>
 </div>

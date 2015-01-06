@@ -6,12 +6,14 @@ cache/translations/*
 cache/userinfo/*
 cron/log/*
 settings/*
+extension/*
 var/*
 var/tmpfiles/*
 robots.txt
 .htaccess
 .gitignore
 
+!settings/form/*
 !settings/settings.ini.default.php
 !cache/cacheconfig
 !cache/compiledtemplates

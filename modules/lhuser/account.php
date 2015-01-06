@@ -25,9 +25,11 @@ if (!isset($userData)) {
 
 $tpl->set('userData',$userData);
 
+$Result['title'] = array('title' =>__t('users/edit','User edit'),
+    'small_title' => $userData->name.' '.$userData->surname
+);
 $Result['sidebartype'] = 'left';
 $Result['content'] = $tpl->fetch();
-$Result['title'] = __t('user/account','User account');
 $Result['path'] = array(
 	array('title' => __t('user/account','My account'))
 );
