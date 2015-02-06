@@ -425,6 +425,12 @@ class erLhcoreClassModule {
 	        }
 	    }
 	}
+	
+	public static function Error404() {
+	    header('HTTP/1.0 404 Not Found');
+	    include_once ('modules/lhkernel/error404.php');
+	    return $Result;
+	}
 
 	private static $defaultTimeZone = NULL;
 

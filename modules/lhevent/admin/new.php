@@ -7,6 +7,7 @@ if (isset($_POST['saveAction'])) {
     $errors = erLhcoreClassValidateEvents::validateInput($event);
     
     if (count($errors) == 0) {
+        $event->org_id = erLhcoreClassUser::instance()->getUserID();
         $event->saveThis();
         erLhcoreClassModule::redirect('event/events');
         exit();

@@ -59,6 +59,46 @@ $def->properties['created']->columnName   = 'created';
 $def->properties['created']->propertyName = 'created';
 $def->properties['created']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_INT;
 
+$def->properties['org_name'] = new ezcPersistentObjectProperty();
+$def->properties['org_name']->columnName   = 'org_name';
+$def->properties['org_name']->propertyName = 'org_name';
+$def->properties['org_name']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['org_description'] = new ezcPersistentObjectProperty();
+$def->properties['org_description']->columnName   = 'org_description';
+$def->properties['org_description']->propertyName = 'org_description';
+$def->properties['org_description']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['org_www'] = new ezcPersistentObjectProperty();
+$def->properties['org_www']->columnName   = 'org_www';
+$def->properties['org_www']->propertyName = 'org_www';
+$def->properties['org_www']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['org_fb'] = new ezcPersistentObjectProperty();
+$def->properties['org_fb']->columnName   = 'org_fb';
+$def->properties['org_fb']->propertyName = 'org_fb';
+$def->properties['org_fb']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['org_tw'] = new ezcPersistentObjectProperty();
+$def->properties['org_tw']->columnName   = 'org_tw';
+$def->properties['org_tw']->propertyName = 'org_tw';
+$def->properties['org_tw']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['file'] = new ezcPersistentObjectProperty();
+$def->properties['file']->columnName   = 'file';
+$def->properties['file']->propertyName = 'file';
+$def->properties['file']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['file_name'] = new ezcPersistentObjectProperty();
+$def->properties['file_name']->columnName   = 'file_name';
+$def->properties['file_name']->propertyName = 'file_name';
+$def->properties['file_name']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
+$def->properties['variations'] = new ezcPersistentObjectProperty();
+$def->properties['variations']->columnName   = 'variations';
+$def->properties['variations']->propertyName = 'variations';
+$def->properties['variations']->propertyType = ezcPersistentObjectProperty::PHP_TYPE_STRING;
+
 return $def; 
 
 ?>

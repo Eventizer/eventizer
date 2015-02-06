@@ -22,6 +22,7 @@ class erLhcoreClassModelEvents
         $stateArray = array(
             'id'                => $this->id,
             'cat_id'            => $this->cat_id,
+            'org_id'            => $this->org_id,
             'file'              => $this->file,
             'title'             => $this->title,
             'file_path'         => $this->file_path,
@@ -53,6 +54,7 @@ class erLhcoreClassModelEvents
     {
         if (! $this->mtime)
             $this->mtime = time();
+        
         erLhcoreClassEvents::getSession()->saveOrUpdate($this);
         $this->clearCache();
     }
@@ -194,6 +196,42 @@ class erLhcoreClassModelEvents
                 
                 return $this->country_obj;
                 break;
+                
+            case 'organizer':
+                
+                try {
+                    $this->organizer = erLhcoreClassModelUser::fetch($this->org_id);
+                } catch (Exception $e) {
+                    $this->organizer = false;
+                }
+                
+                return $this->organizer;
+                break;
+                
+            case 'organizer_name_front':
+                
+                if ($this->organizer_name) {
+                    $this->organizer_name_front = $this->organizer_name;
+                } else {
+                    $this->organizer_name_front = $this->organizer->org_name;
+                }
+                
+                return $this->organizer_name_front;
+                break;
+                
+                
+            case 'organizer_description_front':
+                
+                if ($this->organizer_description) {
+                    $this->organizer_description_front = $this->organizer_description;
+                } else {
+                    $this->organizer_description_front = $this->organizer->org_description;
+                }
+                
+                return $this->organizer_description_front;
+                break;
+                
+                
             default:
                 break;
         }
@@ -233,6 +271,8 @@ class erLhcoreClassModelEvents
     public $id = null;
 
     public $cat_id = '';
+    
+    public $org_id = '';
     
     public $title = '';
 

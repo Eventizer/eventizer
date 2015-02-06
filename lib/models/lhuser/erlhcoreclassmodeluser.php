@@ -23,8 +23,15 @@ class erLhcoreClassModelUser {
             'lastactivity'    		=> $this->lastactivity,
 			'time_zone'     	 	=> $this->time_zone,
 			'activate_hash'     	=> $this->activate_hash,
+			'file'     	            => $this->file,
+			'file_name'     	    => $this->file_name,
             'system'    			=> $this->system,
-            'created'    			=> $this->created
+            'created'    			=> $this->created,
+            'org_name'    		    => $this->org_name,
+            'org_description'    	=> $this->org_description,
+            'org_www'    	        => $this->org_www,
+            'org_fb'    	        => $this->org_fb,
+            'org_tw'    	        => $this->org_tw,
     	);
 	}
 	
@@ -163,6 +170,24 @@ class erLhcoreClassModelUser {
    	
     	switch ($param) {    	   			
     		
+       		case 'tw_name':
+       		    
+       		    preg_match("|https?://(www\.)?twitter\.com/(#!/)?@?([^/]*)|", $this->org_tw, $matches);
+       		    $this->tw_name = $matches[3];
+       		    
+       		   	return $this->tw_name;
+       			break;
+    		
+       		case 'has_photo':
+       		    $this->has_photo = false;
+       		    
+       		   	if ($this->file_name != '') {
+       		   	    $this->has_photo = true;
+       		   	}
+
+       		   	return $this->has_photo;
+       			break;
+    		
        		case 'user_groups_id':
 				$userGroups = erLhcoreClassModelGroupUser::getList(array('filter' => array('user_id' => $this->id)));
        		   	$this->user_groups_id = array();
@@ -220,18 +245,67 @@ class erLhcoreClassModelUser {
        		   	};
        		   
        		   	return $this->lastactivity_ago;
-       			break;      		
+       			break; 
+       			
+       			case 'variations_photo':
+       			    $this->variations_photo = array();
+       			     
+       			    if ($this->variations != ''){
+       			        $this->variations_photo = unserialize($this->variations);
+       			    }
+       			
+       			    return $this->variations_photo;
+       			    break;
+
+       			case 'photow_150':
+       			     
+   			        if ($this->file_name) {
+   			
+   			            $instance = erLhcoreClassSystem::instance();
+   			
+   			            $variations = $this->variations_photo;
+   			            $this->photow_150 = false;
+   			
+   			            if (isset($variations['photow_150'])) {
+   			                $this->photow_150 = '/'.$this->file . '/photow_150_'.$this->file_name;
+   			            } else {
+   			                try {
+
+   			                    $Storage = $this->file.'/'.$this->file_name;
+               					erLhcoreClassImageConverter::getInstance()->converter->transform( 'photow_150', $Storage, $this->file.'/' . 'photow_150_'.$this->file_name );
+
+               					$this->addVariantion('photow_150');
+               					$this->photow_150 = '/'.$this->file . '/photow_150_'.$this->file_name;
+               					 
+   			                } catch (Exception $e) {
+   			               		$this->photow_150 =  false;
+   			                }
+   			            }
+   			        } else {
+   			            $this->photow_150 =  false;
+   			        }
+   			     
+   			    return $this->photow_150;
+   			    break;
        			
        		default:
        			break;
        			
     	}
 	}
+	
+	public function addVariantion( $variationItem )
+	{
+	    $variation = $this->variations_photo;
+	    $variation[$variationItem] = true;
+	    $this->variations = serialize($variation);
+	    $this->updateThis();
+	}
 	  
-	public static function userExists($username) {
+	public static function userExists($email) {
     	$db = ezcDbInstance::get();
-       	$stmt = $db->prepare('SELECT count(*) as foundusers FROM lh_users WHERE username = :username');
-       	$stmt->bindValue( ':username',$username);       
+       	$stmt = $db->prepare('SELECT count(*) as foundusers FROM lh_users WHERE email = :email');
+       	$stmt->bindValue( ':email',$email);       
        	$stmt->execute();
        	$rows = $stmt->fetchAll();
        
@@ -352,7 +426,7 @@ class erLhcoreClassModelUser {
 	    if ( !$form->hasValidData( 'Username' ) || $form->Username == '' ) {
 	        $Errors['Username'] =  __t('user/form','Enter username');
 	    } else {
-	        $objectData->username = $form->Username;
+	        $objectData->email = $form->Username;
 	    }
 	
 	    if ( !$form->hasValidData( 'Password' ) || $form->Password == '' ) {
@@ -364,93 +438,7 @@ class erLhcoreClassModelUser {
 	    return $Errors;
 	}
 		
-	public static function validateInput(& $objectData) {
 	
-		if (!isset($_POST['csfr_token']) || !erLhcoreClassUser::instance()->validateCSFRToken($_POST['csfr_token'])) {
-			erLhcoreClassModule::redirect('kernel/csrf-missing');
-		}
-		
-		$definition = array(
-			'Name' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
-			),
-			'Surname' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
-			),	
-			'Email' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::OPTIONAL, 'validate_email'
-			),	
-			'Password' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
-			),
-			'Password1' => new ezcInputFormDefinitionElement(
-				ezcInputFormDefinitionElement::OPTIONAL, 'unsafe_raw'
-			)			
-		);
-			
-		$form = new ezcInputForm( INPUT_POST, $definition );
-			
-		$Errors = array();
-	
-		if ( !$form->hasValidData( 'Name' ) || $form->Name == '' ) {
-			$Errors[] = __t('user/form','Please enter name');
-		} else {
-			$objectData->name = $form->Name;
-		}
-		
-		if ( !$form->hasValidData( 'Surname' ) || $form->Surname == '' ) {
-			$Errors[] = __t('user/form','Please enter surname');
-		} else {
-			$objectData->surname = $form->Surname;
-		}
-		
-		if ( !$form->hasValidData( 'Email' ) ) {
-			$Errors[] = __t('user/form','Please enter a valid email address');
-		} else {
-			
-			if ($objectData->id == null) {
-				
-				if ( $form->hasValidData( 'Email' ) && self::userEmailExists($form->Email) === true ) {
-					$Errors[] = __t('user/form','Email address already registered');
-				} else {
-					$objectData->email = $form->Email;
-				}
-				
-			} else {
-				
-				if ( $form->hasValidData( 'Email' ) && $form->Email != $objectData->email && self::userEmailExists($form->Email) === true ) {
-					$Errors[] = __t('user/form','Email address already registered');
-				} else {
-					$objectData->email = $form->Email;
-				}
-				
-			}
-		}
-		
-		if ($objectData->id == null) {
-			
-			if ( !$form->hasValidData( 'Password' ) || !$form->hasValidData( 'Password1' ) || $form->Password == '' || $form->Password1 == '' || $form->Password != $form->Password1 ) {
-				$Errors[] = __t('user/form','Passwords do not match');
-			} else {
-				$objectData->setPassword($form->Password);
-			}
-			
-		} else {
-			
-			if ( $form->hasInputField( 'Password' ) && (!$form->hasInputField( 'Password1' ) || $form->Password != $form->Password1  ) ) {
-				$Errors['Password'] =  erTranslationClassLhTranslation::getInstance()->getTranslation('user/account','Passwords mismatch');
-			}
-			
-			// Update only if neccesary
-			if ($form->hasInputField( 'Password' ) && $form->hasInputField( 'Password1' ) && $form->Password != '' && $form->Password1 != '') {
-				$objectData->setPassword($form->Password);
-			}
-			
-		}
-				
-		return $Errors;
-	
-	}
 	
 	public static function validateInputAdmin(& $objectData) {
 			
@@ -494,7 +482,7 @@ class erLhcoreClassModelUser {
 	        $pathinfoData = pathinfo($url_photo);
 	
 	        $imgContent = file_get_contents($url_photo);
-	
+	       
 	        $dir = 'var/userphoto/' . date('Y') . 'y/' . date('m') . '/' . date('d') .'/' . $this->id . '/';
 	        $photo_dir = 'var/userphoto/' . date('Y') . 'y/' . date('m') . '/' . date('d') .'/' . $this->id ;
 	        erLhcoreClassImageConverter::mkdirRecursive( $dir, true );
@@ -512,8 +500,8 @@ class erLhcoreClassModelUser {
 	        if($remove == true)
 	            $this->removeFile();
 	
-	        $this->photo = $newFileName;
-	        $this->filepath = $photo_dir;
+	        $this->file_name = $newFileName;
+	        $this->file = $photo_dir;
 	        	
 	        $this->updateThis();
 	
@@ -521,6 +509,24 @@ class erLhcoreClassModelUser {
 	        // Error
 	    }
 	    	
+	}
+	
+	public function removeFile()
+	{
+	    if ($this->file_name != '') {
+	        if ( file_exists($this->file . '/' . $this->file_name) ) {
+	            unlink($this->file . '/' . $this->file_name);
+	        }
+	        
+	        if ( file_exists($this->file . '/photow_150_' . $this->file_name) ) {
+	            unlink($this->file . '/photow_150_' . $this->file_name);
+	        }
+	        erLhcoreClassImageConverter::removeRecursiveIfEmpty('var/userphoto/',str_replace('var/userphoto/', '', $this->file));
+	
+	        $this->file = '';
+	        $this->file_name = '';
+	        $this->updateThis();
+	    }
 	}
 	
 	public static function checkActivateHash($hash){
@@ -582,6 +588,13 @@ class erLhcoreClassModelUser {
     public $time_zone = '';
     public $system = 0;
     public $created = 0;
+    public $org_name = '';
+    public $org_description = '';
+    public $org_www = '';
+    public $org_fb = '';
+    public $org_tw = '';
+    public $file = '';
+    public $file_name = '';
     
 }
 

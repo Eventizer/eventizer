@@ -20,7 +20,7 @@ if (isset($_POST['Login']))
 {    
     if (!$currentUser->authenticate($_POST['Username'], $_POST['Password'], isset($_POST['rememberMe']) && $_POST['rememberMe'] == 1 ? true : false))
     {
-        $Error = erTranslationClassLhTranslation::getInstance()->getTranslation('user/login','Incorrect username or password');
+        $Error = erTranslationClassLhTranslation::getInstance()->getTranslation('user/login','Incorrect User ID or password');
         $tpl->set('errors',array($Error));
     } else {
     	if ($redirect != '') {

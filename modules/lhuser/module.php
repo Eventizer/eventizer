@@ -14,6 +14,7 @@ $ViewList['logout'] = array(
     );
 
 $ViewList['account'] = array(
+    'script' => 'admin/account.php',
     'params' => array(),
     'uparams' => array('msg','action','csfr','tab'),
     'functions' => array( 'selfedit' )

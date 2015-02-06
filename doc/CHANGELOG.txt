@@ -1,0 +1,19 @@
+
+------------------------------
+2015-02-06
+0.02 
+
+1. Create some new fields in organizer acount
+2. Fix account image upload
+3. Public organizer account page 
+4. Add license doc.
+5. Database update script. This allows update database from admin by one buttun click.
+6. Version tracking on admin
+
+database updates execute doc/update_db/update_2.sql
+
+-------------------------------
+0.01
+
+1. Inicial version
+2. Admin interface

@@ -7,7 +7,7 @@ $.ajaxSetup({
     cache: false,
     beforeSend: function(xhr, settings) {
         if (!csrfSafeMethod(settings.type)) {
-            xhr.setRequestHeader("X-CSRFToken", confAM.csrf_token);
+            xhr.setRequestHeader("X-CSRFToken", WWW_CSRF);
         }
     }
 });

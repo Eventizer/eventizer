@@ -37,8 +37,10 @@ return array (
 		'erLhcoreClassSystemConfig'						=> 'lib/core/lhsystemconfig/lhsystemconfig.php',
         'erLhcoreClassTrait'					        =>  'lib/core/lhcore/lhclasstrait.php',
         'erLhcoreClassEventDispatcher'			        =>  'lib/core/lhcore/lheventdispatcher.php',
+        'erLhcoreClassUpdate'		         	        =>  'lib/core/lhcore/lhupdate.php',
 		
         'erLhcoreClassModelUser'            			=> 'lib/models/lhuser/erlhcoreclassmodeluser.php',
+        'erLhcoreClassValidateUsers'					=> 'lib/core/lhuser/validation/erlhcoreclassvalidationuser.php',
 		'erLhcoreClassModelUserRemember' 				=> 'lib/models/lhuser/erlhcoreclassmodeluserremember.php',
         'erLhcoreClassModelGroup'           			=> 'lib/models/lhuser/erlhcoreclassmodelgroup.php',
         'erLhcoreClassModelGroupUser'       			=> 'lib/models/lhuser/erlhcoreclassmodelgroupuser.php',
@@ -83,7 +85,8 @@ return array (
         'erLhcoreClassValidateEvents'					=>  'lib/core/lhevents/validation/erlhcoreclassvalidationevents.php',
     
     
-    
+        //API
+        'ApiClient' 	  					            => 'lib/core/lhcore/lhapiclient.php',
         
 );
 

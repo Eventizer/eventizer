@@ -43,9 +43,9 @@ $Result ['title'] = array (
 );
 
 $Result ['path'] = array (
-		array (
-				'title' => __t ( 'event/list', 'Events' ) 
-		) 
+	array (
+		'title' => __t ( 'event/list', 'Events' ) 
+	) 
 );
 
 ?>

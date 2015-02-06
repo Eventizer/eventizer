@@ -1,7 +1,7 @@
 <div class="container">
-	<div class="row">
+	<div class="row pt-25">
 		<div class="col-xs-12">
-			<img src="" alt="Eventizer" title="Eventizer" />
+			<img src="<?=__design('images/general/logo.png')?>" alt="Eventizer" title="Eventizer" />
 		</div>
 		<div class="col-xs-12 text-center">
 			<h1>Installation</h1>

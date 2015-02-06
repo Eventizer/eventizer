@@ -8,6 +8,7 @@ var functionMap = {
 	'ckeditor': app.ckeditor,
 	'datepicker': app.datepicker,
 	'widgetEmbedCode': app.widgetEmbedCode,
+	'init_checkDBVersion': app.checkDBVersion,
 };
 
 $(document).ready(function() {      

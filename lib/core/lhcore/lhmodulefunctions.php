@@ -365,14 +365,12 @@ class erLhcoreClassModuleFunctions {
 	 * @param string $format
 	 */
 	public static function getTimestamp($date, $format = "Y-m-d") {
-	
-	    $timestamp = DateTime::createFromFormat($format,$date);
-	
-	    $timestamp = $timestamp->format('U');
-	    $datetime = new DateTime('now',new DateTimeZone('UTC'));
-	    $datetime->setTimestamp($timestamp);
-	
-	    return $datetime->getTimestamp();
+
+	    $dateFormat = DateTime::createFromFormat($format, $date);
+		
+		if ($dateFormat) {
+			return self::formatTimeToYearMontDate($dateFormat->getTimestamp(), $setDayEndTime);
+		}
 	}
 	
 	
@@ -390,8 +388,10 @@ class erLhcoreClassModuleFunctions {
 	}
 	
 	public static function addhttp($url) {
-	    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
-	        $url = "http://" . $url;
+	    if ($url) {
+    	    if (!preg_match("~^(?:f|ht)tps?://~i", $url)) {
+    	        $url = "http://" . $url;
+    	    }
 	    }
 	    return $url;
 	}

@@ -210,6 +210,25 @@ class erLhcoreClassImageConverter {
             	),
             	new ezcImageSaveOptions(array('quality' => (int)95))
             );
+            
+            $this->converter->createTransformation(
+            	'photow_150',
+            	array(
+            		new ezcImageFilter(
+            		'scale',
+            			array(
+            				'width'     => 150,
+            				'height'    => 150,
+            				'direction' => ezcImageGeometryFilters::SCALE_DOWN,
+            			)
+            		),
+            	),
+            	array(
+            		'image/jpeg',
+            		'image/png',
+            	),
+            	new ezcImageSaveOptions(array('quality' => (int)95))
+            );
                     
         }
    

@@ -1,4 +1,8 @@
 /* eZ Components debug */
+.pt-25 {
+	padding-top:25px;	
+}
+
 .ezc-debug-output .group-header, .ezc-debug-output .debugheader {
     text-align: left;
     background-color: #dddddd;

@@ -12,6 +12,10 @@ var/tmpfiles/*
 robots.txt
 .htaccess
 .gitignore
+composer.lock
+composer.json
+composer.phar
+.project
 
 !settings/form/*
 !settings/settings.ini.default.php

@@ -850,6 +850,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
 	           $cfgSite->setSetting( 'user_settings', 'anonymous_user_id', $UserDataAnonymous->id);
 	           $cfgSite->save();
 
+	           ApiClient::setSystemInstall();
     	       $tpl->setFile('lhinstall/install4.tpl.php');
 
             } else {

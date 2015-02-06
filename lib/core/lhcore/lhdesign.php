@@ -1,5 +1,5 @@
 <?php
-
+use MatthiasMullie\Minify;
 class erLhcoreClassDesign
 {
     public static function design($path)
@@ -276,8 +276,11 @@ class erLhcoreClassDesign
         $fileName = md5($filesToCompress.$instance->WWWDirLang);
         $file = $sys . 'cache/compiledtemplates/'.$fileName.'.css';
 
+        
         if (!file_exists($file)) {
-            file_put_contents($file,$filesToCompress);
+            file_put_contents($file, $filesToCompress);
+            $minifier = new Minify\CSS($file);
+            file_put_contents($file, $minifier->minify());
         }
 
         if ($debugOutput == true)
@@ -331,8 +334,8 @@ class erLhcoreClassDesign
 
     	return htmlspecialchars($cutted);
     }
-
-    public static function designJS($files)
+   
+    public static function designJS($files, $recompile = true)
     {
         $debugOutput = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'debug_output' );
     	$items = explode(';',$files);
@@ -429,7 +432,12 @@ class erLhcoreClassDesign
         $file = $sys . 'cache/compiledtemplates/'.$fileName.'.js';
 
         if (!file_exists($file)) {
-            file_put_contents($file,$filesToCompress);
+            file_put_contents($file, $filesToCompress);
+          
+            if ($recompile == true) {
+                $minifier = new Minify\JS($file);
+                file_put_contents($file, $minifier->minify());
+            }
         }
         
         if ($debugOutput == true)

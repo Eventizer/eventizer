@@ -20,4 +20,11 @@ ExpiresByType video/x-flv A604800
 ExpiresByType application/pdf A604800
 ExpiresByType text/html A300
 
+<filesMatch ".(js|css|swf)$">
+ Header set Cache-Control "max-age=1592000, public"
+</filesMatch>
+
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript
+
+
 DirectoryIndex index.php

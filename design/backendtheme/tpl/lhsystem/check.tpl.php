@@ -1,11 +1,48 @@
 <div class="col-md-12">
 	<div class="box box-primary">
+		<div class="box-header">
+			<h3 class="box-title"><?=__t('system/check','System status')?></h3>
+		</div>
 		<div class="box-body table-responsive">
-			<div class="dataTables_wrapper form-inline">System version <?=$version?>v</div>
+		    <div class="row">
+    		    <div class="col-md-6">
+    			     <div class="dataTables_wrapper form-inline"><?=__t('system/check','Current system version')?>:&nbsp;<b><?=$version?></b></div>
+    			</div>
+			</div>
+			<?php if ($version < $release->version/100):?>
+    			<div class="dataTables_wrapper form-inline"><?=__t('system/check','New version')?>:&nbsp;<b><span class="badge bg-green"><?=$release->version/100?></span></b></div>
+    			<hr />
+    			<div><b><?=$release->name?></b></div>
+    			<div class="dataTables_wrapper form-inline"><?=$release->description?></div>
+    			<div class="dataTables_wrapper form-inline"><?=__t('system/check','Change log')?>:
+    			     <div><?=$release->change_log?></div>
+    			</div>
+    			<br />
+    			 <?=__t('system/check','More information how to upgrade view')?> <a class="btn btn-primary" href="http://eventizer.org/How-to-upgrade-Eventizer-13c.html" target="_blank"><?= __t('system/update','Update instructions')?></a>
+    			<hr />
+    			<div class="row">
+        			  <div class="col-md-12">
+        			     <b><?=__t('system/check','Database structure check')?>:&nbsp;</b>
+        			     <span id="status-db"><?=__t('system/timezone','Comparing current database structure, please wait...')?></span>
+        			  </div>
+    			</div>
+    			<script type="text/javascript">
+                	var _lactq = _lactq || [];
+                	_lactq.push({'f':'init_checkDBVersion','a':['']});
+                </script>
+    		 <?php else:?>
+    		      <br />
+    		      <div class="alert alert-success alert-dismissable">
+                        <i class="fa fa-check"></i>
+                        <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                        <?=__t('system/check','You have the system updated to the latest version. No new updates at this moment')?>
+                   </div>
+			 <?php endif;?>
+			
 		</div>
 
 		<div class="box-header">
-			<h3 class="box-title">Checking folders permission</h3>
+			<h3 class="box-title"><?=__t('system/check','Checking folders permission')?></h3>
 		</div>
 		<div class="box-body table-responsive">
 			<div class="dataTables_wrapper form-inline">
@@ -64,3 +101,5 @@
 		</div>
 	</div>
 </div>
+
+

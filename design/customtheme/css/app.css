@@ -23,7 +23,8 @@ body {
 	margin-right:5px;
 	color:#fff;
 	font-family:'Montserrat',Helvetica,sans-serif;
-	height:auto
+	height:auto;
+	padding:5px 0px 0px 0px;
 }
 
 .navbar .navbar-brand:hover {
@@ -696,4 +697,46 @@ ul.list-group-link li a {
 
 .mb-0 {
 	margin-bottom:0px;	
+}
+
+.profile-tab {
+	list-style:none;
+	border-bottom:1px solid #ccc;
+	display:block;
+	padding:0px;
+	margin:0px;
+	height:30px;
+}
+
+.profile-tab li {
+	float:Left;
+	display:block;
+}
+
+.profile-tab li a,
+#myTab li a{
+	padding:13px 30px 11px;
+	border:1px solid #ccc;
+	border-bottom:0px;
+	background:#f1f1f1;
+	border-radius:0px;
+	-moz-border-radius:0px;
+	-webkit-border-radius:0px;
+}
+
+
+.profile-tab li.active a,
+#myTab li.active a{
+	padding:13px 30px 12px 30px;
+	background:#fff;
+	position:relative;
+}
+
+#myTab li.active a,
+#myTab li a {
+	padding:7px 30px 7px;
+}
+
+.br {
+	border:1px solid #ccc;
 }

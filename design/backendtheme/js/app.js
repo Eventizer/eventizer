@@ -75,7 +75,19 @@ var app = {
 	        app.generateEmbedCode(default_site_access, host);
 	    });
 	    app.generateEmbedCode(default_site_access, host);
-    }
+    },
     
+    checkDBVersion : function () {
+    	$.postJSON(WWW_DIR_JAVASCRIPT + 'system/check/(action)/statusdb', function(data){
+    	        $('#status-db').html(data.result);            
+	    });
+    },
+    
+    updateDatabaseStructure : function () {
+    	$.postJSON(WWW_DIR_JAVASCRIPT+'system/check/(action)/statusdbdoupdate',function(data){
+            $('#status-db').html(data.result);            
+        }); 
+    },
+  
 
 };

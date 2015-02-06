@@ -23,8 +23,55 @@
 		</div>
 	</div>
 	<div class="col-md-6">
-		
+		<div class="form-group">
+			<label><?=__t('user/form/user','Organizer name')?>*</label>
+			<input class="form-control" type="text" name="orgName" value="<?=htmlspecialchars($userData->org_name)?>" placeholder="<?=__t('user/form/user','Your organizer name')?>" />
+		</div>
 	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+			<label><?=__t('user/form/user','Organizer website address')?></label>
+			<input class="form-control" type="text" name="orgWWW" value="<?=htmlspecialchars($userData->org_www)?>" placeholder="<?=__t('user/form/user','http://eventizer.org')?>" />
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label><?=__t('user/form/user','Organizer facebook address')?></label>
+			<input class="form-control" type="text" name="orgFB" value="<?=htmlspecialchars($userData->org_fb)?>" placeholder="<?=__t('user/form/user','http://facebook.com/eventizer.org')?>" />
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-6">
+		<div class="form-group">
+			<label><?=__t('user/form/user','Organizer twitter address')?></label>
+			<input class="form-control" type="text" name="orgTW" value="<?=htmlspecialchars($userData->org_tw)?>" placeholder="<?=__t('user/form/user','http://twitter.com/eventizer')?>" />
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+		</div>
+	</div>
+</div>
+
+<div class="row">
+   <div class="col-md-12">     
+        <div class="form-group">
+        	<label><?=__t('eventadmin/new','Organizer description')?></label>
+        	<?php
+				$oFCKeditor = new CKEditor() ;        
+				$oFCKeditor->basePath = erLhcoreClassDesign::design('js/ckeditor').'/' ;
+				CKFinder::SetupCKEditor($oFCKeditor, erLhcoreClassDesign::design('js/ckfinder/'));   
+				$oFCKeditor->config['height'] = 300;
+				$oFCKeditor->config['width'] = '100%';        
+				$oFCKeditor->editor('orgDescription',$userData->org_description) ;    
+			?> 
+        </div>
+    </div>
 </div>
 
 

@@ -10,7 +10,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="<?=__url('/')?>">Eventizer</a>
+						<a class="navbar-brand" href="<?=__url('/')?>"><img height="30" src="<?=erLhcoreClassDesign::design('images/logo.png')?>" alt="<?=erConfigClassLhConfig::getInstance()->getOverrideValue( 'site', 'title' )?>" title="<?=erConfigClassLhConfig::getInstance()->getOverrideValue( 'site', 'title' )?>"/></a>
 					</div>
 					<div class="collapse navbar-collapse" id="collapse">
 						<ul class="nav navbar-nav navbar-left">

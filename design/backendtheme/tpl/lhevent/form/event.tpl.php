@@ -76,7 +76,7 @@
     </div>
     <div class="col-md-6">   
         <div class="form-group">
-    	   <label><?=__t('eventadmin/new','Organizer name')?></label>
+    	   <label><?=__t('eventadmin/new','Organizer name')?> <small><?=__t('eventadmin/new','This will override event organizer name') ?></small></label>
     	   <input type="text" name="OrgName" class="form-control"  value="<?=htmlspecialchars($event->organizer_name)?>" />
         </div>
     </div>
@@ -118,7 +118,7 @@
 <div class="row">
     <div class="col-md-12">   
         <div class="form-group">
-    	   <label><?=__t('eventadmin/new','Organizer description')?></label>
+    	   <label><?=__t('eventadmin/new','Organizer description')?> <small><?=__t('eventadmin/new','This will override event organizer description') ?></small></label>
     	   <?php
 				$oFCKeditor = new CKEditor() ;        
 				$oFCKeditor->basePath = erLhcoreClassDesign::design('js/ckeditor').'/' ;
