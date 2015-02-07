@@ -9,5 +9,5 @@ ALTER TABLE  `lh_users` ADD  `file_name` VARCHAR( 255 ) NOT NULL AFTER  `created
 ADD  `file` VARCHAR( 255 ) NOT NULL AFTER  `file_name`;
 ALTER TABLE  `lh_users` ADD  `variations` TEXT NOT NULL AFTER  `file`;
 
-INSERT INTO `dev_eventizer`.`lh_system_config` (`identifier`, `value`, `type`, `explain`, `hidden`) VALUES ('facebook_app_id', '', '0', 'Facebook API ID for facebook applications', '0');
-INSERT INTO `dev_eventizer`.`lh_system_config` (`identifier`, `value`, `type`, `explain`, `hidden`) VALUES ('twitter_app_id', '', '0', 'Twitter API ID for twitter applications', '0');
+INSERT INTO `lh_system_config` (`identifier`, `value`, `type`, `explain`, `hidden`) VALUES ('facebook_app_id', '', '0', 'Facebook API ID for facebook applications', '0');
+INSERT INTO `lh_system_config` (`identifier`, `value`, `type`, `explain`, `hidden`) VALUES ('twitter_app_id', '', '0', 'Twitter API ID for twitter applications', '0');

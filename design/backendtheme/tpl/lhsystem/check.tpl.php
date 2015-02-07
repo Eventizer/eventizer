@@ -19,17 +19,7 @@
     			</div>
     			<br />
     			 <?=__t('system/check','More information how to upgrade view')?> <a class="btn btn-primary" href="http://eventizer.org/How-to-upgrade-Eventizer-13c.html" target="_blank"><?= __t('system/update','Update instructions')?></a>
-    			<hr />
-    			<div class="row">
-        			  <div class="col-md-12">
-        			     <b><?=__t('system/check','Database structure check')?>:&nbsp;</b>
-        			     <span id="status-db"><?=__t('system/timezone','Comparing current database structure, please wait...')?></span>
-        			  </div>
-    			</div>
-    			<script type="text/javascript">
-                	var _lactq = _lactq || [];
-                	_lactq.push({'f':'init_checkDBVersion','a':['']});
-                </script>
+    			
     		 <?php else:?>
     		      <br />
     		      <div class="alert alert-success alert-dismissable">
@@ -38,6 +28,19 @@
                         <?=__t('system/check','You have the system updated to the latest version. No new updates at this moment')?>
                    </div>
 			 <?php endif;?>
+    	    <hr />
+    		<div class="row">
+    			  <div class="col-md-12">
+    			     <b><?=__t('system/check','Database structure check')?>:&nbsp;</b>
+    			     <span id="status-db"><?=__t('system/timezone','Comparing current database structure, please wait...')?></span>
+    			  </div>
+    		</div>
+    		
+    		
+    	   <script type="text/javascript">
+            	var _lactq = _lactq || [];
+            	_lactq.push({'f':'init_checkDBVersion','a':['']});
+            </script>
 			
 		</div>
 

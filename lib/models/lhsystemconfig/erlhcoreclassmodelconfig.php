@@ -82,7 +82,6 @@ class erLhcoreClassModelSystemConfig {
        
        return $setting;
    }
-      
    
    public $identifier = null;
    public $value = null;
