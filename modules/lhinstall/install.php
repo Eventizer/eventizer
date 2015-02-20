@@ -603,6 +603,7 @@ switch ((int)$Params['user_parameters']['step_id']) {
         	   $db->query("CREATE TABLE IF NOT EXISTS `lh_events` (
                   `id` int(11) NOT NULL AUTO_INCREMENT,
                   `cat_id` int(11) NOT NULL,
+                  `org_id` int(11) NOT NULL,
                   `title` varchar(255) NOT NULL,
                   `start_date` int(11) NOT NULL,
                   `end_date` int(11) NOT NULL,
