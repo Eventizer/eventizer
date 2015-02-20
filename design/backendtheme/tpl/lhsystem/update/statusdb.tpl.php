@@ -17,7 +17,7 @@
     		<?php endif; endforeach;?>
     		</ul>
     		<?php if ($hasError == false) : ?>
-    			<label class="success label"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('update/statusdb','Your database does not require any updates')?></label>
+    			<label class="callout callout-info"><?php echo erTranslationClassLhTranslation::getInstance()->getTranslation('update/statusdb','Your database does not require any updates')?></label>
     		<?php endif; ?>
     		
     		<?php if ($hasError) : ?>

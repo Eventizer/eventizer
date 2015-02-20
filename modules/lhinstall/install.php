@@ -714,22 +714,29 @@ switch ((int)$Params['user_parameters']['step_id']) {
                erLhcoreClassRole::getSession()->save($GroupRoleAnonymous);
 
                // Users
-               $db->query("CREATE TABLE IF NOT EXISTS `lh_users` (
-                  `id` int(11) NOT NULL AUTO_INCREMENT,
-                  `password` varchar(40) NOT NULL,
-                  `email` varchar(100) NOT NULL,
-                  `name` varchar(100) NOT NULL,
-                  `surname` varchar(100) NOT NULL,
-                  `disabled` tinyint(4) NOT NULL,
-                  `lastactivity` int(11) NOT NULL,
-                  `time_zone` varchar(200) NOT NULL,
-                  `activate_hash` varchar(200) NOT NULL,
-                  `system` tinyint(4) NOT NULL,
-                  `created` int(11) NOT NULL,
-                  `username` varchar(255) NOT NULL,
-                  PRIMARY KEY (`id`),
-                  KEY `system` (`system`)
-                ) DEFAULT CHARSET=utf8");
+                 $db->query("CREATE TABLE IF NOT EXISTS `lh_users` (
+                      `id` int(11) NOT NULL AUTO_INCREMENT,
+                      `password` varchar(40) NOT NULL,
+                      `email` varchar(100) NOT NULL,
+                      `name` varchar(100) NOT NULL,
+                      `surname` varchar(100) NOT NULL,
+                      `disabled` tinyint(4) NOT NULL,
+                      `lastactivity` int(11) NOT NULL,
+                      `time_zone` varchar(200) NOT NULL,
+                      `activate_hash` varchar(200) NOT NULL,
+                      `system` tinyint(4) NOT NULL,
+                      `org_name` varchar(255) NOT NULL,
+                      `org_description` varchar(255) NOT NULL,
+                      `org_www` varchar(255) NOT NULL,
+                      `org_fb` varchar(255) NOT NULL,
+                      `org_tw` varchar(255) NOT NULL,
+                      `created` int(11) NOT NULL,
+                      `file_name` varchar(255) NOT NULL,
+                      `file` varchar(255) NOT NULL,
+                      `variations` text NOT NULL,
+                      PRIMARY KEY (`id`),
+                      KEY `system` (`system`)
+                    )  DEFAULT CHARSET=utf8;");
 
                 $UserData = new erLhcoreClassModelUser();
 
