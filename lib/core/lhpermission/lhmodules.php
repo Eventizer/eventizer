@@ -26,15 +26,19 @@ class erLhcoreClassModules{
 
         $extensions = $cfg->getSetting( 'site', 'extensions' );
         foreach ($extensions as $extension) {
-        	$Modules = ezcBaseFile::findRecursive( "extension/{$extension}/{$ModulesDir}",array( '@module.php@' ) );
-        	foreach ($Modules as $ModuleInclude)
-        	{
-        		include($ModuleInclude);
-        		if (isset($ModuleList[str_replace("extension/{$extension}/{$ModulesDir}/",'',dirname($ModuleInclude))]['name'])){
-        			$ModuleList[str_replace("extension/{$extension}/{$ModulesDir}/",'',dirname($ModuleInclude))]['name'] .= ', EX - '.erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole',$Module['name']);
-        		} else {
-        			$ModuleList[str_replace("extension/{$extension}/{$ModulesDir}/",'',dirname($ModuleInclude))] = array('name' => erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole',$Module['name']));
-        		}
+            if (is_dir("extension/{$extension}/{$ModulesDir}")) {
+            	$Modules = ezcBaseFile::findRecursive( "extension/{$extension}/{$ModulesDir}",array( '@module.php@' ) );
+            	foreach ($Modules as $ModuleInclude)
+            	{
+            	    if (file_exists($ModuleInclude)) {
+                		include($ModuleInclude);
+                		if (isset($ModuleList[str_replace("extension/{$extension}/{$ModulesDir}/",'',dirname($ModuleInclude))]['name'])){
+                			$ModuleList[str_replace("extension/{$extension}/{$ModulesDir}/",'',dirname($ModuleInclude))]['name'] .= ', EX - '.erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole',$Module['name']);
+                		} else {
+                			$ModuleList[str_replace("extension/{$extension}/{$ModulesDir}/",'',dirname($ModuleInclude))] = array('name' => erTranslationClassLhTranslation::getInstance()->getTranslation('permission/editrole',$Module['name']));
+                		}
+            	    }
+            	}
         	}
         }
 

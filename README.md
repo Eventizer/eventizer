@@ -5,7 +5,9 @@ Eventizer is free, open-source system that is designed for event registration an
 
 <h2>Features</h2>
 <ul>
-	<li>Widget to add events to you website</li>
+	<li>Widget to add events to you website.</li>
+	<li>Organizer profile.</li>
+	<li>Widget which let user add event to google or yahoo calendars</li>
 </ul>  
 
 
