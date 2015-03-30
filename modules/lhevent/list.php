@@ -11,6 +11,8 @@ $filterParams = erLhcoreClassSearchHandler::getParams ( array (
 
 $append = erLhcoreClassSearchHandler::getURLAppendFromInput ( $filterParams ['input_form'],false,false,array('category') );
 
+$filterParams ['filter']['filtergte'] = array('end_date' => time());
+
 $pages = new lhPaginator ();
 $pages->serverURL = __url ( 'event/list' ).$append;
 $pages->items_total = erLhcoreClassModelEvents::getCount ( $filterParams ['filter'] );
