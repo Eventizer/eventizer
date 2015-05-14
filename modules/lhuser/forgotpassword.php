@@ -66,7 +66,6 @@ if (isset($_POST['Forgotpassword'])) {
         $tpl->set('errors',$Errors);
     }
 }
-$Result['pagelayout'] = 'login';
 $Result['content'] = $tpl->fetch();
 
 ?>

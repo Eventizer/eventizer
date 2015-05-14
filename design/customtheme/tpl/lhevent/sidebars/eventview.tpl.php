@@ -3,6 +3,27 @@
 		<div class="aside-property-profile">
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 				<div class="panel panel-default panel-aside">
+					
+					<div class="panel-body">
+					        <div id="msg"></div>
+					        <?php if ($issaved == 1):?>
+								<a href="<?=__url('event/savedevents')?>" id="save_event" class="btn btn-default btn-lg btn-block"><?=__t('event/view','View saved events')?></a>
+					        <?php else:?>
+    							 <a href="#" id="save_event" <?php if (erLhcoreClassUser::instance()->isLogged()): ?>onclick="app.saveEvent(<?=$item->id?>)"<?php endif;?> class="btn btn-default btn-lg btn-block"  data-toggle="modal" data-target="#save-event"><?=__t('event/view','Save This Event')?></a>
+					        <?php endif;?>
+							<div class="pt-15"><?=$saved?>&nbsp;<?=__t('event/view','saved this event')?></div>
+							<div class="count_subview"></div>
+                            <div class="summary_subview"></div>
+					</div>
+					<?php if (!erLhcoreClassUser::instance()->isLogged()): ?>
+    					<?php $modal['header'] = __t('event/view','Save This Event')?>
+    					<?php $modal['contnet'] = __t('event/view','Log in or sign up to save events you are interested in.')?>
+    					<?php include_once(erLhcoreClassDesign::designtpl('lhkernel/modal_not_logged.tpl.php'));?>
+					<?php endif;?>
+				</div>
+				
+			
+				<div class="panel panel-default panel-aside">
 					<div class="panel-heading clearfix">
 						<h4 class="panel-title"><?=__t('event/view','When & Where')?></h4>
 					</div>

@@ -395,6 +395,21 @@ class erLhcoreClassModuleFunctions {
 	    }
 	    return $url;
 	}
+	
+
+    public static function urlEncode($url) {
+    
+        return rawurlencode(base64_encode($url));
+    }
+    
+    public static function urlDecode($url) {
+    
+        return base64_decode(rawurldecode($url));
+    }
+    
+    public static function currentPage () {
+        return $_SERVER['REQUEST_URI'];
+    }
 }
 
 ?>

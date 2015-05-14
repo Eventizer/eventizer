@@ -16,11 +16,17 @@ $ViewList['showeventajax'] = array(
 
 $ViewList['list'] = array(
     'params' => array(),
-    'uparams' => array('searchText','Submit','category'),
+    'uparams' => array(
+        'searchText',
+        'Submit',
+        'category'
+    )
 );
 
 $ViewList['view'] = array(
-    'params' => array('id')
+    'params' => array(
+        'id'
+    )
 );
 
 $ViewList['events'] = array(
@@ -28,6 +34,19 @@ $ViewList['events'] = array(
     'script' => 'admin/events.php',
     'functions' => array(
         'administrate_event'
+    )
+);
+
+$ViewList['myevents'] = array(
+    'params' => array(),
+    'script' => 'myevents.php',
+    'uparams' => array(
+        'searchText',
+        'Submit',
+        'category'
+    ),
+    'functions' => array(
+        'userevents'
     )
 );
 
@@ -57,6 +76,14 @@ $ViewList['widget'] = array(
     )
 );
 
+$ViewList['savedevents'] = array(
+    'params' => array(),
+    'script' => 'savedevents.php',
+    'functions' => array(
+        'userevents'
+    )
+);
+
 $ViewList['remove'] = array(
     'params' => array(
         'id'
@@ -75,5 +102,8 @@ $FunctionList['use'] = array(
 );
 $FunctionList['administrate_event'] = array(
     'explain' => 'Allow user to administrate event module'
+);
+$FunctionList['userevents'] = array(
+    'explain' => 'Allow logged user to administrate his event module'
 );
 ?>

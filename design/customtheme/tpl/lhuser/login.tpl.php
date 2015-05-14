@@ -4,7 +4,7 @@
             <h1><?=__t('user/login','Log in')?></h1>
               <div class="row pb-15">
 			     <div class="col-sm-12 text-center">
-                     <a  href="<?=erLhcoreClassDesign::baseurl('user/registration')?>"><?=__t('user/login','Or, sign up')?></a>
+                     <a  href="<?=__url('user/registration')?><?=isset($redirect_url)?'/(d)/'.$redirect_url:''?>"><?=__t('user/login','Or, sign up')?></a>
                  </div>
               </div>
               <div class="row">
@@ -12,7 +12,7 @@
                     <?php include(erLhcoreClassDesign::designtpl('lhkernel/validation_error.tpl.php'));?>
                  </div>
               </div>
-            <form method="post" action="<?=__url('user/login')?>">
+            <form method="post" action="<?=__url('user/login')?><?=isset($redirect_url)?'/(d)/'.$redirect_url:''?>">
              <div class="form-group"><input required placeholder="<?=erTranslationClassLhTranslation::getInstance()->getTranslation('user/login','Username');?>" class="form-control" type="text" name="Username" value="<?=$Username?>" /></div>
 				 <div class="form-group"><input required placeholder="<?=erTranslationClassLhTranslation::getInstance()->getTranslation('user/login','Password');?>" class="form-control" type="password" name="Password" value="" /></div>
 				 <div class="form-group">

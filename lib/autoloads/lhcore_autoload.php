@@ -80,6 +80,7 @@ return array (
 		//Events
 		'erLhcoreClassEvents'							=>  'lib/core/lhevents/lhevents.php',
 		'erLhcoreClassModelEvents'						=>  'lib/models/lhevents/erlhcoreclassmodelevents.php',
+		'erLhcoreClassModelSavedEvents'					=>  'lib/models/lhevents/erlhcoreclassmodelsavedevents.php',
     
         //event validation
         'erLhcoreClassValidateEvents'					=>  'lib/core/lhevents/validation/erlhcoreclassvalidationevents.php',

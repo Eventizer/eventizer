@@ -27,9 +27,9 @@
     							<li class="dropdown">
     							  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><?=erLhcoreClassUser::instance()->getUserData(true)?><b class="caret"></b></a>
     							   <ul class="dropdown-menu">
-                	                    <li><a href="<?=erLhcoreClassDesign::baseurl('user/myevents')?>"><?=__t('pagelayout/front','My events');?></a></li>
+                	                    <li><a href="<?=erLhcoreClassDesign::baseurl('event/myevents')?>"><?=__t('pagelayout/front','My events');?></a></li>
                 	                  <li class="divider"></li>
-                	                  <li><a href="<?=__url('user/account')?>"><?=__t('pagelayout/front','My account')?></a></li>
+                	                  <li><a href="<?=__url('user/editaccount')?>"><?=__t('pagelayout/front','My account')?></a></li>
                 	                  <li><a href="<?=__url('user/logout')?>"><?=__t('pagelayout/front','Logout')?></a></li>
                 	                </ul>
     							</li>

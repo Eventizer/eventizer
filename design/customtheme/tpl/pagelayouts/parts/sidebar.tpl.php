@@ -7,6 +7,12 @@
     	<?php case 'organizer_profile': ?>
             <?php include_once(erLhcoreClassDesign::designtpl('lhorganizer/sidebars/organizer_profile.tpl.php'));?>
       	<?php break; ?>
+    	<?php case 'account': ?>
+            <?php include_once(erLhcoreClassDesign::designtpl('lhuser/sidebars/account.tpl.php'));?>
+      	<?php break; ?>
+    	<?php case 'myevents_list': ?>
+            <?php include_once(erLhcoreClassDesign::designtpl('lhevent/sidebars/myevents_list.tpl.php'));?>
+      	<?php break; ?>
       	
       	<?php default: ?>
         <?php break; ?>   

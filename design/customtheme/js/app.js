@@ -129,6 +129,26 @@ var app = {
     	win.focus();
     	return false;
     },
+    
+    saveEvent : function (id) {
+    	$.postJSON(WWW_DIR_JAVASCRIPT + 'eventajax/saveevent/' + id ,{ }, function(data){ 
+    		
+    		if (data.error == false) {
+    			$( "#msg" ).addClass('alert alert-success ');
+    			$('#save_event').replaceWith(data.html);
+    		} else {
+    			$( "#msg" ).addClass('alert alert-danger');
+    		}
+    		$( "#msg" ).html(data.msg);
+    		
+    	});
+    },
+    
+    removeSavedEvent : function (id) {
+        $.postJSON(WWW_DIR_JAVASCRIPT + 'eventajax/removesavedevent/' + id ,{ }, function(data){ 
+        	location.reload();
+    	});
+    },
                          
 
 };

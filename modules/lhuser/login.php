@@ -1,19 +1,24 @@
 <?php
 
 $currentUser = erLhcoreClassUser::instance();
-
+$destination = $Params['user_parameters_unordered']['d'];
 $instance = erLhcoreClassSystem::instance();
 
 
 $tpl = erLhcoreClassTemplate::getInstance( 'lhuser/login.tpl.php');
 
-$redirect = '';
-if (isset($_POST['redirect'])){
-	$redirect = $_POST['redirect'];
-	$tpl->set('redirect_url',$redirect);
+if ( !empty($destination) ) {
+    $redirect = $destination;
 } else {
-	$redirect = rawurldecode($Params['user_parameters_unordered']['r']);
-	$tpl->set('redirect_url',$redirect);
+    $redirect = CSCacheAPC::getMem()->getSession('redirect_url');
+}
+
+if ( $currentUser->isLogged() && $redirect != '' ) {
+    header('Location: '.erLhcoreClassModuleFunctions::urlDecode($redirect));
+    exit;
+} else {
+    CSCacheAPC::getMem()->setSession('redirect_url', $redirect);
+    $tpl->set('redirect_url',$redirect);
 }
 
 if (isset($_POST['Login']))
@@ -24,7 +29,7 @@ if (isset($_POST['Login']))
         $tpl->set('errors',array($Error));
     } else {
     	if ($redirect != '') {
-    		erLhcoreClassModule::redirect(base64_decode($redirect));
+    		erLhcoreClassModule::redirect(erLhcoreClassModuleFunctions::urlDecode($redirect));
     	} else {
 	        erLhcoreClassModule::redirect();
 	        exit;

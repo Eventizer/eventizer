@@ -130,7 +130,13 @@ class erLhcoreClassMail {
 	
 		$phpMailer->AddAddress($userData->email, $userData->name.' '.$userData->surname);
 	
-		$url_confirm = 'http://'.$_SERVER['HTTP_HOST'].erLhcoreClassDesign::baseurl('user/activate').'/'.$userData->activate_hash;
+		$d = '';
+		
+		if (isset($userData->redirect_url) && $userData->redirect_url != '') {
+		    $d = '/(d)/'.$userData->redirect_url;
+		}
+		
+		$url_confirm = 'http://'.$_SERVER['HTTP_HOST'].erLhcoreClassDesign::baseurl('user/activate').'/'.$userData->activate_hash.$d;
 		
 		$values1 = array('{url_confirm}','{name}','{surname}');
 		$values2 = array($url_confirm,$userData->name,$userData->surname);

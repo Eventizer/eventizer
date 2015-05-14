@@ -4,7 +4,7 @@
             <h1><?=__t('user/registration','Sign up')?></h1>
               <div class="row pb-15">
 			     <div class="col-sm-12 text-center">
-                     <span class="pr-5"><?=__t('user/login','Have account?')?></span>&nbsp;<a  href="<?=erLhcoreClassDesign::baseurl('user/login')?>"><?=__t('user/login','Log in')?></a>
+                     <span class="pr-5"><?=__t('user/login','Have account?')?></span>&nbsp;<a  href="<?=__url('user/login')?><?=isset($redirect_url)?'/(d)/'.$redirect_url:''?>"><?=__t('user/login','Log in')?></a>
                  </div>
               </div>
               <div class="row">
@@ -13,7 +13,7 @@
                     <?php include(erLhcoreClassDesign::designtpl('lhkernel/validation_error.tpl.php'));?>
                  </div>
               </div>
-            <form action="<?=__url('user/registration')?>" method="post" autocomplete="off">
+            <form action="<?=__url('user/registration')?><?=isset($redirect_url)?'/(d)/'.$redirect_url:''?>" method="post" autocomplete="off">
             	
             	<div class="row">
             	    <div class="columns large-12">

@@ -12,6 +12,7 @@ if ( $userData) {
 	$userData->setUserActive();		 		
 }	
 
+$tpl->set('d', $Params['user_parameters_unordered']['d']);
 $tpl->set('userData',$userData);
 
 $Result['content'] = $tpl->fetch();
