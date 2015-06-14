@@ -235,7 +235,7 @@ class erLhcoreClassModuleFunctions {
     	return $str ;
     }
     
-    public static function formatTimeToYearMontDate($timestamp,$dayEndTime = false) {
+    public static function formatTimeToYearMontDate($timestamp, $dayEndTime = false) {
     	
     	$year = date('Y', $timestamp);
     	$month = date('m', $timestamp);
@@ -369,7 +369,7 @@ class erLhcoreClassModuleFunctions {
 	    $dateFormat = DateTime::createFromFormat($format, $date);
 		
 		if ($dateFormat) {
-			return self::formatTimeToYearMontDate($dateFormat->getTimestamp(), $setDayEndTime);
+			return self::formatTimeToYearMontDate($dateFormat->getTimestamp(), false);
 		}
 	}
 	

@@ -5,6 +5,8 @@
                  <div class="col-md-3 text-center">
                     <?php if($item->photo_thumb):?>
         					<img alt="<?=htmlspecialchars($item->title)?>" src="<?=$item->photo_thumb?>" />
+					<?php else:?>
+					   <img width="100%" alt="<?=htmlspecialchars($item->title)?>" src="<?=__design('images/nophoto/no-thumbnail.png')?>" />
         			<?php endif;?>
         		</div>
         		<div class="col-md-9">

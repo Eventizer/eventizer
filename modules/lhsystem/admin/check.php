@@ -3,7 +3,7 @@ $tpl = erLhcoreClassTemplate::getInstance('lhsystem/check.tpl.php');
 
 $action = (string)$Params['user_parameters_unordered']['action'] ;
 
-if (in_array($action, array('status','statusdb','updatedb'))) {
+if (in_array($action, array('status','statusdb','updatedb','statusdbdoupdate'))) {
     if (!isset($_SERVER['HTTP_X_CSRFTOKEN']) || !$currentUser->validateCSFRToken($_SERVER['HTTP_X_CSRFTOKEN'])) {
         echo json_encode(array('error' => 'true', 'result' => 'Invalid CSRF Token' ));
         exit;

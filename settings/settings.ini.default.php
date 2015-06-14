@@ -15,6 +15,7 @@ return array(
             'templatecache' => false,
             'templatecompile' => false,
             'modulecompile' => false,
+            'nice_url_enabled' => false,
             'force_virtual_host' => false,
             'https_port' => 443,
             'default_site_access' => 'eng',

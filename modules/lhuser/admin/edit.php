@@ -15,7 +15,7 @@ if ( isset($_POST['cancelAction']) ) {
 
 if (isset($_POST['saveAction']) || isset($_POST['updateAction'])) {
 
-	$errors = erLhcoreClassModelUser::validateInput($userData);
+	$errors = erLhcoreClassValidateUsers::validateInput($userData);
 	
 	$errorsAdmin = erLhcoreClassModelUser::validateInputAdmin($userData);
     

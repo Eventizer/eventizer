@@ -27,6 +27,7 @@ $Result['title'] = array(
     'small_title' => ''
 );
 
+$Result['additional_js'] = '<script type="text/javascript" src="'.erLhcoreClassDesign::designJS('js/bootstrap/bootstrap-datepicker.js', false).'"></script>';
 $Result['menu'] = 'events';
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(

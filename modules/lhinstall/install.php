@@ -860,6 +860,8 @@ switch ((int)$Params['user_parameters']['step_id']) {
 
                $contentData = ApiClient::executeRequest('https://raw.githubusercontent.com/Eventizer/eventizer/master/doc/update_db/structure.json');
                erLhcoreClassUpdate::doTablesUpdate(json_decode($contentData,true));
+               //update one more time, maybe first update have more dependencies
+               erLhcoreClassUpdate::doTablesUpdate(json_decode($contentData,true));
 	           
 	           ApiClient::setSystemInstall();
     	       $tpl->setFile('lhinstall/install4.tpl.php');

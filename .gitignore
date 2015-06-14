@@ -17,7 +17,9 @@ composer.json
 composer.phar
 .project
 
-!settings/form/*
+!extension/mycalendar
+!extension/form
+!extension/socialcomments
 !settings/settings.ini.default.php
 !cache/cacheconfig
 !cache/compiledtemplates
