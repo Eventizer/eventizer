@@ -7,9 +7,8 @@ cache/userinfo/*
 cron/log/*
 settings/*
 extension/*
-var/*
 var/tmpfiles/*
-var/userphoto/*
+var/userphoto/
 robots.txt
 .htaccess
 .gitignore
