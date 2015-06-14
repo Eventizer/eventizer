@@ -5,6 +5,8 @@ var functionMap = {
 	'init_modulePolicySelection': app.init_module_policy_selection,
 	'init_single_page_map': app.single_page_map,
 	'init_front_page_map': app.front_page_map,
+	'datepicker': app.datepicker,
+	'ckeditor': app.ckeditor,
 };
 
 $(document).ready(function() {      

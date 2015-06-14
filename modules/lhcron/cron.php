@@ -12,6 +12,10 @@ echo "-------------------------------------------- \n";
 echo "Delete old password hash \n";
 erLhcoreClassModelForgotPassword::removeOldPasswordHash();
 
+echo "Send saved events notifications"; 
+erLhcoreClassModelSavedEvents::sendSavedEventNotification();
+
+
 echo "-------------------------------------------- \n";
 echo "Cron finished - ",date('Y-m-d H:i'),"\n";
 

@@ -148,6 +148,8 @@
 
 <script type="text/javascript">
 	var _lactq = _lactq || [];
+	_lactq.push({'f':'ckeditor','a':['ckeditor']});
+	_lactq.push({'f':'ckeditor','a':['ckeditor2']});
 	_lactq.push({'f':'datepicker','a':['StartDate']});
 	_lactq.push({'f':'datepicker','a':['EndDate']});
 </script>

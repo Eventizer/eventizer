@@ -14,6 +14,9 @@ function __autoload( $className ) {
 
 ezcBase::addClassRepository( dirname(__FILE__).'/', dirname(__FILE__).'/lib/autoloads'); 
 
+// Include global functions
+include_once "lib/core/lhcore/lhglobalfunctions.php";
+
 $input = new ezcConsoleInput();
 
 $helpOption = $input->registerOption(

@@ -10,6 +10,7 @@ return array(
             'secrethash' => '',
             'debug_output' => false,
             'debug_email' => '',
+            'domain' => 'http://dev.eventizer.org',
             'debug_ip' => array(),
             'templatecache' => false,
             'templatecompile' => false,

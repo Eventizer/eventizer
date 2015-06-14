@@ -26,7 +26,7 @@ $Result['title'] = array(
     'title' => __t('event/new', 'Edit event'),
     'small_title' => ''
 );
-$Result['additional_js'] = '<script type="text/javascript" src="/design/backendtheme/js/ckeditor/ckeditor.js"></script>';
+
 $Result['menu'] = 'events';
 $Result['content'] = $tpl->fetch();
 $Result['path'] = array(

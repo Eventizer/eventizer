@@ -1,13 +1,13 @@
 <?php
 
 class erLhcoreClassUpdate {
-    const VERSION = 2;
+    const VERSION = 3;
     
     public static function version() {
         return (self::VERSION)/100;
     }
-		
-    public static function doTablesUpdate($definition, $executeQueries = true) {
+					
+	public static function doTablesUpdate($definition, $executeQueries = true) {
 		
 		$errorMessages = array();
 		$queries = array();
@@ -72,37 +72,56 @@ class erLhcoreClassUpdate {
 					}			
 				}
 				
+				$columnsToRename = array();
+				
+				// We have defined table column changes over time
+				if (isset($definition['tables_column_names_changes'][$table])){
+				    $columnsNameChanges = $definition['tables_column_names_changes'][$table];
+				    
+				    foreach ($columnsData as $columnExisting) {
+				        if (in_array($columnExisting['field'], array_keys($columnsNameChanges))) { // We have column which name has to change
+				            $columnsToRename[] = $columnsNameChanges[$columnExisting['field']]['name'];				            
+				            $tablesStatus[$table]['queries'][] = $columnsNameChanges[$columnExisting['field']]['q'];				            
+				        }
+				    }
+				}
+				
 				foreach ($columnsDesired as $columnDesired) {
-					$columnFound = false;
-					$typeMatch = true;
-					foreach ($columnsData as $column) {
-						if ($columnDesired['field'] == $column['field']) {
-							$columnFound = true;
-							
-							if ($columnDesired['type'] != $column['type']) {
-								$typeMatch = false;
-							}
-						}	
-					}
-
-					if ($typeMatch == false) {
-						$tablesStatus[$table]['error'] = true;
-						$status[] = "[{$columnDesired['field']}] column type is not correct";
-												
-						$tablesStatus[$table]['queries'][] = "ALTER TABLE `{$table}` CHANGE `{$columnDesired['field']}` `{$columnDesired['field']}` {$columnDesired['type']} NOT NULL;";
-					}
-					
-					if ($columnFound == false) {
-						$tablesStatus[$table]['error'] = true;
-						$status[] = "[{$columnDesired['field']}] column was not found";
-						
-						$default = '';
-						if ($columnDesired['default'] !== null){
-							$default = " DEFAULT '{$columnDesired['default']}'";
-						}
-								
-						$tablesStatus[$table]['queries'][] = "ALTER TABLE `{$table}` ADD `{$columnDesired['field']}` {$columnDesired['type']} NOT NULL{$default}, COMMENT='';";
-					}					
+				    
+				    // Add column only if it's not a rename operation
+				    if (!in_array($columnDesired['field'], $columnsToRename))
+				    {
+    					$columnFound = false;
+    					$typeMatch = true;
+    					foreach ($columnsData as $column) {
+    						if ($columnDesired['field'] == $column['field']) {
+    							$columnFound = true;
+    							
+    							if ($columnDesired['type'] != $column['type']) {
+    								$typeMatch = false;
+    							}
+    						}	
+    					}
+    
+    					if ($typeMatch == false) {
+    						$tablesStatus[$table]['error'] = true;
+    						$status[] = "[{$columnDesired['field']}] column type is not correct";
+    												
+    						$tablesStatus[$table]['queries'][] = "ALTER TABLE `{$table}` CHANGE `{$columnDesired['field']}` `{$columnDesired['field']}` {$columnDesired['type']} NOT NULL;";
+    					}
+    					
+    					if ($columnFound == false) {
+    						$tablesStatus[$table]['error'] = true;
+    						$status[] = "[{$columnDesired['field']}] column was not found";
+    						
+    						$default = '';
+    						if ($columnDesired['default'] !== null){
+    							$default = " DEFAULT '{$columnDesired['default']}'";
+    						}
+    								
+    						$tablesStatus[$table]['queries'][] = "ALTER TABLE `{$table}` ADD `{$columnDesired['field']}` {$columnDesired['type']} NOT NULL{$default}, COMMENT='';";
+    					}
+				    }					
 				}
 				
 				if (!empty($status)) {
@@ -357,5 +376,5 @@ class erLhcoreClassUpdate {
 		return $errorMessages;
 		
 	}
+	
 }
-?>

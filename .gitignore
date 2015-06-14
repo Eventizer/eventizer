@@ -9,6 +9,7 @@ settings/*
 extension/*
 var/*
 var/tmpfiles/*
+var/userphoto/*
 robots.txt
 .htaccess
 .gitignore
@@ -30,5 +31,4 @@ composer.phar
 !var/media_static
 !var/storage
 !var/eventcategories/2014y/11/06/*
-!var/userphoto
 !.gitignore

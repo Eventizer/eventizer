@@ -85,7 +85,7 @@ class erLhcoreClassModelEvents
                 break;
                 
             case 'full_url':
-                    $this->full_url = erLhcoreClassModuleFunctions::addhttp($_SERVER['HTTP_HOST'].$this->url);
+                    $this->full_url = str_replace('site_admin/', '', erLhcoreClassModuleFunctions::addhttp(erConfigClassLhConfig::getInstance()->getSetting('site', 'domain').$this->url));
                     
                     return $this->full_url;
                 break;

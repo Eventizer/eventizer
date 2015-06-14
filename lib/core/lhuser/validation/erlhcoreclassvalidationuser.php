@@ -105,14 +105,14 @@ class erLhcoreClassValidateUsers
             
             if ($objectData->id == null) {
                 
-                if ($form->hasValidData('Email') && self::userEmailExists($form->Email) === true) {
+                if ($form->hasValidData('Email') && erLhcoreClassModelUser::userEmailExists($form->Email) === true) {
                     $Errors[] = __t('user/form', 'Email address already registered');
                 } else {
                     $objectData->email = $form->Email;
                 }
             } else {
                 
-                if ($form->hasValidData('Email') && $form->Email != $objectData->email && self::userEmailExists($form->Email) === true) {
+                if ($form->hasValidData('Email') && $form->Email != $objectData->email && erLhcoreClassModelUser::userEmailExists($form->Email) === true) {
                     $Errors[] = __t('user/form', 'Email address already registered');
                 } else {
                     $objectData->email = $form->Email;

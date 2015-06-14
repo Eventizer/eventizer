@@ -58,6 +58,14 @@ $ViewList['new'] = array(
     )
 );
 
+$ViewList['create'] = array(
+    'params' => array(),
+    'script' => 'create.php',
+    'functions' => array(
+        'userevents'
+    )
+);
+
 $ViewList['edit'] = array(
     'params' => array(
         'event_id'

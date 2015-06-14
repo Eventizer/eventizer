@@ -149,6 +149,19 @@ var app = {
         	location.reload();
     	});
     },
-                         
+    
+    removeMyEvent : function (id) {
+        $.postJSON(WWW_DIR_JAVASCRIPT + 'eventajax/removemyevent/' + id ,{ }, function(data){ 
+        	location.reload();
+    	});
+    },
+    
+    datepicker : function(id) {
+    	 $("#"+id).datepicker({format: "dd/mm/yyyy", autoclose: true});
+    },
+    
+    ckeditor : function(id) {
+    	
+    },
 
 };
