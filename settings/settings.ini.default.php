@@ -10,7 +10,7 @@ return array(
             'secrethash' => '',
             'debug_output' => false,
             'debug_email' => '',
-            'domain' => 'http://dev.eventizer.org',
+            'domain' => 'http://example.com',
             'debug_ip' => array(),
             'templatecache' => false,
             'templatecompile' => false,
@@ -30,7 +30,9 @@ return array(
                 )
             ),
             'extensions' => array(
-                'form'
+                 0 => 'form',
+                 1 => 'socialcomments',
+                 2 => 'mycalendar',
             ),
             'imagemagic_enabled' => false,
             'default_www_user' => 'apache',

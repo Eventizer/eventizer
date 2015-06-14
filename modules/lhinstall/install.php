@@ -858,6 +858,9 @@ switch ((int)$Params['user_parameters']['step_id']) {
 	           $cfgSite->setSetting( 'user_settings', 'anonymous_user_id', $UserDataAnonymous->id);
 	           $cfgSite->save();
 
+               $contentData = ApiClient::executeRequest('https://raw.githubusercontent.com/Eventizer/eventizer/master/doc/update_db/structure.json');
+               erLhcoreClassUpdate::doTablesUpdate(json_decode($contentData,true));
+	           
 	           ApiClient::setSystemInstall();
     	       $tpl->setFile('lhinstall/install4.tpl.php');
 

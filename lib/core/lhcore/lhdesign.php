@@ -335,7 +335,7 @@ class erLhcoreClassDesign
     	return htmlspecialchars($cutted);
     }
    
-    public static function designJS($files, $recompile = true)
+    public static function designJS($files, $recompile = false)
     {
         $debugOutput = erConfigClassLhConfig::getInstance()->getSetting( 'site', 'debug_output' );
     	$items = explode(';',$files);
