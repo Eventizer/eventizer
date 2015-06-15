@@ -267,6 +267,7 @@ class erLhcoreClassModelEvents
             $this->variations = '';
         }
     }
+    
 
     public $id = null;
 

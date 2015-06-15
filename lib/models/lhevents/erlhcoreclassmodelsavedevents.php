@@ -83,6 +83,13 @@ class erLhcoreClassModelSavedEvents
             }
         }
     }
+    
+    public static function deleteSavedEvents($event) {
+        $db = ezcDbInstance::get();
+        $stmt = $db->prepare('DELETE FROM lh_saved_events WHERE event_id = :event_id');
+        $stmt->bindValue(':event_id', $event->id);
+        $stmt->execute();
+    }
 
     public $id = null;
 

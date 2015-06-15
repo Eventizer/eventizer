@@ -12,6 +12,8 @@ if (isset($Params['user_parameters']['id']) && $Params['user_parameters']['id'] 
 	$saved = $Params['user_object'];
 	if ($saved !== false) {
 	   $saved->removeThis();
+	   
+	  erLhcoreClassModelSavedEvents::deleteSavedEvents($saved);
 	} 
 }
 echo json_encode(array('result'=>true));
