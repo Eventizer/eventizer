@@ -279,8 +279,8 @@ class erLhcoreClassDesign
         
         if (!file_exists($file)) {
             file_put_contents($file, $filesToCompress);
-            $minifier = new Minify\CSS($file);
-            file_put_contents($file, $minifier->minify());
+           /*  $minifier = new Minify\CSS($file);
+            file_put_contents($file, $minifier->minify()); */
         }
 
         if ($debugOutput == true)
